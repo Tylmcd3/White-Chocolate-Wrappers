@@ -7,8 +7,9 @@ namespace KIT206
     {
         static void Main(string[] args)
         {
-            StudentGroup group = new StudentGroup("beans");
-            group.AddMeeting();       
+            
+            Console.WriteLine("penis");
+            
 
         }
     }

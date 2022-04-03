@@ -2,40 +2,37 @@ using System;
 namespace KIT206
 {
     public class Meeting
-	{
-		public int Meeting_ID { get; set; }
-		public int Group_ID { get; private set; }
-		Day Day { get; set; }
-		DateTime start { get; set; }
-		DateTime end { get; set; }
-		string room { get; set; }
+    {
+        private int _meetingID;
+        private int _groupID;
+        private Day _day;
+        private DateTime _start;
+        private DateTime _end;
+        private string _room;
 
-		public Meeting()
-		{
-			throw new System.NotImplementedException();
-		}
+        /*
+            Constructor
+            Need to check validity of the room, check that start appears before end 
+            and that it isint longer than x time
+        */
+        public Meeting(int group_id, Day day, DateTime start, DateTime end, string room){
 
-		public StudentGroup StudentGroup
-		{
-			get => default;
-			set
-			{
-			}
-		}
-
-		public void SetMeetingID(int id){
-            Meeting_ID = id;
         }
+        //Overloaded function to edit the day and time of the meeting.
+        //changes depending on if they pass in the day, times or both.
+        public static void EditMeeting(Day day){
 
-		public void EditMeeting()
-		{
-			throw new System.NotImplementedException();
-		}
+        }
+        public static void EditMeeting(DateTime start, DateTime end){
 
-		public void CancelMeeting()
-		{
-			throw new System.NotImplementedException();
-		}
-	}
+        }
+        public static void EditMeeting(Day day, DateTime start, DateTime end){
+
+        }
+        //Removes meeting object
+        public static void CancelMeeting(){
+
+        }
+    }
     
 }
