@@ -1,29 +1,18 @@
+using System;
+
 namespace KIT206
 {
     public class StudentGroup
 	{
-		private int groupID;
-		private string groupName;
+		private int _groupID;
+		private string _groupName;
 
-		public StudentGroup()
+		public StudentGroup(string name)
 		{
-			throw new System.NotImplementedException();
-		}
+			//Generate group ID and then set to groupID (5 is placeholder)
 
-		public Unit Unit
-		{
-			get => default;
-			set
-			{
-			}
-		}
-
-		public Meeting Meeting
-		{
-			get => default;
-			set
-			{
-			}
+			_groupID = 5;
+			_groupName = name;
 		}
 
 		public void AddClass()

@@ -1,6 +1,6 @@
 namespace KIT206
 {
-    enum Day
+public enum Day
     {
         Monday,
         Tuesday,
@@ -11,12 +11,12 @@ namespace KIT206
         Sunday
   }
 
-  enum Campus{
+public enum Campus{
       Hobart,
       Lauceston
   }
 
-  enum Category{
+public enum Category{
       Batchelors,
       Masters
   }

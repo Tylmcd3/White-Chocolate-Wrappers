@@ -7,10 +7,8 @@ namespace KIT206
     {
         static void Main(string[] args)
         {
-            Meeting test = new Meeting();
-            test.SetMeetingID(5);
-            Console.WriteLine(test.Meeting_ID);
-            
+            StudentGroup group = new StudentGroup("beans");
+            group.AddMeeting();       
 
         }
     }

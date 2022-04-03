@@ -2,16 +2,23 @@ namespace KIT206
 {
     public class Student
 	{
-		private int studentID;
-		private string firstName;
-		private string lastName;
-		private int groupID;
-		private string title;
-		private Campus campus;
-		private string phone;
-		private string email;
-		private string photo;
-		private Category category;
+		private int _studentID;
+		private string _firstName;
+		private string _lastName;
+		private int _groupID;
+		private string _title;
+		private Campus _campus;
+		private string _phone;
+		private string _email;
+		private string _photo;
+		private Category _category;
+
+		//Get data from database, maybe just take in ID? 
+		public Student()
+		{
+			throw new System.NotImplementedException();
+
+		}
 
 		public StudentGroup StudentGroup
 		{
