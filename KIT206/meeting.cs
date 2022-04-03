@@ -1,15 +1,18 @@
+using System;
 namespace KIT206
 {
-    public class meeting
+    public class Meeting
     {
-        int meeting_id;
-        int group_id;
-        Day day;
-        DateTime start;
-        DateTime end;
-        string room;
-        public static void penis(){
-            System.WriteLine("Penis");
+        public int Meeting_ID{ get; set; }
+        public int Group_ID { get; private set; }
+        Day day { get; set; }
+        DateTime start { get; set; }
+        DateTime end { get; set; }
+        string room { get; set; }
+        
+        public void SetMeetingID(int id){
+            Meeting_ID = id;
         }
     }
+    
 }
