@@ -10,8 +10,6 @@ namespace KIT206
 			{
                 Console.WriteLine("Hello World!");
             }
-
         }
     }
 }
-

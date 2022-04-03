@@ -1,6 +1,8 @@
+using System;
+
 namespace KIT206
 {
-    public class meeting
+    public class Meeting
     {
         int meeting_id;
         int group_id;
@@ -8,8 +10,19 @@ namespace KIT206
         DateTime start;
         DateTime end;
         string room;
-        public static void penis(){
-            System.WriteLine("Penis");
+
+		public static void penis(){
+            Console.WriteLine("Penis");
         }
-    }
+
+		public void EditMeeting()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public void CancelMeeting()
+		{
+			throw new System.NotImplementedException();
+		}
+	}
 }
