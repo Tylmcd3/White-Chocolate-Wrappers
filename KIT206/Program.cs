@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace KIT206
 {
@@ -6,10 +7,11 @@ namespace KIT206
     {
         static void Main(string[] args)
         {
-            for(int i=0; i < 69; i++)
-			{
-                Console.WriteLine("Hello World!");
-            }
+            Meeting test = new Meeting();
+            test.SetMeetingID(5);
+            Console.WriteLine(test.Meeting_ID);
+            
+
         }
     }
 }
