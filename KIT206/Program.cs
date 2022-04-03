@@ -9,6 +9,7 @@ namespace KIT206
         {
             
             Console.WriteLine("penis");
+            Console.WriteLine("This is outta control");
             
 
         }
