@@ -10,6 +10,47 @@ namespace KIT206
 		private DateTime _end;
 		private string _room;
 
+		public int ClassID
+        {
+			get => default;
+			set
+            {
+				_classID = value;
+            }
+        }
+		public Day Date
+        {
+			get => default;
+			set
+            {
+				_date = value;
+            }
+        }
+		public DateTime Start
+        {
+			get => default;
+			set
+            {
+				_start = value;
+            }
+        }
+		public DateTime End
+        {
+			get => default;
+			set
+            {
+				_end = value;
+            }
+        }
+		public string Room
+        {
+			get => default;
+			set
+            {
+				_room = value;
+            }
+        }
+
 		public Class(int groupID, Day day, DateTime start, DateTime end, string room)
 		{
 			//Generate classid and set here (5 is placeholder)

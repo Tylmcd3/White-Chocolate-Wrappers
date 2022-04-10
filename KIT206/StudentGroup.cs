@@ -4,8 +4,28 @@ namespace KIT206
 {
     public class StudentGroup
 	{
+		//Private Fields
 		private int _groupID;
 		private string _groupName;
+
+
+		//Public properties
+		public int GroupID
+        {
+			get => default;
+			set
+            {
+				_groupID = value;
+            }
+        }
+		public string GroupName
+        {
+			get => default;
+            set
+            {
+				_groupName = value;
+            }
+        }
 
 		public StudentGroup(string name)
 		{

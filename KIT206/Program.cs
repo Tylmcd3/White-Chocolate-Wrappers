@@ -5,13 +5,12 @@ namespace KIT206
 {
     class Program
     {
+        //Driver Class
         static void Main(string[] args)
         {
-            
-            Console.WriteLine("penis");
-            Console.WriteLine("This is outta control");
-            
 
+            Student student = new Student("John", 69);
+            Console.WriteLine(student.ToString());
         }
     }
 }
