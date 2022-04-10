@@ -21,6 +21,15 @@ namespace KIT206
                 _meetingID = value;
             }
         }
+
+        public int GroupID
+        {
+            get =>_groupID;
+            set
+            {
+                _groupID = value;
+            }
+        }
         public Day Day
         {
             get => _day;
@@ -47,7 +56,7 @@ namespace KIT206
         }
         public string Room
         {
-            get => default;
+            get => _room;
             set
             {
                 _room = value;
@@ -59,7 +68,16 @@ namespace KIT206
             and that it isint longer than x time
         */
         public Meeting(int group_id, Day day, DateTime start, DateTime end, string room){
-
+            MeetingID = GenerateMeetingID();
+            GroupID = group_id;
+            Day = day;
+            Start = start;
+            End = end;
+            Room = room;
+        }
+        private int GenerateMeetingID()
+        {
+            return Storage.Meetings.Count+1;
         }
 
         //Think need to move these to controller class?
@@ -80,6 +98,11 @@ namespace KIT206
         //Removes meeting object
         public void CancelMeeting(){
             
+        }
+
+        public override string ToString()
+        {
+            return "The Meeting for the group " + StudentGroup.GetGroup(GroupID, Storage.Groups).GroupName + " is on " + Day.ToString() + " at " + Start.ToString();
         }
     }
     

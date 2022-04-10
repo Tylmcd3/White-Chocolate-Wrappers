@@ -117,7 +117,7 @@ namespace KIT206
                 _groupID = value;
 			}
 		}
-        //Temporarily returning a StudentGroup here just to be able to store it
+
 		public StudentGroup AddGroup(string name)
 		{
             StudentGroup group = new StudentGroup(name);

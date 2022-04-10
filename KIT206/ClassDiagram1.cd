@@ -3,15 +3,8 @@
   <Class Name="KIT206.Meeting">
     <Position X="1" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAgAAAEAEAAAAAAAAAAgAAIAAAABQAAAA=</HashCode>
-      <FileName>meeting.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KIT206.Program">
-    <Position X="1.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
+      <HashCode>AAYAAEAAICAAgAAEEFEAAAAAAAAAAgAAIAAAABQAAAg=</HashCode>
+      <FileName>Meeting.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KIT206.Student">
@@ -24,8 +17,8 @@
   <Class Name="KIT206.StudentGroup">
     <Position X="7" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAAAAAAAABAAAAAAAAAAAAIIBAAAAAAAAA=</HashCode>
-      <FileName>studentGroup.cs</FileName>
+      <HashCode>QAQAAAAAAAAAAAAEAABABAAAAAAAAAAMIBAAAAAAAAE=</HashCode>
+      <FileName>StudentGroup.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KIT206.Class">
@@ -37,6 +30,13 @@
     <ShowAsAssociation>
       <Property Name="StudentGroup" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="KIT206.Program">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

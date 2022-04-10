@@ -9,25 +9,23 @@ namespace KIT206
         //Driver Class
         static void Main(string[] args)
         {
+            int ID = 69; // As the user would be logged in, constantly being stored makes sense
+            Student user = new Student("John", ID); 
             StudentGroup group = null;
-            List<Student> students = new List<Student>();
-            List<StudentGroup> groups = new List<StudentGroup>();
-            students.Add(new Student("John", 69));
-            groups.Add(students[0].AddGroup("White_Choc_Wrappers"));
+            Meeting meeting = null;
+            Storage.AddStudent(user);
+            group = user.AddGroup("White Chocolate Wrappers");
+            Storage.AddGroup(group);
+            meeting = group.AddMeeting();
+            Storage.Meetings.Add(meeting);
 
-            foreach (Student student in students)
-            {
-                if(student.StudentID == 69)
-                {
-                    group = StudentGroup.GetGroup(student, groups);
-
-
-                }
-            }
-            foreach (Student student in students)
+            foreach (Student student in Storage.Students)
             {
                 Console.WriteLine(student.ToString());
+                group = Storage.GetGroup(student.StudentGroup);
                 Console.WriteLine(group.ToString());
+                meeting = Storage.GetMeeting(group.GroupID);
+                Console.WriteLine(meeting.ToString());
             }
         }
     }
