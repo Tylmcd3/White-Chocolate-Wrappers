@@ -8,7 +8,6 @@ namespace KIT206
         //Driver Class
         static void Main(string[] args)
         {
-
             Student student = new Student("John", 69);
             Console.WriteLine(student.ToString());
         }
