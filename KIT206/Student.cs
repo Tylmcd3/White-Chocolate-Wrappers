@@ -2,6 +2,7 @@ namespace KIT206
 {
     public class Student
 	{
+        //Private Fields
 		private int _studentID;
 		private string _firstName;
 		private string _lastName;
@@ -13,24 +14,112 @@ namespace KIT206
 		private string _photo;
 		private Category _category;
 
-		//Get data from database, maybe just take in ID? 
-		public Student()
-		{
-			throw new System.NotImplementedException();
+        //Public Properties
+        //Can Condense these later
+        public int StudentID
+        {
+            get => default;
+            set
+            {
+                _studentID = value;
+            }
+        }
+        public string FirstName
+        {
+            get => default;
+            set
+            {
+                _firstName = value;
+            }
+        }
+        public string LastName
+        {
+            get => default;
+            set
+            {
+                _lastName = value;
+            }
+        }
+        public string Title
+        {
+            get => default;
+            set
+            {
+                _title = value;
+            }
+        }
+        public Campus Campus
+        {
+            get
+            {
+                return _campus;
+            }
+            set
+            {
+                _campus = value;
+            }
+        }
+        public string Phone
+        {
+            get => default;
+            set
+            {
+                _phone = value;
+            }
+        }
+        public string Email
+        {
+            get => default;
+            set
+            {
+                _email = value;
+            }
+        }
+        public string Photo
+        {
+            get => default;
+            set
+            {
+                _photo = value;
+            }
+        }
+        public Category Category
+        {
+            get => default;
+            set
+            {
+                _category = value;
+            }
+        }
 
+        //Get data from database, maybe just take in ID? 
+        public Student(string name, int id)
+		{
+            //First or
+            StudentID = id;
+            FirstName = name;
+            //Second?
+			_studentID = id;
+			_firstName = name;
 		}
 
 		public StudentGroup StudentGroup
 		{
-			get => default;
+            get
+            {
+                return StudentGroup.GetGroup(_groupID);
+            }
 			set
 			{
+                _groupID = value.GroupID;
 			}
 		}
-
-		public void AddGroup()
+        //Temporarily returning a StudentGroup here just to be able to store it
+		public StudentGroup AddGroup(string name)
 		{
-			throw new System.NotImplementedException();
+            StudentGroup group = new StudentGroup(name);
+            StudentGroup = group;
+            return group;
 		}
 
 		public void AddStudentDetails()
@@ -42,5 +131,10 @@ namespace KIT206
 		{
 			throw new System.NotImplementedException();
 		}
+
+		public string ToString()
+        {
+			return (_firstName + " " + _lastName + ", " + _studentID);
+        }
 	}
 }
