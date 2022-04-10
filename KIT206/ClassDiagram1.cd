@@ -9,9 +9,6 @@
   </Class>
   <Class Name="KIT206.Program">
     <Position X="1.25" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -23,9 +20,6 @@
       <HashCode>CAEAAEAIAKBABGQEAAEAAAAAAAIgAAQAKAAAIAACCBk=</HashCode>
       <FileName>Student.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="StudentGroup" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="KIT206.StudentGroup">
     <Position X="7" Y="2.25" Width="1.5" />

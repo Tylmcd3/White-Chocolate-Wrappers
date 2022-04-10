@@ -9,11 +9,26 @@ namespace KIT206
         //Driver Class
         static void Main(string[] args)
         {
+            StudentGroup group = null;
             List<Student> students = new List<Student>();
             List<StudentGroup> groups = new List<StudentGroup>();
-            Student student = new Student("John", 69);
-            groups.Add(student.AddGroup("White_Choc_Wrappers"));
-            Console.WriteLine(student.ToString());
+            students.Add(new Student("John", 69));
+            groups.Add(students[0].AddGroup("White_Choc_Wrappers"));
+
+            foreach (Student student in students)
+            {
+                if(student.StudentID == 69)
+                {
+                    group = StudentGroup.GetGroup(student, groups);
+
+
+                }
+            }
+            foreach (Student student in students)
+            {
+                Console.WriteLine(student.ToString());
+                Console.WriteLine(group.ToString());
+            }
         }
     }
 }

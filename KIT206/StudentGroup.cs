@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace KIT206
 {
@@ -12,7 +13,10 @@ namespace KIT206
 		//Public properties
 		public int GroupID
         {
-			get => default;
+			get
+			{
+				return _groupID;
+			}
 			set
             {
 				_groupID = value;
@@ -20,7 +24,10 @@ namespace KIT206
         }
 		public string GroupName
         {
-			get => default;
+			get
+			{
+				return _groupName;
+			}
             set
             {
 				_groupName = value;
@@ -54,11 +61,25 @@ namespace KIT206
 		{
 			throw new System.NotImplementedException();
 		}
-
-		public static StudentGroup GetGroup(int id)
+		//
+		public static StudentGroup GetGroup(Student student, List<StudentGroup> groups)
         {
-			throw new System.NotImplementedException();
+			int id = student.StudentGroup;
+
+			foreach(StudentGroup group in groups)
+            {
+				if(group.GroupID == id)
+                {
+					return group;
+                }
+            }
+				return null;
 
 		}
+
+		public override string ToString()
+        {
+			return (GroupName + "'s ID is " + GroupID);
+        }
 	}
 }

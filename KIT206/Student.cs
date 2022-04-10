@@ -18,7 +18,10 @@ namespace KIT206
         //Can Condense these later
         public int StudentID
         {
-            get => default;
+            get
+            {
+                return _studentID;
+            }
             set
             {
                 _studentID = value;
@@ -96,29 +99,29 @@ namespace KIT206
         public Student(string name, int id)
 		{
             //First or
-            StudentID = id;
-            FirstName = name;
-            //Second?
+            //StudentID = id;
+            //FirstName = name;
+            //Second? I prefer second because its apart of the class but other classes should use the Public ones
 			_studentID = id;
 			_firstName = name;
 		}
 
-		public StudentGroup StudentGroup
+		public int StudentGroup
 		{
             get
             {
-                return StudentGroup.GetGroup(_groupID);
+                return _groupID;
             }
 			set
 			{
-                _groupID = value.GroupID;
+                _groupID = value;
 			}
 		}
         //Temporarily returning a StudentGroup here just to be able to store it
 		public StudentGroup AddGroup(string name)
 		{
             StudentGroup group = new StudentGroup(name);
-            StudentGroup = group;
+            StudentGroup = group.GroupID;
             return group;
 		}
 
@@ -132,7 +135,7 @@ namespace KIT206
 			throw new System.NotImplementedException();
 		}
 
-		public string ToString()
+		public override string ToString()
         {
 			return (_firstName + " " + _lastName + ", " + _studentID);
         }
