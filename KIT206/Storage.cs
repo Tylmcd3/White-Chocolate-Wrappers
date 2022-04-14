@@ -54,7 +54,7 @@ namespace KIT206
         public static Class GetClass(int id)
         {
             foreach (Class Class in Classes)
-                if (Class.ClassID == id)
+                if (Class.GroupID == id)
                     return Class;
             return null;
         }

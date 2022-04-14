@@ -41,15 +41,80 @@ namespace KIT206
 			_groupID = GenerateGroupID();
 			_groupName = name;
 		}
-
-        private int GenerateGroupID()
-        {
-            return 0;
-        }
-
-        public void AddClass()
+		public StudentGroup(string name, int id)
 		{
-			throw new System.NotImplementedException();
+			//Generate group ID and then set to groupID (5 is placeholder)
+
+			_groupID = id;
+			_groupName = name;
+		}
+		private int GenerateGroupID()
+        {
+			int id;
+			do
+			{
+				id = (int)(DateTime.Now.Ticks % 1000000);
+			} while (Check_ID(id));
+			return id;
+        }
+		private bool Check_ID(int id)
+		{
+			StudentGroup studentGroup = null;
+
+			foreach (StudentGroup group in Storage.Groups)
+			{
+				if (group._groupID == id)
+					studentGroup = group;
+			}
+			return studentGroup is StudentGroup;
+		}
+		//Creation of a class
+		public Class AddClass()
+		{
+			string StartTime, EndTime, Room;
+			DateTime Start, End;
+			Day day;
+
+
+
+			Console.WriteLine("Enter the Start time of the Class in 24HR time (HH:MM dd/mm/yyyy):  ");
+			StartTime = Console.ReadLine();
+
+			Console.WriteLine("Enter the End time of the Class (HH:MM dd/mm/yyyy):  ");
+			EndTime = Console.ReadLine();
+
+			Console.WriteLine("Enter the Room Code");
+			Room = Console.ReadLine();
+			Start = DateTime.Parse(StartTime);
+			End = DateTime.Parse(StartTime);
+			day = (Day)Enum.ToObject(typeof(Day), (int)Start.DayOfWeek);
+
+
+			return new Class(GroupID, day, Start, End, Room);
+		}
+		//Adding an already stored class
+		public Class AddClass(int class_id)
+		{
+			string StartTime, EndTime, Room;
+			DateTime Start, End;
+			Day day;
+
+
+
+			Console.WriteLine("Enter the Start time of the Class in 24HR time (HH:MM dd/mm/yyyy):  ");
+			StartTime = Console.ReadLine();
+
+			Console.WriteLine("Enter the End time of the Class (HH:MM dd/mm/yyyy):  ");
+			EndTime = Console.ReadLine();
+
+			Console.WriteLine("Enter the Room Code");
+			Room = Console.ReadLine();
+			Start = DateTime.Parse(StartTime);
+			End = DateTime.Parse(StartTime);
+			day = (Day)Enum.ToObject(typeof(Day), (int)Start.DayOfWeek);
+
+
+			return new Class(class_id, GroupID, day, Start, End, Room);
 		}
 
 		public Meeting AddMeeting()
