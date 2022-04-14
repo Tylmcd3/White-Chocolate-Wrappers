@@ -92,30 +92,6 @@ namespace KIT206
 
 			return new Class(GroupID, day, Start, End, Room);
 		}
-		//Adding an already stored class
-		public Class AddClass(int class_id)
-		{
-			string StartTime, EndTime, Room;
-			DateTime Start, End;
-			Day day;
-
-
-
-			Console.WriteLine("Enter the Start time of the Class in 24HR time (HH:MM dd/mm/yyyy):  ");
-			StartTime = Console.ReadLine();
-
-			Console.WriteLine("Enter the End time of the Class (HH:MM dd/mm/yyyy):  ");
-			EndTime = Console.ReadLine();
-
-			Console.WriteLine("Enter the Room Code");
-			Room = Console.ReadLine();
-			Start = DateTime.Parse(StartTime);
-			End = DateTime.Parse(StartTime);
-			day = (Day)Enum.ToObject(typeof(Day), (int)Start.DayOfWeek);
-
-
-			return new Class(class_id, GroupID, day, Start, End, Room);
-		}
 
 		public Meeting AddMeeting()
 		{
@@ -141,9 +117,9 @@ namespace KIT206
 			return new Meeting(GroupID, day, Start, End, Room);
 		}
 
-		public void EditGroup()
+		public void EditGroup(string new_name)
 		{
-			throw new System.NotImplementedException();
+			GroupName = new_name;
 		}
 		//Two Overrides here, one for finding a group from a student and one for finding a group from an ID, Might just remove the top and take the id from the student
 		public static StudentGroup GetGroup(Student student, List<StudentGroup> groups)
@@ -172,6 +148,19 @@ namespace KIT206
 			return null;
 
 		}
+
+		public List<Student> GetGroupMembers()
+        {
+			List<Student> students = new List<Student>();
+			foreach(Student student in Storage.Students)
+            {
+				if(student.StudentGroup == GroupID)
+                {
+					students.Add(student);
+                }
+            }
+			return students;
+        }
 
 		public override string ToString()
         {

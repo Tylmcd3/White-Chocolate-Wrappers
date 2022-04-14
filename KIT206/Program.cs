@@ -9,19 +9,17 @@ namespace KIT206
         //Driver Class
         static void Main(string[] args)
         {
-            Student user;
+            int ID = 650432; // As the user would be logged in, constantly being stored makes sense
+            Student user = null;
             StudentGroup group = null;
             Meeting meeting = null;
             Class @class = null;
-            int ID = 69; // As the user would be logged in, constantly being stored makes sense
-            user = new Student("John", ID);
-            Storage.AddStudent(user);
-            group = user.AddGroup("White Chocolate Wrappers");
-            Storage.AddGroup(group); 
-            meeting = group.AddMeeting();
-            Storage.Meetings.Add(meeting);
-            @class = group.AddClass();
-            Storage.AddClasses(@class);
+
+            user = Storage.GetStudent(ID);
+
+            group = Storage.GetGroup(user.StudentGroup);
+            meeting = Storage.GetMeeting(group.GroupID);
+            @class = Storage.GetClass(group.GroupID);
 
 
 
@@ -34,6 +32,8 @@ namespace KIT206
                 Console.WriteLine(meeting.ToString());
                 @class = Storage.GetClass(student.StudentGroup);
                 Console.WriteLine(@class.ToString());
+
+                Console.WriteLine();
 
             }
         }

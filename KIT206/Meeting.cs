@@ -75,6 +75,15 @@ namespace KIT206
             End = end;
             Room = room;
         }
+        //Used for creating an object from Database
+        public Meeting(int meeting_id, int group_id, Day day, DateTime start, DateTime end, string room){
+            MeetingID = meeting_id;
+            GroupID = group_id;
+            Day = day;
+            Start = start;
+            End = end;
+            Room = room;
+        }
         private int GenerateMeetingID()
         {
             return Storage.Meetings.Count+1;
@@ -97,7 +106,7 @@ namespace KIT206
         }
         //Removes meeting object
         public void CancelMeeting(){
-            
+            Storage.Meetings.Remove(this);
         }
 
         public override string ToString()
