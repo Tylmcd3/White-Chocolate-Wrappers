@@ -75,20 +75,15 @@ namespace KIT206
 			DateTime Start, End;
 			Day day;
 
-
-
 			Console.WriteLine("Enter the Start time of the Class in 24HR time (HH:MM dd/mm/yyyy):  ");
 			StartTime = Console.ReadLine();
-
 			Console.WriteLine("Enter the End time of the Class (HH:MM dd/mm/yyyy):  ");
 			EndTime = Console.ReadLine();
-
 			Console.WriteLine("Enter the Room Code");
 			Room = Console.ReadLine();
 			Start = DateTime.Parse(StartTime);
 			End = DateTime.Parse(StartTime);
 			day = (Day)Enum.ToObject(typeof(Day), (int)Start.DayOfWeek);
-
 
 			return new Class(GroupID, day, Start, End, Room);
 		}
@@ -161,6 +156,18 @@ namespace KIT206
             }
 			return students;
         }
+		public List<Meeting> GetMeetings()
+		{
+			List<Meeting> Meetings = new List<Meeting>();
+			foreach (Meeting meeting in Storage.Meetings)
+			{
+				if (meeting.GroupID == GroupID)
+				{
+					Meetings.Add(meeting);
+				}
+			}
+			return Meetings;
+		}
 
 		public override string ToString()
         {

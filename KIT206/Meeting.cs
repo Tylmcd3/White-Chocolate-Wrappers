@@ -86,8 +86,25 @@ namespace KIT206
         }
         private int GenerateMeetingID()
         {
-            return Storage.Meetings.Count+1;
+            int id;
+            do
+            {
+                id = (int)(DateTime.Now.Ticks % 1000000);
+            } while (Check_ID(id));
+            return id;
         }
+        private bool Check_ID(int id)
+        {
+            Meeting Meeting = null;
+
+            foreach (Meeting meeting in Storage.Meetings)
+            {
+                if (meeting.MeetingID == id)
+                    Meeting = meeting;
+            }
+            return Meeting is Meeting;
+        }
+        
 
         //Think need to move these to controller class?
 

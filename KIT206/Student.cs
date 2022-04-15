@@ -147,7 +147,7 @@ namespace KIT206
 		{
 			throw new System.NotImplementedException();
 		}
-
+        
 		public void EditStudentGroup()
 		{
 			foreach(Student student in Storage.Students)
