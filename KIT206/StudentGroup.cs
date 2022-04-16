@@ -144,12 +144,12 @@ namespace KIT206
 
 		}
 
-		public List<Student> GetGroupMembers()
+		public List<Student> GetGroupMembers(int StudentID)
         {
 			List<Student> students = new List<Student>();
 			foreach(Student student in Storage.Students)
             {
-				if(student.StudentGroup == GroupID)
+				if(student.StudentGroup == GroupID && student.StudentID != StudentID)
                 {
 					students.Add(student);
                 }

@@ -29,7 +29,7 @@ namespace KIT206
 							switch (PersonalSelection)
 							{
 								case 1:
-									Console.WriteLine(user.ToString());
+									Console.WriteLine(user.GetStudentString());
 									break;
 								//This hasnt been finished because the function isint implemented
 								case 2:
@@ -47,10 +47,10 @@ namespace KIT206
 							switch (GroupSelection)
 							{
 								case 1:
-									List<Student> GroupMembers = group.GetGroupMembers();
+									List<Student> GroupMembers = group.GetGroupMembers(ID);
 									foreach (Student Member in GroupMembers)
 									{
-										Member.ToString();
+										Console.WriteLine(Member.GetStudentString());
 									}
 									break;
 								case 2:
@@ -92,7 +92,6 @@ namespace KIT206
 												Day day = (Day)Enum.ToObject(typeof(Day), (int)start.DayOfWeek);
 												Storage.GetMeeting(group.GroupID).EditMeeting(day, start, end);
 												break;
-											
 										}
 									}
 									break;

@@ -18,10 +18,7 @@ namespace KIT206
         //Can Condense these later
         public int StudentID
         {
-            get
-            {
-                return _studentID;
-            }
+            get=> _studentID;
             set
             {
                 _studentID = value;
@@ -29,7 +26,7 @@ namespace KIT206
         }
         public string FirstName
         {
-            get => default;
+            get => _firstName;
             set
             {
                 _firstName = value;
@@ -37,7 +34,7 @@ namespace KIT206
         }
         public string LastName
         {
-            get => default;
+            get => _lastName;
             set
             {
                 _lastName = value;
@@ -45,7 +42,7 @@ namespace KIT206
         }
         public string Title
         {
-            get => default;
+            get => _title;
             set
             {
                 _title = value;
@@ -53,10 +50,7 @@ namespace KIT206
         }
         public Campus Campus
         {
-            get
-            {
-                return _campus;
-            }
+            get => _campus;
             set
             {
                 _campus = value;
@@ -156,10 +150,20 @@ namespace KIT206
                     student.StudentGroup = -1;
             }
 		}
-
-		public override string ToString()
+        public string GetStudentString()
         {
-			return (_firstName + " " + _lastName + ", " + _studentID);
+            if (Email != null)
+                return ToString("full");
+            else
+                return ToString(" ");
+        }
+		public string ToString(string type)
+        {
+            if (type == "full")
+
+                return ("Name: " + Title.ToString() +" "+ FirstName + " " + LastName + ", Student ID: " + StudentID + ", in group " + Storage.GetGroup(StudentGroup).GroupName + " Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
+            else
+                return ("Name: " + FirstName + " " + LastName + ", Student ID: " + StudentID);
         }
 	}
 }
