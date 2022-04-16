@@ -136,7 +136,7 @@ namespace KIT206
 			foreach (StudentGroup group in groups)
 			{
 				if (group.GroupID == id)
-				{
+		{
 					return group;
 				}
 			}
@@ -162,7 +162,7 @@ namespace KIT206
 			foreach (Meeting meeting in Storage.Meetings)
 			{
 				if (meeting.GroupID == GroupID)
-				{
+		{
 					Meetings.Add(meeting);
 				}
 			}
@@ -170,8 +170,8 @@ namespace KIT206
 		}
 
 		public override string ToString()
-        {
+		{
 			return (GroupName + "'s ID is " + GroupID);
-        }
+		}
 	}
 }

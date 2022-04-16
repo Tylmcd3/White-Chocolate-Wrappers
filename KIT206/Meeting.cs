@@ -104,7 +104,7 @@ namespace KIT206
             }
             return Meeting is Meeting;
         }
-        
+
 
         //Think need to move these to controller class?
 
@@ -125,7 +125,7 @@ namespace KIT206
         public void CancelMeeting(){
             Storage.Meetings.Remove(this);
         }
-
+            
         public override string ToString()
         {
             return "The Meeting for the group " + StudentGroup.GetGroup(GroupID, Storage.Groups).GroupName + " is on " + Day.ToString() + " at " + Start.ToString();
