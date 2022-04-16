@@ -3,33 +3,30 @@
   <Class Name="KIT206.Meeting">
     <Position X="1" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAYAAEAAICAAgAAEEFEAAAAAAAAAAgAAIAAAABQAAAg=</HashCode>
+      <HashCode>AAYAAEAAICAAgAAEEFEAAAAEAAAAAgAAIAAAABQAAAg=</HashCode>
       <FileName>Meeting.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KIT206.Student">
     <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAEAAEAIAKBABGQEAAEAAAAAAAIgAAQAKAAAIAACCBk=</HashCode>
+      <HashCode>CAkAAEAIAKBABGQEAAEAAAAAAAIgAAQAKAAAIAACCBk=</HashCode>
       <FileName>Student.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KIT206.StudentGroup">
     <Position X="7" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAQAAAAAAAAAAAAEAABABAAAAAAAAAAMIBAAAAAAAAE=</HashCode>
+      <HashCode>QAYAAAAAAAAAAACEAABABAAEAAAAAAAMIBAAAAAAAAE=</HashCode>
       <FileName>StudentGroup.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="KIT206.Class">
     <Position X="2.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ACIAAAAAACAAgAAABBAAAAAAAAIAAgABIAAAAAQAAAA=</HashCode>
+      <HashCode>ACYAAAAAICAAgAAEABEABAAEAAIAAgAAIAAAAAQAAAA=</HashCode>
       <FileName>Class.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="StudentGroup" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="KIT206.Program">
     <Position X="1.25" Y="0.5" Width="1.5" />
