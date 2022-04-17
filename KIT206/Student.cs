@@ -1,3 +1,4 @@
+using System;
 namespace KIT206
 {
     public class Student
@@ -90,7 +91,7 @@ namespace KIT206
         }
 
         //Get data from database, maybe just take in ID? 
-        public Student(string f_name, string l_name, int id)
+        public Student(int id, string f_name, string l_name )
 		{
             //First or
             //StudentID = id;
@@ -101,7 +102,7 @@ namespace KIT206
             _lastName = l_name;
 		}
 
-        public Student(int id, string f_name, string l_name, int group_id, string title, Campus campus, string email, Category category)
+        public Student(int id, string f_name, string l_name, int group_id, string title,string phone, Campus campus, string email, Category category)
 		{
             //First or
             //StudentID = id;
@@ -115,6 +116,7 @@ namespace KIT206
             _campus = campus;
             _email = email;
             _category = category;
+            _phone = phone;
 
         }
 
@@ -132,23 +134,41 @@ namespace KIT206
 
 		public StudentGroup AddGroup(string name)
 		{
-            StudentGroup group = new StudentGroup(name);
-            StudentGroup = group.GroupID;
-            return group;
+            StudentGroup group = null;
+            foreach (StudentGroup groups in Storage.Groups)
+            {
+                if (groups.GroupName == name)
+                    group = groups;
+            }
+
+            if (group == null)
+            {
+                group = new StudentGroup(name);
+                StudentGroup = group.GroupID;
+                return group;
+            }
+            else
+            {
+                StudentGroup = group.GroupID;
+                return null;
+            }
 		}
 
-		public void AddStudentDetails()
+		public void AddStudentDetails(string title, Campus campus, Category category, string email, string phone)
 		{
-			throw new System.NotImplementedException();
+            Title = title;
+            Campus = campus;
+            Category = category;
+            Email = email;
+            Phone = phone;
+
 		}
         
-		public void EditStudentGroup()
+		public Student EditStudentGroup()
 		{
-			foreach(Student student in Storage.Students)
-            {
-                if (student.StudentID == StudentID)
-                    student.StudentGroup = -1;
-            }
+            StudentGroup = 0;
+            Storage.EditStudent(this);
+            return this;
 		}
         public string GetStudentString()
         {
@@ -160,8 +180,10 @@ namespace KIT206
 		public string ToString(string type)
         {
             if (type == "full")
-
-                return ("Name: " + Title.ToString() +" "+ FirstName + " " + LastName + ", Student ID: " + StudentID + ", in group " + Storage.GetGroup(StudentGroup).GroupName + " Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
+                if(StudentGroup != 0)
+                    return ("Name: " + Title.ToString() +" "+ FirstName + " " + LastName + ", Student ID: " + StudentID + ", in group " + Storage.GetGroup(StudentGroup).GroupName + " Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
+                else
+                    return ("Name: " + Title.ToString() + " " + FirstName + " " + LastName + ", Student ID: " + StudentID + ",  "+  "Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
             else
                 return ("Name: " + FirstName + " " + LastName + ", Student ID: " + StudentID);
         }

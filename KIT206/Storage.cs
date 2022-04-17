@@ -10,10 +10,11 @@ namespace KIT206
     {
         public static List<Student> Students = new List<Student>()
         {
-           new Student(100562,"Julian","Brown", 938475, "Dr",Campus.Hobart, "Julian@email.com", Category.Batchelors),
-           new Student(650432,"Tyler", "McDonald",118234, "Mr", Campus.Hobart, "Tyler@email.com", Category.Batchelors),
-           new Student(375002 ,"Tilly", "Doggy", 118234, "Pup", Campus.Hobart, "Tilly@email.com", Category.Masters ),
-           new Student(123456, "Percy", "Jackson",938475, "Mr", Campus.Lauceston, "Percy@email.com", Category.Masters )
+           new Student(100562,"Julian","Brown", 938475, "Dr",   "0443657473" ,Campus.Hobart, "Julian@email.com", Category.Batchelors),
+           new Student(650432,"Tyler", "McDonald",118234, "Mr", "0447637153" ,Campus.Hobart, "Tyler@email.com", Category.Batchelors),
+           new Student(375002 ,"Tilly", "Doggy", 118234, "Pup", "0449987423" ,Campus.Hobart, "Tilly@email.com", Category.Masters ),
+           new Student(123456, "Percy", "Jackson",938475, "Mr", "0445655451" ,Campus.Lauceston, "Percy@email.com", Category.Masters ),
+           new Student(213243, "Testing", "Account")
 
         };
         public static List<StudentGroup> Groups = new List<StudentGroup>()
@@ -38,18 +39,44 @@ namespace KIT206
 
         public static void AddStudent(Student student)
         {
-            Students.Add(student);
+            if(student != null)
+                Students.Add(student);
         }
         public static void AddGroup(StudentGroup group)
         {
-            Groups.Add(group);
+            if (group != null)
+                Groups.Add(group);
         }
         public static void AddMeeting(Meeting meeting)
         {
-            Meetings.Add(meeting);
+            if (meeting != null)
+                Meetings.Add(meeting);
         }
         public static void AddClasses(Class Class)
         {
+            if (Class != null)
+                Classes.Add(Class);
+        }
+        //All these edit function are destructive and not really what we want but it works for now,
+        //The MySQL implementation will include either a function for each field that can be changed or something else idk
+        public static void EditStudent(Student student)
+        {
+            Students.RemoveAll(stu => stu.StudentID == student.StudentID);
+            Students.Add(student);
+        }
+        public static void EditGroup(StudentGroup group)
+        {
+            Groups.RemoveAll(gru => gru.GroupID == group.GroupID);
+            Groups.Add(group);
+        }
+        public static void EditMeeting(Meeting meeting)
+        {
+            Meetings.RemoveAll(meet => meet.MeetingID == meeting.MeetingID);
+            Meetings.Add(meeting);
+        }
+        public static void EditClasses(Class Class)
+        {
+            Classes.RemoveAll(cla => cla.ClassID == Class.ClassID);
             Classes.Add(Class);
         }
 
@@ -74,6 +101,19 @@ namespace KIT206
                     return meeting;
             return null;
         }
+  
+        public static Meeting GetMeeting(DateTime start)
+        {
+            foreach (Meeting meeting in Meetings)
+                if (meeting.Start == start)
+                {
+                    return meeting;
+                }
+            return null;
+                    
+
+        }
+
         public static Class GetClass(int id)
         {
             foreach (Class Class in Classes)

@@ -108,21 +108,15 @@ namespace KIT206
 
         //Think need to move these to controller class?
 
-        //Overloaded function to edit the day and time of the meeting.
-        //changes depending on if they pass in the day, times or both.
-        public void EditMeeting(Day day){
-            _day = day;
-        }
-        public void EditMeeting(DateTime start, DateTime end){
-            _start = start;
-            _end = end;
-        }
-        public void EditMeeting(Day day, DateTime start, DateTime end){
-            EditMeeting(day);
-            EditMeeting(start, end);
+        
+        public void EditMeeting(){
+
+            Storage.EditMeeting(this);
+
         }
         //Removes meeting object
         public void CancelMeeting(){
+            
             Storage.Meetings.Remove(this);
         }
             
