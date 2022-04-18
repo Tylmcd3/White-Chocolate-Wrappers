@@ -8,14 +8,18 @@ namespace KIT206
 {
     class Student_Controller
     {
+        //we could add Properties for certain values like name and stuff for ease of use. just so we can ignore Student entirely
         public Student user;
 
-        private Student updateStudent()
+        //This just gets a fresh student object for the user every time a function is called
+        //This is useful when the user group is changed or the
+        private void UpdateStudent()
         {
-            return StorageAdapter.GetStudent(user.StudentID);
+            user = StorageAdapter.GetStudent(user.StudentID);
         }
         public StudentGroup AddGroup(string name)
         {
+            UpdateStudent();
             StudentGroup group = null;
             //foreach (StudentGroup groups in StorageAdapter.Groups)
             //{
@@ -38,31 +42,24 @@ namespace KIT206
 
         public void AddStudentDetails(string title, Campus campus, Category category, string email, string phone)
         {
-            user.Title = title;
-            user.Campus = campus;
-            user.Category = category;
-            user.Email = email;
-            user.Phone = phone;
+            StorageAdapter.EditStudentDetails(user.StudentID, title, campus, category, email, phone);
+            UpdateStudent();
         }
         //Need to change editing
-        public Student EditStudentGroup()
+        public void EditStudentGroup()
         {
-            user.StudentGroup = 0;
-            //StorageAdapter.EditStudent(this);
-            return this;
+            StorageAdapter.EditStudentGroup(user.StudentID, 0);
+            UpdateStudent();
+
         }
         public string GetStudentString()
         {
-            if (Email != null)
-                return ToString("full");
+
+            if (user.Email != null)
+                return user.ToString("full");
             else
-                return ToString(" ");
+                return user.ToString(" ");
         }
 
-    }
-    static void GetStudent()
-        {
-
-        }
     }
 }
