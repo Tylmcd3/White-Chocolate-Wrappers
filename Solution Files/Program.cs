@@ -4,13 +4,13 @@ using System.Globalization;
 
 namespace KIT206
 {
-    public class Program
+    class Program
     {
         //Driver Class
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-			Console.WriteLine(StorageAdapter.GetStudent(123460).GetStudentString());
-   //         int ID = 213243; // As the user would be logged in, constantly being stored makes sense
+            int ID = 123460;
+			Console.WriteLine(StorageAdapter.GetStudent(ID).GetStudentString());// As the user would be logged in, constantly being stored makes sense
 			//Student user = StorageAdapter.GetStudent(ID);
 			//int MainSelection = 1;
 			//int PersonalSelection = 1;

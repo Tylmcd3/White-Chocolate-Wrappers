@@ -89,14 +89,20 @@ namespace KIT206
                 _category = value;
             }
         }
-
-        //Get data from database, maybe just take in ID? 
+        public int StudentGroup
+        {
+            get
+            {
+                return _groupID;
+            }
+            set
+            {
+                _groupID = value;
+            }
+        }
+        //Two Constructors, one is for Students who havnt added details and the other is for complete students 
         public Student(int id, string f_name, string l_name )
 		{
-            //First or
-            //StudentID = id;
-            //FirstName = name;
-            //Second? I prefer second because its apart of the class but other classes should use the Public ones
 			_studentID = id;
 			_firstName = f_name;
             _lastName = l_name;
@@ -104,10 +110,6 @@ namespace KIT206
 
         public Student(int id, string f_name, string l_name, int group_id, string title,string phone, Campus campus, string email, Category category)
 		{
-            //First or
-            //StudentID = id;
-            //FirstName = name;
-            //Second? I prefer second because its apart of the class but other classes should use the Public ones
 			_studentID = id;
             _firstName = f_name;
             _lastName = l_name;
@@ -119,40 +121,41 @@ namespace KIT206
             _phone = phone;
 
         }
-
-		public int StudentGroup
-		{
-            get
-            {
-                return _groupID;
-            }
-			set
-			{
-                _groupID = value;
-			}
-		}
-
-		public StudentGroup AddGroup(string name)
-		{
-            StudentGroup group = null;
-            foreach (StudentGroup groups in StorageAdapter.Groups)
-            {
-                if (groups.GroupName == name)
-                    group = groups;
-            }
-
-            if (group == null)
-            {
-                group = new StudentGroup(name);
-                StudentGroup = group.GroupID;
-                return group;
-            }
+        //The Type for tw
+        public string ToString(string type)
+        {
+            if (type == "full")
+                if (StudentGroup != 0)
+                    return "Name: " + Title.ToString() + " " + FirstName + " " + LastName + ", Student ID: " + StudentID + ", in group " + StorageAdapter.GetGroup(StudentGroup).GroupName + " Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email;
+                else
+                    return "Name: " + Title.ToString() + " " + FirstName + " " + LastName + ", Student ID: " + StudentID + ",  " + "Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email;
             else
-            {
-                StudentGroup = group.GroupID;
-                return null;
-            }
-		}
+                return "Name: " + FirstName + " " + LastName + ", Student ID: " + StudentID;
+        }
+
+        //Needs to be added to the controller
+        //This needs to be refactored to be getGroup, if group == NULL then add
+  //      public StudentGroup AddGroup(string name)
+		//{
+  //          StudentGroup group = null;
+  //          foreach (StudentGroup groups in StorageAdapter.Groups)
+  //          {
+  //              if (groups.GroupName == name)
+  //                  group = groups;
+  //          }
+
+  //          if (group == null)
+  //          {
+  //              group = new StudentGroup(name);
+  //              StudentGroup = group.GroupID;
+  //              return group;
+  //          }
+  //          else
+  //          {
+  //              StudentGroup = group.GroupID;
+  //              return null;
+  //          }
+		//}
 
 		public void AddStudentDetails(string title, Campus campus, Category category, string email, string phone)
 		{
@@ -161,13 +164,12 @@ namespace KIT206
             Category = category;
             Email = email;
             Phone = phone;
-
 		}
-        
+        //Need to change editing
 		public Student EditStudentGroup()
 		{
             StudentGroup = 0;
-            StorageAdapter.EditStudent(this);
+            //StorageAdapter.EditStudent(this);
             return this;
 		}
         public string GetStudentString()
@@ -177,15 +179,6 @@ namespace KIT206
             else
                 return ToString(" ");
         }
-		public string ToString(string type)
-        {
-            if (type == "full")
-                //if(StudentGroup != 0)
-                    //return ("Name: " + Title.ToString() +" "+ FirstName + " " + LastName + ", Student ID: " + StudentID + ", in group " + StorageAdapter.GetGroup(StudentGroup).GroupName + " Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
-                //else
-                    return ("Name: " + Title.ToString() + " " + FirstName + " " + LastName + ", Student ID: " + StudentID + ",  "+  "Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
-            else
-                return ("Name: " + FirstName + " " + LastName + ", Student ID: " + StudentID);
-        }
+		
 	}
 }

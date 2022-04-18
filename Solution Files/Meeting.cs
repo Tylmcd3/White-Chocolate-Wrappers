@@ -90,20 +90,21 @@ namespace KIT206
             do
             {
                 id = (int)(DateTime.Now.Ticks % 1000000);
-            } while (Check_ID(id));
+            } while (false);
             return id;
         }
-        private bool Check_ID(int id)
-        {
-            Meeting Meeting = null;
+        //Needs to be fixed
+        //private bool Check_ID(int id)
+        //{
+        //    Meeting Meeting = null;
 
-            foreach (Meeting meeting in StorageAdapter.Meetings)
-            {
-                if (meeting.MeetingID == id)
-                    Meeting = meeting;
-            }
-            return Meeting is Meeting;
-        }
+        //    foreach (Meeting meeting in StorageAdapter.Meetings)
+        //    {
+        //        if (meeting.MeetingID == id)
+        //            Meeting = meeting;
+        //    }
+        //    return Meeting is Meeting;
+        //}
 
 
         //Think need to move these to controller class?
@@ -111,18 +112,18 @@ namespace KIT206
         
         public void EditMeeting(){
 
-            StorageAdapter.EditMeeting(this);
+            //StorageAdapter.EditMeeting(this);
 
         }
         //Removes meeting object
         public void CancelMeeting(){
             
-            StorageAdapter.Meetings.Remove(this);
+            //StorageAdapter.Meetings.Remove(this);
         }
             
         public override string ToString()
         {
-            return "The Meeting for the group " + StudentGroup.GetGroup(GroupID, StorageAdapter.Groups).GroupName + " is on " + Day.ToString() + " at " + Start.ToString();
+            return "The Meeting for the group " + " is on " + Day.ToString() + " at " + Start.ToString();
         }
     }
     
