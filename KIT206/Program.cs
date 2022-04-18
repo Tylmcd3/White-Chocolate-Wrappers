@@ -10,7 +10,7 @@ namespace KIT206
         static void Main(string[] args)
         {
             int ID = 213243; // As the user would be logged in, constantly being stored makes sense
-			Student user = Storage.GetStudent(ID);
+			Student user = StorageAdapter.GetStudent(ID);
 			int MainSelection = 1;
 			int PersonalSelection = 1;
 			int GroupSelection = 1;
@@ -118,7 +118,7 @@ namespace KIT206
 						{
 							if (user.StudentGroup > 0)
 							{
-								StudentGroup group = Storage.GetGroup(user.StudentGroup);
+								StudentGroup group = StorageAdapter.GetGroup(user.StudentGroup);
                                 while (!Success)
                                 {
 									Console.WriteLine("Make a selection\n1.Show Group Members\n2.Show Class\n3.Edit Group\n4.Meeting menu\n5.Leave Group\n0.Quit\n");
@@ -147,7 +147,7 @@ namespace KIT206
                                         }
 										break;
 									case 2://Show Class
-										Console.WriteLine(Storage.GetClass(group.GroupID).ToString());
+										Console.WriteLine(StorageAdapter.GetClass(group.GroupID).ToString());
 										break;
 									case 3://Edit group name
 										Console.WriteLine("Enter the new name for the group");
@@ -180,7 +180,7 @@ namespace KIT206
 													}
 													break;
 												case 2://Create New Meetings
-													Storage.AddMeeting(group.AddMeeting());
+													StorageAdapter.AddMeeting(group.AddMeeting());
 													break;
 												case 3://Cancel Meeting needs to be fixed
 													DateTime finder;
@@ -188,7 +188,7 @@ namespace KIT206
 													Console.WriteLine("Enter the original Date for the meeting (hh:mm dd/mm/yyyy)");
 													finder = DateTime.Parse(Console.ReadLine());
 
-													Storage.GetMeeting(finder).CancelMeeting();
+													StorageAdapter.GetMeeting(finder).CancelMeeting();
 													break;
 												//Date time parsing will crash if not typed in properly, could make a try catch thing but
 												//as the UI will have a calendar and will always send the right thing i cant be bothered 
@@ -204,11 +204,11 @@ namespace KIT206
 													Console.WriteLine("Enter the new end Date: HH:MM dd/mm/yyyy");
 													end = DateTime.Parse(Console.ReadLine());
 													day = (Day)Enum.ToObject(typeof(Day), (int)start.DayOfWeek);
-													meet = Storage.GetMeeting(Identifier);
+													meet = StorageAdapter.GetMeeting(Identifier);
 													meet.Start = start;
 													meet.End = end;
 													meet.Day = day;
-													Storage.EditMeeting(meet);
+													StorageAdapter.EditMeeting(meet);
 													break;
 											}
 										}
@@ -229,8 +229,8 @@ namespace KIT206
 									StudentGroup newGroup = user.AddGroup(name);
 
 									
-									Storage.AddGroup(newGroup);
-									Storage.EditStudent(user);
+									StorageAdapter.AddGroup(newGroup);
+									StorageAdapter.EditStudent(user);
 
                                 }
                             }
@@ -239,11 +239,11 @@ namespace KIT206
 					case 3://View Upcoming meetings and classes
 						if (user.StudentGroup != 0)
 						{
-							StudentGroup UserGroup = Storage.GetGroup(user.StudentGroup);
+							StudentGroup UserGroup = StorageAdapter.GetGroup(user.StudentGroup);
 							List<Meeting> meetings = UserGroup.GetMeetings();
 
 							Console.WriteLine("-------Class-------");
-							Console.WriteLine(Storage.GetClass(UserGroup.GroupID).ToString());
+							Console.WriteLine(StorageAdapter.GetClass(UserGroup.GroupID).ToString());
 							if (meetings.Count >= 1)
 							{
 								Console.WriteLine("----Meeting------");

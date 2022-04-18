@@ -100,7 +100,7 @@ namespace KIT206
 		{
 			Class Class = null;
 
-			foreach (Class _class in Storage.Classes)
+			foreach (Class _class in StorageAdapter.Classes)
 			{
 				if (_class._classID == id)
 					Class = _class;
@@ -110,7 +110,7 @@ namespace KIT206
 
         public override string ToString()
         {
-			return "The Class for the group " + StudentGroup.GetGroup(GroupID, Storage.Groups).GroupName + " is on every " + Day.ToString() + " at " + Start.ToString("hh:mm tt");
+			return "The Class for the group " + StudentGroup.GetGroup(GroupID, StorageAdapter.Groups).GroupName + " is on every " + Day.ToString() + " at " + Start.ToString("hh:mm tt");
 		}
 
     }

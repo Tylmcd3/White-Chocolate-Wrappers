@@ -135,7 +135,7 @@ namespace KIT206
 		public StudentGroup AddGroup(string name)
 		{
             StudentGroup group = null;
-            foreach (StudentGroup groups in Storage.Groups)
+            foreach (StudentGroup groups in StorageAdapter.Groups)
             {
                 if (groups.GroupName == name)
                     group = groups;
@@ -167,7 +167,7 @@ namespace KIT206
 		public Student EditStudentGroup()
 		{
             StudentGroup = 0;
-            Storage.EditStudent(this);
+            StorageAdapter.EditStudent(this);
             return this;
 		}
         public string GetStudentString()
@@ -181,7 +181,7 @@ namespace KIT206
         {
             if (type == "full")
                 if(StudentGroup != 0)
-                    return ("Name: " + Title.ToString() +" "+ FirstName + " " + LastName + ", Student ID: " + StudentID + ", in group " + Storage.GetGroup(StudentGroup).GroupName + " Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
+                    return ("Name: " + Title.ToString() +" "+ FirstName + " " + LastName + ", Student ID: " + StudentID + ", in group " + StorageAdapter.GetGroup(StudentGroup).GroupName + " Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
                 else
                     return ("Name: " + Title.ToString() + " " + FirstName + " " + LastName + ", Student ID: " + StudentID + ",  "+  "Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
             else

@@ -97,7 +97,7 @@ namespace KIT206
         {
             Meeting Meeting = null;
 
-            foreach (Meeting meeting in Storage.Meetings)
+            foreach (Meeting meeting in StorageAdapter.Meetings)
             {
                 if (meeting.MeetingID == id)
                     Meeting = meeting;
@@ -111,18 +111,18 @@ namespace KIT206
         
         public void EditMeeting(){
 
-            Storage.EditMeeting(this);
+            StorageAdapter.EditMeeting(this);
 
         }
         //Removes meeting object
         public void CancelMeeting(){
             
-            Storage.Meetings.Remove(this);
+            StorageAdapter.Meetings.Remove(this);
         }
             
         public override string ToString()
         {
-            return "The Meeting for the group " + StudentGroup.GetGroup(GroupID, Storage.Groups).GroupName + " is on " + Day.ToString() + " at " + Start.ToString();
+            return "The Meeting for the group " + StudentGroup.GetGroup(GroupID, StorageAdapter.Groups).GroupName + " is on " + Day.ToString() + " at " + Start.ToString();
         }
     }
     

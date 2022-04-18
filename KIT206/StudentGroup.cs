@@ -61,7 +61,7 @@ namespace KIT206
 		{
 			StudentGroup studentGroup = null;
 
-			foreach (StudentGroup group in Storage.Groups)
+			foreach (StudentGroup group in StorageAdapter.Groups)
 			{
 				if (group._groupID == id)
 					studentGroup = group;
@@ -147,7 +147,7 @@ namespace KIT206
 		public List<Student> GetGroupMembers(int StudentID)
         {
 			List<Student> students = new List<Student>();
-			foreach(Student student in Storage.Students)
+			foreach (Student student in StorageAdapter.Students)
             {
 				if(student.StudentGroup == GroupID && student.StudentID != StudentID)
                 {
@@ -159,10 +159,11 @@ namespace KIT206
 		public List<Meeting> GetMeetings()
 		{
 			List<Meeting> Meetings = new List<Meeting>();
-			foreach (Meeting meeting in Storage.Meetings)
+			foreach (Meeting meeting in StorageAdapter.Meetings) 
 			{
+			
 				if (meeting.GroupID == GroupID)
-		{
+				{
 					Meetings.Add(meeting);
 				}
 			}
