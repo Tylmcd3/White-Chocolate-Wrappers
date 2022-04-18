@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KIT206", "KIT206\KIT206.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KIT206UI", "KIT206UI\KIT206UI.csproj", "{A8D79B0E-6D2B-4F2C-80B4-90FE578989DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQL Console App", "MySQL Console App\MySQL Console App.csproj", "{BCF03510-7CAB-490F-8976-2B63D989A8DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A8D79B0E-6D2B-4F2C-80B4-90FE578989DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8D79B0E-6D2B-4F2C-80B4-90FE578989DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8D79B0E-6D2B-4F2C-80B4-90FE578989DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCF03510-7CAB-490F-8976-2B63D989A8DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCF03510-7CAB-490F-8976-2B63D989A8DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCF03510-7CAB-490F-8976-2B63D989A8DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCF03510-7CAB-490F-8976-2B63D989A8DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
