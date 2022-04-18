@@ -121,7 +121,7 @@ namespace KIT206
             _phone = phone;
 
         }
-        //The Type for tw
+        
         public string ToString(string type)
         {
             if (type == "full")
@@ -135,50 +135,5 @@ namespace KIT206
 
         //Needs to be added to the controller
         //This needs to be refactored to be getGroup, if group == NULL then add
-  //      public StudentGroup AddGroup(string name)
-		//{
-  //          StudentGroup group = null;
-  //          foreach (StudentGroup groups in StorageAdapter.Groups)
-  //          {
-  //              if (groups.GroupName == name)
-  //                  group = groups;
-  //          }
-
-  //          if (group == null)
-  //          {
-  //              group = new StudentGroup(name);
-  //              StudentGroup = group.GroupID;
-  //              return group;
-  //          }
-  //          else
-  //          {
-  //              StudentGroup = group.GroupID;
-  //              return null;
-  //          }
-		//}
-
-		public void AddStudentDetails(string title, Campus campus, Category category, string email, string phone)
-		{
-            Title = title;
-            Campus = campus;
-            Category = category;
-            Email = email;
-            Phone = phone;
-		}
-        //Need to change editing
-		public Student EditStudentGroup()
-		{
-            StudentGroup = 0;
-            //StorageAdapter.EditStudent(this);
-            return this;
-		}
-        public string GetStudentString()
-        {
-            if (Email != null)
-                return ToString("full");
-            else
-                return ToString(" ");
-        }
-		
-	}
+    }
 }

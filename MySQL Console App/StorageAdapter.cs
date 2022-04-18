@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KIT206.Data;
+using MySql.Data.MySqlClient;
 
 namespace KIT206
 {
@@ -48,16 +49,42 @@ namespace KIT206
 
         public static Student GetStudent(int id)
         {
-            return Storage.GetStudent(id);
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            string sqlcmd = ("select * from student WHERE student_id = " + id);
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            Student student = null;
+            MySqlDataReader rdr = MySQLConnector.DBQuery(cmd, conn);
+            while (rdr.Read())
+            {
+                if (rdr[7] != "")
+                {
+                    student = new Student((int)rdr[0], (string)rdr[1], (string)rdr[2], (int)rdr[3], (string)rdr[4], (string)rdr[6], Enum.Parse<Campus>((string)rdr[5]), (string)rdr[7], Enum.Parse<Category>((string)rdr[9]));
+                }
+                else
+                {
+                    student = new Student((int)rdr[0], (string)rdr[1], (string)rdr[2]);
+                }
+            }
+            MySQLConnector.DBClose(rdr, conn);
+            return student;
         }
-        //public static StudentGroup GetGroup(int id)
-        //{
-        //    return Storage.GetGroup(id);
-        //}
-        //public static Meeting GetMeeting(int id)
-        //{
-        //    return Storage.GetMeeting(id);
-        //}
+        public static StudentGroup GetGroup(int id)
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            string sqlcmd = "SELECT * FROM `studentGroup` WHERE group_id="+id;
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            StudentGroup group = null;
+
+            MySqlDataReader rdr = MySQLConnector.DBQuery(cmd, conn);
+            while (rdr.Read())
+            {
+                group = new StudentGroup((string)rdr[1], (int)rdr[0]);
+
+            }
+
+            MySQLConnector.DBClose(rdr, conn);
+            return group;
+        }
 
         //public static Meeting GetMeeting(DateTime start)
         //{
