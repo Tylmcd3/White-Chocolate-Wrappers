@@ -17,7 +17,7 @@ public enum Campus{
   }
 
 public enum Category{
-      Batchelors,
+      Bachelors,
       Masters
   }
 

@@ -10,8 +10,8 @@ namespace KIT206.Data
     {
         public static List<Student> Students = new List<Student>()
         {
-           new Student(100562,"Julian","Brown", 938475, "Dr",   "0443657473" ,Campus.Hobart, "Julian@email.com", Category.Batchelors),
-           new Student(650432,"Tyler", "McDonald",118234, "Mr", "0447637153" ,Campus.Hobart, "Tyler@email.com", Category.Batchelors),
+           new Student(100562,"Julian","Brown", 938475, "Dr",   "0443657473" ,Campus.Hobart, "Julian@email.com", Category.Bachelors),
+           new Student(650432,"Tyler", "McDonald",118234, "Mr", "0447637153" ,Campus.Hobart, "Tyler@email.com", Category.Bachelors),
            new Student(375002 ,"Tilly", "Doggy", 118234, "Pup", "0449987423" ,Campus.Hobart, "Tilly@email.com", Category.Masters ),
            new Student(123456, "Percy", "Jackson",938475, "Mr", "0445655451" ,Campus.Lauceston, "Percy@email.com", Category.Masters ),
            new Student(213243, "Testing", "Account")
