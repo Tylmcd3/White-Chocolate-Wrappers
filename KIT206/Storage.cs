@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KIT206
+namespace KIT206.Data
 {
     static class Storage
     {
