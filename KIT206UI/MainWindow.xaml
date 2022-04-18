@@ -5,40 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KIT206UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="GMIS" Height="450" Width="800"
+        Style="{StaticResource GlobalFont}">
+
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="RoundButton">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Background" Value="#FF2590E4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderBrush" Value="#FFABADB3"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style TargetType="ListBox" x:Key="MeetingsList">
+            <Style.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="FontSize" Value="18"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+        </Style>
+    </Window.Resources>
+
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid>
-            <Grid.Effect>
-                <DropShadowEffect BlurRadius="2" Opacity="0.5"/>
-            </Grid.Effect>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
                 <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="0.4*"/>
             </Grid.RowDefinitions>
-            <ListBox Grid.Row="2" Background="#FF86C6CD" BorderBrush="#FFABADB3" Margin="5">
-                <ListBoxItem Content="Meetings" FontWeight="Bold" FontSize="20" FontFamily="MS Reference Sans Serif" HorizontalAlignment="Center"/>
+            <ListBox Style="{StaticResource MeetingsList}" Grid.Row="3" >
+                <ListBoxItem Content="Meetings" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <Separator Background="Black"/>
-                <Button BorderBrush="{x:Null}" Background="{x:Null}" Content="4:30pm Monday at C340" FontSize="14" FontFamily="MS Reference Sans Serif" Margin="0" Padding="5"/>
-                <Button BorderBrush="{x:Null}" Background="{x:Null}" Content="11:00am Thursday at B122" FontSize="14" FontFamily="MS Reference Sans Serif"/>
+                <Button Content="4:30pm Monday at C340"/>
+                <Button Content="11:00am Thursday at B122"/>
             </ListBox>
-            <Button Content="View Group" Grid.Row="3" Foreground="Black" Cursor="Hand" FontSize="20" FontFamily="MS Reference Sans Serif" FontWeight="Bold" Margin="5" BorderBrush="#FFABADB3" Background="#FFFF8989">
-            </Button>
-            <Button Content="Student Details" RenderTransformOrigin="-0.52,-0.75" Margin="5" Background="#FFEE66D5" FontSize="20" FontFamily="MS Reference Sans Serif" FontWeight="Bold" Cursor="Hand" BorderBrush="#FFABADB3" />
-            <ListBox Margin="5" Grid.Row="1" Background="#FF95EAA1">
-                <ListBoxItem Background="#00000000" Content="Daily Summary" FontWeight="Bold" FontSize="20" FontFamily="MS Reference Sans Serif" HorizontalContentAlignment="Center"/>
-                <Separator Background="Black"/>
-                <ListBoxItem Content="Lorem ipsum etc etc" FontSize="14" FontFamily="MS Reference Sans Serif"/>
-            </ListBox>
+            <Button Style="{DynamicResource RoundButton}" Content="View Group" Grid.Row="1" />
+            <Button Style="{DynamicResource RoundButton}" Content="Student Details" Grid.Row="0"/>
         </Grid>
-        <Viewbox Grid.Column="1" Height="419" Margin="5" Width="444">
-            <Calendar HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="8,10,10,10" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="MS Reference Sans Serif"/>
+        <Viewbox Grid.Column="3" Height="419" Margin="5" Width="444">
+            <Calendar HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="10" Background="{x:Null}" BorderBrush="{x:Null}" />
         </Viewbox>
-
     </Grid>
 </Window>

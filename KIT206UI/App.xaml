@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:KIT206UI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="GlobalFont" TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="MS Reference Sans"/>
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
     </Application.Resources>
+
 </Application>
