@@ -13,6 +13,7 @@
     <Compile Include="..\Solution Files\Program.cs" Link="Program.cs" />
     <Compile Include="..\Solution Files\Student.cs" Link="Student.cs" />
     <Compile Include="..\Solution Files\StudentGroup.cs" Link="StudentGroup.cs" />
+    <Compile Include="..\Solution Files\Student_Controller.cs" Link="Student_Controller.cs" />
   </ItemGroup>
 
   <ItemGroup>

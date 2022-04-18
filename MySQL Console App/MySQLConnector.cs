@@ -30,7 +30,7 @@ namespace KIT206.Data
             return conn;
         }
 
-        public static MySqlDataReader DBQuery(MySqlCommand cmd, MySqlConnection conn)
+        public static MySqlDataReader DBReader(MySqlCommand cmd, MySqlConnection conn)
         {
 
             MySqlDataReader rdr = null;
@@ -45,6 +45,19 @@ namespace KIT206.Data
             }
             return rdr;
         }
+        public static void DBExecute(MySqlCommand cmd, MySqlConnection conn)
+        {
+            conn.Open();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                Console.WriteLine("Error");
+            }
+        }
+
 
         public static void DBClose(MySqlDataReader rdr, MySqlConnection conn)
         {
