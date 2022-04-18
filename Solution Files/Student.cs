@@ -133,7 +133,5 @@ namespace KIT206
                 return "Name: " + FirstName + " " + LastName + ", Student ID: " + StudentID;
         }
 
-        //Needs to be added to the controller
-        //This needs to be refactored to be getGroup, if group == NULL then add
     }
 }
