@@ -5,30 +5,38 @@ namespace KIT206
 	{
 		private int _classID;
 		private int _groupID;
-		private Day _date;
+		private Day _day;
 		private DateTime _start;
 		private DateTime _end;
 		private string _room;
 
 		public int ClassID
         {
-			get => default;
+			get => _classID;
 			set
             {
 				_classID = value;
             }
         }
-		public Day Date
+		public int GroupID
+		{
+			get => _groupID;
+			set
+			{
+				_groupID = value;
+			}
+		}
+		public Day Day
         {
-			get => default;
+			get => _day;
 			set
             {
-				_date = value;
+				_day = value;
             }
         }
 		public DateTime Start
         {
-			get => default;
+			get => _start;
 			set
             {
 				_start = value;
@@ -36,7 +44,7 @@ namespace KIT206
         }
 		public DateTime End
         {
-			get => default;
+			get => _end;
 			set
             {
 				_end = value;
@@ -44,30 +52,66 @@ namespace KIT206
         }
 		public string Room
         {
-			get => default;
+			get => _room;
 			set
             {
 				_room = value;
             }
         }
-
+		public int Group_ID
+		{
+			get => _groupID;
+		}
+		//Overloading Constructors so we can either generate a new id for a new class or
 		public Class(int groupID, Day day, DateTime start, DateTime end, string room)
 		{
 			//Generate classid and set here (5 is placeholder)
-			_classID = 5;
+			_classID = GenerateGroupID();
 			_groupID = groupID;
-			_date = day;
+			_day = day;
 			_start = start;
 			_end = end;
 			_room = room;
 		}
-
-		public StudentGroup StudentGroup
+		//We can get a class from the database and create a new object from that
+		public Class(int classID,int groupID, Day day, DateTime start, DateTime end, string room)
 		{
-			get => default;
-			set
-			{
-			}
+			//Generate classid and set here (5 is placeholder)
+			_classID = classID;
+			_groupID = groupID;
+			_day = day;
+			_start = start;
+			_end = end;
+			_room = room;
 		}
-	}
+		//Generates an ID from the time and then makes it a 6 digit number and then checks if an object has that id
+		private int GenerateGroupID()
+		{
+			int id;
+			do
+			{
+				id = (int)(DateTime.Now.Ticks % 1000000);
+			} while (Check_ID(id));
+			return id;
+		}
+		//Checking ID's, could potentially be made generic if we use Type of and passed a type of something?
+		//Need to do more research but this will do for now
+		private bool Check_ID(int id)
+		{
+			Class Class = null;
+
+			foreach (Class _class in StorageAdapter.Classes)
+			{
+				if (_class._classID == id)
+					Class = _class;
+			}
+			return Class is Class;
+		}
+
+        public override string ToString()
+        {
+			return "The Class for the group " + StudentGroup.GetGroup(GroupID, StorageAdapter.Groups).GroupName + " is on every " + Day.ToString() + " at " + Start.ToString("hh:mm tt");
+		}
+
+    }
 }

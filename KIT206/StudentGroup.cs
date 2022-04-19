@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace KIT206
 {
@@ -12,7 +13,10 @@ namespace KIT206
 		//Public properties
 		public int GroupID
         {
-			get => default;
+			get
+			{
+				return _groupID;
+			}
 			set
             {
 				_groupID = value;
@@ -20,34 +24,155 @@ namespace KIT206
         }
 		public string GroupName
         {
-			get => default;
+			get
+			{
+				return _groupName;
+			}
             set
             {
 				_groupName = value;
             }
         }
-
+		//either generates a number and checks it doesnt exists or find the next sequential one
 		public StudentGroup(string name)
 		{
 			//Generate group ID and then set to groupID (5 is placeholder)
 
-			_groupID = 5;
+			_groupID = GenerateGroupID();
 			_groupName = name;
 		}
-
-		public void AddClass()
+		public StudentGroup(string name, int id)
 		{
-			throw new System.NotImplementedException();
+			//Generate group ID and then set to groupID (5 is placeholder)
+
+			_groupID = id;
+			_groupName = name;
+		}
+		private int GenerateGroupID()
+        {
+			int id;
+			do
+			{
+				id = (int)(DateTime.Now.Ticks % 1000000);
+			} while (Check_ID(id));
+			return id;
+        }
+		private bool Check_ID(int id)
+		{
+			StudentGroup studentGroup = null;
+
+			foreach (StudentGroup group in StorageAdapter.Groups)
+			{
+				if (group._groupID == id)
+					studentGroup = group;
+			}
+			return studentGroup is StudentGroup;
+		}
+		//Creation of a class
+		public Class AddClass()
+		{
+			string StartTime, EndTime, Room;
+			DateTime Start, End;
+			Day day;
+
+			Console.WriteLine("Enter the Start time of the Class in 24HR time (HH:MM dd/mm/yyyy):  ");
+			StartTime = Console.ReadLine();
+			Console.WriteLine("Enter the End time of the Class (HH:MM dd/mm/yyyy):  ");
+			EndTime = Console.ReadLine();
+			Console.WriteLine("Enter the Room Code");
+			Room = Console.ReadLine();
+			Start = DateTime.Parse(StartTime);
+			End = DateTime.Parse(StartTime);
+			day = (Day)Enum.ToObject(typeof(Day), (int)Start.DayOfWeek);
+
+			return new Class(GroupID, day, Start, End, Room);
 		}
 
-		public void AddMeeting()
+		public Meeting AddMeeting()
 		{
-			throw new System.NotImplementedException();
+			string StartTime, EndTime, Room;
+			DateTime Start, End;
+			Day day;
+
+
+
+			Console.WriteLine("Enter the Start time of the meeting in 24HR time (HH:MM dd/mm/yyyy):  ");
+			StartTime = Console.ReadLine();
+
+			Console.WriteLine("Enter the End time of the meeting (HH:MM dd/mm/yyyy):  ");
+			EndTime = Console.ReadLine();
+
+			Console.WriteLine("Enter the Room Code");
+			Room = Console.ReadLine();
+			Start = DateTime.Parse(StartTime);
+            End = DateTime.Parse(StartTime);
+			day = (Day)Enum.ToObject(typeof(Day),(int) Start.DayOfWeek);
+
+
+			return new Meeting(GroupID, day, Start, End, Room);
 		}
 
-		public void EditGroup()
+		public void EditGroup(string new_name)
 		{
-			throw new System.NotImplementedException();
+			GroupName = new_name;
+		}
+		//Two Overrides here, one for finding a group from a student and one for finding a group from an ID, Might just remove the top and take the id from the student
+		public static StudentGroup GetGroup(Student student, List<StudentGroup> groups)
+        {
+			int id = student.StudentGroup;
+
+			foreach(StudentGroup group in groups)
+            {
+				if(group.GroupID == id)
+                {
+					return group;
+                }
+            }
+				return null;
+
+		}
+		public static StudentGroup GetGroup(int id, List<StudentGroup> groups)
+		{
+			foreach (StudentGroup group in groups)
+			{
+				if (group.GroupID == id)
+		{
+					return group;
+				}
+			}
+			return null;
+
+		}
+
+		public List<Student> GetGroupMembers(int StudentID)
+        {
+			List<Student> students = new List<Student>();
+			foreach (Student student in StorageAdapter.Students)
+            {
+				if(student.StudentGroup == GroupID && student.StudentID != StudentID)
+                {
+					students.Add(student);
+                }
+            }
+			return students;
+        }
+		public List<Meeting> GetMeetings()
+		{
+			List<Meeting> Meetings = new List<Meeting>();
+			foreach (Meeting meeting in StorageAdapter.Meetings) 
+			{
+			
+				if (meeting.GroupID == GroupID)
+				{
+					Meetings.Add(meeting);
+				}
+			}
+			return Meetings;
+		}
+
+		public override string ToString()
+		{
+			return (GroupName + "'s ID is " + GroupID);
 		}
 	}
 }

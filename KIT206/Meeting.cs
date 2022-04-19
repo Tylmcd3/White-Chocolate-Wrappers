@@ -21,6 +21,15 @@ namespace KIT206
                 _meetingID = value;
             }
         }
+
+        public int GroupID
+        {
+            get =>_groupID;
+            set
+            {
+                _groupID = value;
+            }
+        }
         public Day Day
         {
             get => _day;
@@ -47,7 +56,7 @@ namespace KIT206
         }
         public string Room
         {
-            get => default;
+            get => _room;
             set
             {
                 _room = value;
@@ -59,27 +68,61 @@ namespace KIT206
             and that it isint longer than x time
         */
         public Meeting(int group_id, Day day, DateTime start, DateTime end, string room){
-
+            MeetingID = GenerateMeetingID();
+            GroupID = group_id;
+            Day = day;
+            Start = start;
+            End = end;
+            Room = room;
         }
+        //Used for creating an object from Database
+        public Meeting(int meeting_id, int group_id, Day day, DateTime start, DateTime end, string room){
+            MeetingID = meeting_id;
+            GroupID = group_id;
+            Day = day;
+            Start = start;
+            End = end;
+            Room = room;
+        }
+        private int GenerateMeetingID()
+        {
+            int id;
+            do
+            {
+                id = (int)(DateTime.Now.Ticks % 1000000);
+            } while (Check_ID(id));
+            return id;
+        }
+        private bool Check_ID(int id)
+        {
+            Meeting Meeting = null;
+
+            foreach (Meeting meeting in StorageAdapter.Meetings)
+            {
+                if (meeting.MeetingID == id)
+                    Meeting = meeting;
+            }
+            return Meeting is Meeting;
+        }
+
 
         //Think need to move these to controller class?
 
-        //Overloaded function to edit the day and time of the meeting.
-        //changes depending on if they pass in the day, times or both.
-        public void EditMeeting(Day day){
-            _day = day;
-        }
-        public void EditMeeting(DateTime start, DateTime end){
-            _start = start;
-            _end = end;
-        }
-        public void EditMeeting(Day day, DateTime start, DateTime end){
-            EditMeeting(day);
-            EditMeeting(start, end);
+        
+        public void EditMeeting(){
+
+            StorageAdapter.EditMeeting(this);
+
         }
         //Removes meeting object
         public void CancelMeeting(){
             
+            StorageAdapter.Meetings.Remove(this);
+        }
+            
+        public override string ToString()
+        {
+            return "The Meeting for the group " + StudentGroup.GetGroup(GroupID, StorageAdapter.Groups).GroupName + " is on " + Day.ToString() + " at " + Start.ToString();
         }
     }
     

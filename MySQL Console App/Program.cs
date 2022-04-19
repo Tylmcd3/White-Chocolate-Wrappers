@@ -4,10 +4,10 @@ using System.Globalization;
 
 namespace KIT206
 {
-    class Program
+    public class Program
     {
         //Driver Class
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             int ID = 213243; // As the user would be logged in, constantly being stored makes sense
 			Student user = StorageAdapter.GetStudent(ID);

@@ -1,3 +1,4 @@
+using System;
 namespace KIT206
 {
     public class Student
@@ -18,7 +19,7 @@ namespace KIT206
         //Can Condense these later
         public int StudentID
         {
-            get => default;
+            get=> _studentID;
             set
             {
                 _studentID = value;
@@ -26,7 +27,7 @@ namespace KIT206
         }
         public string FirstName
         {
-            get => default;
+            get => _firstName;
             set
             {
                 _firstName = value;
@@ -34,7 +35,7 @@ namespace KIT206
         }
         public string LastName
         {
-            get => default;
+            get => _lastName;
             set
             {
                 _lastName = value;
@@ -42,7 +43,7 @@ namespace KIT206
         }
         public string Title
         {
-            get => default;
+            get => _title;
             set
             {
                 _title = value;
@@ -50,7 +51,7 @@ namespace KIT206
         }
         public Campus Campus
         {
-            get => default;
+            get => _campus;
             set
             {
                 _campus = value;
@@ -58,7 +59,7 @@ namespace KIT206
         }
         public string Phone
         {
-            get => default;
+            get => _phone;
             set
             {
                 _phone = value;
@@ -66,7 +67,7 @@ namespace KIT206
         }
         public string Email
         {
-            get => default;
+            get => _email;
             set
             {
                 _email = value;
@@ -74,7 +75,7 @@ namespace KIT206
         }
         public string Photo
         {
-            get => default;
+            get => _photo;
             set
             {
                 _photo = value;
@@ -82,7 +83,7 @@ namespace KIT206
         }
         public Category Category
         {
-            get => default;
+            get => _category;
             set
             {
                 _category = value;
@@ -90,42 +91,101 @@ namespace KIT206
         }
 
         //Get data from database, maybe just take in ID? 
-        public Student(string name, int id)
+        public Student(int id, string f_name, string l_name )
 		{
             //First or
-            StudentID = id;
-            FirstName = name;
-            //Second?
+            //StudentID = id;
+            //FirstName = name;
+            //Second? I prefer second because its apart of the class but other classes should use the Public ones
 			_studentID = id;
-			_firstName = name;
+			_firstName = f_name;
+            _lastName = l_name;
 		}
 
-		public StudentGroup StudentGroup
+        public Student(int id, string f_name, string l_name, int group_id, string title,string phone, Campus campus, string email, Category category)
 		{
-			get => default;
+            //First or
+            //StudentID = id;
+            //FirstName = name;
+            //Second? I prefer second because its apart of the class but other classes should use the Public ones
+			_studentID = id;
+            _firstName = f_name;
+            _lastName = l_name;
+            _groupID = group_id;
+            _title = title;
+            _campus = campus;
+            _email = email;
+            _category = category;
+            _phone = phone;
+
+        }
+
+		public int StudentGroup
+		{
+            get
+            {
+                return _groupID;
+            }
 			set
 			{
+                _groupID = value;
 			}
 		}
 
-		public void AddGroup()
+		public StudentGroup AddGroup(string name)
 		{
-			throw new System.NotImplementedException();
+            StudentGroup group = null;
+            foreach (StudentGroup groups in StorageAdapter.Groups)
+            {
+                if (groups.GroupName == name)
+                    group = groups;
+            }
+
+            if (group == null)
+            {
+                group = new StudentGroup(name);
+                StudentGroup = group.GroupID;
+                return group;
+            }
+            else
+            {
+                StudentGroup = group.GroupID;
+                return null;
+            }
 		}
 
-		public void AddStudentDetails()
+		public void AddStudentDetails(string title, Campus campus, Category category, string email, string phone)
 		{
-			throw new System.NotImplementedException();
-		}
+            Title = title;
+            Campus = campus;
+            Category = category;
+            Email = email;
+            Phone = phone;
 
-		public void EditStudentGroup()
+		}
+        
+		public Student EditStudentGroup()
 		{
-			throw new System.NotImplementedException();
+            StudentGroup = 0;
+            StorageAdapter.EditStudent(this);
+            return this;
 		}
-
-		public string ToString()
+        public string GetStudentString()
         {
-			return (_firstName + " " + _lastName + ", " + _studentID);
+            if (Email != null)
+                return ToString("full");
+            else
+                return ToString(" ");
+        }
+		public string ToString(string type)
+        {
+            if (type == "full")
+                if(StudentGroup != 0)
+                    return ("Name: " + Title.ToString() +" "+ FirstName + " " + LastName + ", Student ID: " + StudentID + ", in group " + StorageAdapter.GetGroup(StudentGroup).GroupName + " Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
+                else
+                    return ("Name: " + Title.ToString() + " " + FirstName + " " + LastName + ", Student ID: " + StudentID + ",  "+  "Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email);
+            else
+                return ("Name: " + FirstName + " " + LastName + ", Student ID: " + StudentID);
         }
 	}
 }

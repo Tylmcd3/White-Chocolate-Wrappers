@@ -3,13 +3,13 @@ namespace KIT206
 {
 public enum Day
     {
+        Sunday,
         Monday,
         Tuesday,
         Wednesday,
         Thursday,
         Friday, 
-        Saturday,
-        Sunday
+        Saturday
   }
 
 public enum Campus{
