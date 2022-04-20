@@ -9,8 +9,14 @@ namespace KIT206
         //Driver Class
         static void Main(string[] args)
         {
-            int ID = 123460;
-			Console.WriteLine(StorageAdapter.GetStudent(ID).FirstName);
+            int ID = 1;
+			Controller controller = new Controller();
+
+			Console.WriteLine(controller.GetMeeting(1).Day);
+
+            controller.EditMeeting(1);
+			Console.WriteLine(controller.GetMeeting(1).Day);
+			Console.WriteLine(controller.GetMeeting(2).Day);
 
 
 			//Student user = StorageAdapter.GetStudent(ID);
@@ -44,11 +50,11 @@ namespace KIT206
 			//					Console.WriteLine("Make a selection\n1.View Personal Data\n2.Add Personal Data\n0.Quit\n");
 			//					Success = int.TryParse(Console.ReadLine(), out PersonalSelection);
 			//					if (!Success || PersonalSelection >=3)
-   //                             {
+			//                             {
 			//						Console.WriteLine("That wasnt a valid input, try again");
 			//						Success = false;
 			//					}
-									
+
 			//				}
 			//				Success = false;
 			//				switch (PersonalSelection)
@@ -56,7 +62,7 @@ namespace KIT206
 			//					case 1://View Personal Data
 			//						Console.WriteLine(user.GetStudentString());
 			//						break;
-								
+
 			//					case 2://Add Personal Data
 			//						if (user.Email == null)
 			//						{
@@ -68,7 +74,7 @@ namespace KIT206
 			//							string Phone;
 			//							Console.WriteLine("Enter your Title: ");
 			//							title = Console.ReadLine();
-										
+
 			//							while (enumInt == -1 && enumInt <=2) {
 			//								Console.WriteLine("Enter your Campus, for Hobart enter 1 and for Launceston enter 2: ");
 			//								try
@@ -107,10 +113,10 @@ namespace KIT206
 
 
 			//						}
-   //                                 else
-   //                                 {
+			//                                 else
+			//                                 {
 			//							Console.WriteLine("You have already entered your details");
-   //                                 }
+			//                                 }
 			//						break;
 			//				}
 			//			}
@@ -122,8 +128,8 @@ namespace KIT206
 			//				if (user.StudentGroup > 0)
 			//				{
 			//					StudentGroup group = StorageAdapter.GetGroup(user.StudentGroup);
-   //                             while (!Success)
-   //                             {
+			//                             while (!Success)
+			//                             {
 			//						Console.WriteLine("Make a selection\n1.Show Group Members\n2.Show Class\n3.Edit Group\n4.Meeting menu\n5.Leave Group\n0.Quit\n");
 			//						Success = int.TryParse(Console.ReadLine(), out GroupSelection);
 			//						if (!Success || GroupSelection >= 6)
@@ -144,10 +150,10 @@ namespace KIT206
 			//									Console.WriteLine(Member.GetStudentString());
 			//								}
 			//							}
-   //                                     else
-   //                                     {
+			//                                     else
+			//                                     {
 			//								Console.WriteLine("There are no members of your group");
-   //                                     }
+			//                                     }
 			//							break;
 			//						case 2://Show Class
 			//							Console.WriteLine(StorageAdapter.GetClass(group.GroupID).ToString());
@@ -170,7 +176,7 @@ namespace KIT206
 			//									}
 			//								}
 			//								Success = false;
-											
+
 			//								switch (MeetingSelection)
 			//								{
 			//									case 1://View Meetings
@@ -222,21 +228,21 @@ namespace KIT206
 			//							break;
 			//					}
 			//				}
-   //                         else
-   //                         {
+			//                         else
+			//                         {
 			//					Console.WriteLine("You dont have a group, would you like to add one now? (y,n)");
 			//					if(Console.ReadLine() == "y")
-   //                             {
+			//                             {
 			//						Console.WriteLine("Enter the name for your group: ");
 			//						string name = Console.ReadLine();
 			//						StudentGroup newGroup = user.AddGroup(name);
 
-									
+
 			//						StorageAdapter.AddGroup(newGroup);
 			//						StorageAdapter.EditStudent(user);
 
-   //                             }
-   //                         }
+			//                             }
+			//                         }
 			//			}
 			//			break;
 			//		case 3://View Upcoming meetings and classes
@@ -256,13 +262,13 @@ namespace KIT206
 			//					}
 			//				}
 			//			}
-   //                     else
-   //                     {
+			//                     else
+			//                     {
 			//				Console.WriteLine("The user doesnt have a Group, Join a Group and try again");
-   //                     }
+			//                     }
 			//			break;
 			//	}
 			//}
-        }
+		}
     }
 }

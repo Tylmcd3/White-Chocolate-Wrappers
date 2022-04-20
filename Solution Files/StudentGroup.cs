@@ -41,7 +41,7 @@ namespace KIT206
             _groupID = GenerateGroupID();
             _groupName = name;
         }
-        public StudentGroup(string name, int id)
+        public StudentGroup(int id, string name)
         {
             //Generate group ID and then set to groupID (5 is placeholder)
 
@@ -57,20 +57,6 @@ namespace KIT206
             } while (false);
             return id;
         }
-        //Needs to be fixed, Since we will be using a list in the Controller of the groups 
-        //private bool Check_ID(int id)
-        //{
-        //    StudentGroup studentGroup = null;
-
-        //    foreach (StudentGroup group in Controller.groups)
-        //    {
-        //        if (group._groupID == id)
-        //            studentGroup = group;
-        //    }
-        //    return studentGroup is StudentGroup;
-        //}
        
-
-
     }
 }
