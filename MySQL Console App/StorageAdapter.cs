@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace MySQL
+namespace KIT206
 {
     class StorageAdapter
     {
@@ -207,6 +207,38 @@ namespace MySQL
 
             MySQLConnector.DBClose(rdr, conn);
             return returnClass;
+        }
+
+        //Returns all Classes 
+        public static List<Class> GetClasses()
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            List<Class> classes = null;
+            string sqlcmd = "SELECT * FROM `class`";
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
+            while (rdr.Read())
+            {
+                classes.Add(new Class(
+                    (int)rdr[0],
+                    (int)rdr[1],
+                    Enum.Parse<Day>((string)rdr[2]),
+                    (DateTime)rdr[3],
+                    (DateTime)rdr[4],
+                    (string)rdr[5]
+                    ));
+            }
+
+            MySQLConnector.DBClose(rdr, conn);
+            return classes;
+        }
+
+        public static void AddClass(Class toAdd)
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            //Deconstruct toAdd into strings then add to db
         }
         //Meeting functions
         //public static void AddMeeting(Meeting meeting)

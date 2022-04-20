@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySQL
+namespace KIT206
 {
     class StudentGroup_Controller
     {
@@ -30,7 +30,7 @@ namespace MySQL
             End = DateTime.Parse(StartTime);
             day = (Day)Enum.ToObject(typeof(Day), (int)Start.DayOfWeek);
 
-            return new Class(GroupID, day, Start, End, Room);
+            return new Class(123, day, Start, End, Room);
         }
 
         public Meeting AddMeeting()
@@ -54,13 +54,13 @@ namespace MySQL
             day = (Day)Enum.ToObject(typeof(Day), (int)Start.DayOfWeek);
 
 
-            return new Meeting(GroupID, day, Start, End, Room);
+            return new Meeting(123, day, Start, End, Room);
         }
 
 
         public override string ToString()
         {
-            return (GroupName + "'s ID is " + GroupID);
+            return (123 + "'s ID is " + 123);
         }
         //This needs to be added to the StorageAdapters, was slack of me
         public static StudentGroup GetGroup(Student student, List<StudentGroup> groups)
@@ -79,7 +79,7 @@ namespace MySQL
         }
         public void EditGroup(string new_name)
         {
-            GroupName = new_name;
+      
         }
         //also needs to be added to storageAdapters, stops this getting a list of all groups to then return one.
         public static StudentGroup GetGroup(int id, List<StudentGroup> groups)

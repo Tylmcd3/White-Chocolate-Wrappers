@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySQL
+namespace KIT206
 {
     class Student_Controller
     {

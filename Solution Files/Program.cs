@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace MySQL
+namespace KIT206
 {
     class Program
     {
@@ -10,7 +10,9 @@ namespace MySQL
         static void Main(string[] args)
         {
             int ID = 123460;
-			Console.WriteLine(StorageAdapter.GetStudent(ID).GetStudentString());// As the user would be logged in, constantly being stored makes sense
+			Console.WriteLine(StorageAdapter.GetStudent(ID).FirstName);
+
+
 			//Student user = StorageAdapter.GetStudent(ID);
 			//int MainSelection = 1;
 			//int PersonalSelection = 1;

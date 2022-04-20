@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MySQL
+namespace KIT206
 {
     public class StudentGroup
     {
@@ -58,17 +58,17 @@ namespace MySQL
             return id;
         }
         //Needs to be fixed, Since we will be using a list in the Controller of the groups 
-        private bool Check_ID(int id)
-        {
-            StudentGroup studentGroup = null;
+        //private bool Check_ID(int id)
+        //{
+        //    StudentGroup studentGroup = null;
 
-            foreach (StudentGroup group in StorageAdapter.Groups)
-            {
-                if (group._groupID == id)
-                    studentGroup = group;
-            }
-            return studentGroup is StudentGroup;
-        }
+        //    foreach (StudentGroup group in Controller.groups)
+        //    {
+        //        if (group._groupID == id)
+        //            studentGroup = group;
+        //    }
+        //    return studentGroup is StudentGroup;
+        //}
        
 
 
