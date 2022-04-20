@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace KIT206
+namespace MySQL
 {
     class Program
     {

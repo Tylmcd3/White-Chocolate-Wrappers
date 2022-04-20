@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace KIT206
+namespace MySQL
 {
     public class StudentGroup
     {

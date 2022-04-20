@@ -1,4 +1,4 @@
-namespace KIT206
+namespace MySQL
 {
 public enum Day
     {

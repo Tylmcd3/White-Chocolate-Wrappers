@@ -1,5 +1,5 @@
 using System;
-namespace KIT206
+namespace MySQL
 {
 	public class Class
 	{

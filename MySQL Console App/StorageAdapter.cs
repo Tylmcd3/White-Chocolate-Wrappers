@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KIT206.Data;
 using MySql.Data.MySqlClient;
 
-namespace KIT206
+namespace MySQL
 {
     class StorageAdapter
     {
@@ -18,34 +17,53 @@ namespace KIT206
         //{
         //    Storage.AddStudent(student);
         //}
+
+        //Edit Student group of given student
         public static void EditStudentGroup(int id, int group_id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             string sqlcmd = ("UPDATE student SET group_id =" + group_id + "WHERE student_id = " + id);
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+
             MySQLConnector.DBExecute(cmd, conn);
         }
+
+        //Edit Student details of given student
         public static void EditStudentDetails(int id, string title, Campus campus, Category category, string email, string phone)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             string sqlcmd = $"UPDATE student SET title ={title}, campus = {campus.ToString()}, phone = {phone}, email = {email},category = {category.ToString()} WHERE student_id = " + id;
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+
             MySQLConnector.DBExecute(cmd, conn);
         }
+
+        //Returns given Student
         public static Student GetStudent(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = ("select * from student WHERE student_id = " + id);
-            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             Student student = null;
+            string sqlcmd = ("SELECT * from student WHERE student_id = " + id);
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
             while (rdr.Read())
             {
-                if (rdr[7] != "")
+                //Checks if a student has filled out details or not
+                if ((string)rdr[7] != "")
                 {
-                    student = new Student((int)rdr[0], (string)rdr[1], (string)rdr[2], (int)rdr[3], (string)rdr[4], (string)rdr[6], Enum.Parse<Campus>((string)rdr[5]), (string)rdr[7], Enum.Parse<Category>((string)rdr[9]));
+                    student = new Student(
+                        (int)rdr[0],
+                        (string)rdr[1], (string)rdr[2],
+                        (int)rdr[3],
+                        (string)rdr[4],
+                        (string)rdr[6],
+                        Enum.Parse<Campus>((string)rdr[5]),
+                        (string)rdr[7],
+                        Enum.Parse<Category>((string)rdr[9]));
                 }
                 else
                 {
@@ -60,35 +78,49 @@ namespace KIT206
         //{
         //    Storage.AddGroup(group);
         //}
-        //public static void EditGroup(StudentGroup group)
-        //{
-        //    Storage.EditGroup(group);
-        //}
+
+        //Wasnt sure if we need to be able to add groups?
+
+        //Edits group name of given group
+        public static void EditGroup(int id, string name)
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            string sqlcmd = $"UPDATE studentGroup SET group_name = " + name + " WHERE group_id = " + id;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+
+            MySQLConnector.DBExecute(cmd, conn);
+        }
+
+        //Returns Student Group given Group ID
         public static StudentGroup GetGroup(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = "SELECT * FROM `studentGroup` WHERE group_id=" + id;
-            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             StudentGroup group = null;
+            string sqlcmd = "SELECT * FROM `studentGroup` WHERE group_id=" + id;
 
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
             while (rdr.Read())
             {
                 group = new StudentGroup((string)rdr[1], (int)rdr[0]);
-
             }
 
             MySQLConnector.DBClose(rdr, conn);
             return group;
         }
+
+        //Returns all Student Groups
         public static List<StudentGroup> GetGroups()
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = "SELECT * FROM `studentGroup`";
-            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             List<StudentGroup> groups = null;
+            string sqlcmd = "SELECT * FROM `studentGroup`";
 
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
             while (rdr.Read())
             {
                 groups.Add(new StudentGroup((string)rdr[1], (int)rdr[0]));
@@ -97,6 +129,84 @@ namespace KIT206
 
             MySQLConnector.DBClose(rdr, conn);
             return groups;
+        }
+
+        //Returns meeting given meeting id
+        public static Meeting GetMeeting(int id)
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            Meeting meeting = null;
+            string sqlcmd = "SELECT * FROM `meeting` WHERE meeting_id=" + id;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
+            while (rdr.Read())
+            {
+                meeting = new Meeting(
+                    (int)rdr[0],
+                    (int)rdr[1],
+                    Enum.Parse<Day>((string)rdr[2]),
+                    (DateTime)rdr[3],
+                    (DateTime)rdr[4],
+                    (string)rdr[5]
+                    );
+            }
+
+            MySQLConnector.DBClose(rdr, conn);
+            return meeting;
+
+        }
+
+        //Returns list of meetings in given group
+        public static List<Meeting> GetMeetings(int groupID)
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            List<Meeting> meetings = null;
+            string sqlcmd = "SELECT * FROM `meeting` WHERE group_id=" + groupID;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
+            while (rdr.Read())
+            {
+                meetings.Add(new Meeting(
+                    (int)rdr[0],
+                    (int)rdr[1],
+                    Enum.Parse<Day>((string)rdr[2]),
+                    (DateTime)rdr[3],
+                    (DateTime)rdr[4],
+                    (string)rdr[5]
+                    ));
+            }
+
+            MySQLConnector.DBClose(rdr, conn);
+            return meetings;
+        }
+
+        //Returns Class given class id
+        public static Class GetClass(int classID)
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            Class returnClass = null;
+            string sqlcmd = "SELECT * FROM `class` WHERE class_id=" + classID;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
+            while (rdr.Read())
+            {
+                returnClass = new Class(
+                    (int)rdr[0],
+                    (int)rdr[1],
+                    Enum.Parse<Day>((string)rdr[2]),
+                    (DateTime)rdr[3],
+                    (DateTime)rdr[4],
+                    (string)rdr[5]);
+            }
+
+            MySQLConnector.DBClose(rdr, conn);
+            return returnClass;
         }
         //Meeting functions
         //public static void AddMeeting(Meeting meeting)
