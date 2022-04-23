@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KIT206.Data;
 
-namespace KIT206
+namespace KIT206.ConsoleApp
 {
     class StorageAdapter
     {
@@ -49,6 +48,10 @@ namespace KIT206
         public static Student GetStudent(int id)
         {
             return Storage.GetStudent(id);
+        }
+        public static List<Student> GetStudents()
+        {
+            return Storage.Students;
         }
         public static StudentGroup GetGroup(int id)
         {

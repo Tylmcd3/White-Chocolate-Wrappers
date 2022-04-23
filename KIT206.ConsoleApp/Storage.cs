@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KIT206.Data
+namespace KIT206.ConsoleApp
 {
     static class Storage
     {
@@ -19,8 +19,8 @@ namespace KIT206.Data
         };
         public static List<StudentGroup> Groups = new List<StudentGroup>()
         {
-            new StudentGroup("Trains", 938475),
-            new StudentGroup("Control Freaks", 118234)
+            new StudentGroup(938475,"Trains"),
+            new StudentGroup(118234,"Control Freaks")
         };
         public static List<Meeting> Meetings = new List<Meeting>()
         {

@@ -12,7 +12,7 @@ namespace KIT206.DatabaseConsoleApp
         //student account at a time. (i.e only store one student, and just grab that student at
         //start of session in driver class
         private List<StudentGroup> groups = new List<StudentGroup>();
-        public List<Student> students = new List<Student>();
+        public List<Student> students = StorageAdapter.GetStudents();
         private List<Class> classes = new List<Class>();
         private List<Meeting> meetings = new List<Meeting>();
 
