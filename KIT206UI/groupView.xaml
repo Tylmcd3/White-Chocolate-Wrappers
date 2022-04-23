@@ -55,6 +55,8 @@
 	</Page.Resources>
 	
     <Grid>
+		<Frame Background="White" NavigationUIVisibility="Hidden"/>
+		
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition/>
@@ -124,13 +126,24 @@
 					
                 </Grid>
                 <Grid Grid.Column="0">
-					<Listbox Style="{StaticResource GeneralList}">
-						<ListBoxItem Content="Meetings"/>
-						<Seperator background="black"/>
-						<Button Content="23/04 23:00"/>
-						<Button Content="30/04 09:30"/>
-					</Listbox>
-                </Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition />
+						<RowDefinition />
+						<RowDefinition />
+						<RowDefinition />
+						<RowDefinition />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Row="0">Meetings</TextBlock>
+					<Separator Background="Black"/>
+					<TextBlock Grid.Row="1">23/04 23:00</TextBlock>
+					<Button Grid.Row="1" Content="Edit" HorizontalAlignment="Right" Style="{DynamicResource RoundButton}" Margin="0,0,85,0" Width="60" />
+					<Button Grid.Row="1" Content="Council" HorizontalAlignment="Right" Style="{DynamicResource RoundButton}"/>
+					<TextBlock Grid.Row="2">30/04 09:30</TextBlock>
+					<Button Grid.Row="2" Content="Edit" HorizontalAlignment="Right" Style="{DynamicResource RoundButton}" Margin="0,0,85,0" Width="60"/>
+					<Button Grid.Row="2" Content="Council" HorizontalAlignment="Right" Style="{DynamicResource RoundButton}"/>
+				</Grid>
+				
             </Grid>
         </Grid>
 		

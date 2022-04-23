@@ -23,6 +23,7 @@ namespace KIT206UI
 		public MainWindow()
 		{
 			InitializeComponent();
+			Application.Current.MainWindow = this;
 		}
 		private void ToTheGroupViewSmile(object sender, RoutedEventArgs e)
        	{
