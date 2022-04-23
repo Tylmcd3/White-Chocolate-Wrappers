@@ -1,5 +1,5 @@
 using System;
-namespace MySQL
+namespace KIT206
 {
     public class Student
 	{
@@ -100,7 +100,7 @@ namespace MySQL
                 _groupID = value;
             }
         }
-        //Two Constructors, one is for Students who havnt added details and the other is for complete students 
+        //Two Constructors, one is for Students who havent added details and the other is for complete students 
         public Student(int id, string f_name, string l_name )
 		{
 			_studentID = id;
