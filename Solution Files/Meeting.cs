@@ -8,8 +8,8 @@ namespace KIT206
         private int _meetingID;
         private int _groupID;
         private Day _day;
-        private DateTime _start;
-        private DateTime _end;
+        private TimeSpan _start;
+        private TimeSpan _end;
         private string _room;
 
 
@@ -39,7 +39,7 @@ namespace KIT206
                 _day = value;
             }
         }
-        public DateTime Start
+        public TimeSpan Start
         {
             get => _start;
             set
@@ -47,7 +47,7 @@ namespace KIT206
                 _start = value;
             }
         }
-        public DateTime End
+        public TimeSpan End
         {
             get => _end;
             set
@@ -68,7 +68,7 @@ namespace KIT206
             Need to check validity of the room, check that start appears before end 
             and that it isint longer than x time
         */
-        public Meeting(int group_id, Day day, DateTime start, DateTime end, string room){
+        public Meeting(int group_id, Day day, TimeSpan start, TimeSpan end, string room){
             MeetingID = GenerateMeetingID();
             GroupID = group_id;
             Day = day;
@@ -77,7 +77,7 @@ namespace KIT206
             Room = room;
         }
         //Used for creating an object from Database
-        public Meeting(int meeting_id, int group_id, Day day, DateTime start, DateTime end, string room){
+        public Meeting(int meeting_id, int group_id, Day day, TimeSpan start, TimeSpan end, string room){
             MeetingID = meeting_id;
             GroupID = group_id;
             Day = day;
