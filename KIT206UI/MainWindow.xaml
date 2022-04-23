@@ -35,9 +35,7 @@
             <Setter Property="BorderBrush" Value="{x:Null}"/>
         </Style>
     </Window.Resources>
-
-
-
+	
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"/>

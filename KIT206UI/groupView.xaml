@@ -71,7 +71,7 @@
             <Button Content="Student Details" Style="{DynamicResource RoundButton}"/>
 			
             <ListBox Grid.Row="1" Style="{StaticResource GeneralList}">
-                <ListBoxItem HorizontalAlignment="Center" Content="Daily Summary"/>
+				<ListBoxItem HorizontalAlignment="Center" Content="Daily Summary"/>
                 <Separator Background="Black"/>
                 <Button Content="Lorem ipsum lookin smexy :3" />
             </ListBox>
@@ -97,7 +97,7 @@
                 <TextBlock Grid.Row="0" FontWeight="Bold" FontFamily="Comic Sans MS" TextAlignment="Center" FontSize="25" VerticalAlignment="Center">White Chocolate Wrappers</TextBlock>
                 <Button Grid.Row="0" Content="Leave" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{DynamicResource RoundButton}"/>
                 <Button Grid.Row="0" Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{DynamicResource RoundButton}" Margin="0,0,65,2"/>
-				<Button Grid.Row="0" Content="Back" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}" Click="ToTheMainPagies"/>
+				<Button Grid.Row="0" Content="Back" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}"/>
                 <Separator VerticalAlignment="Bottom"/>
             </Grid>
 			
@@ -112,13 +112,15 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 					
-                    <TextBlock Grid.Row="0" TextAlignment="Center" FontFamily="Comic Sans MS" FontWeight="Bold" FontSize="16" Background="#7896B7" Margin="5">Group Name:</TextBlock>
-                    <ListBox Grid.Row="1" Background="#ffffba" BorderBrush="#FFABADB3" Margin="5" >
-                        <ListBoxItem Content="Zander" FontSize="14" FontFamily="Comic Sans MS" />
-                        <ListBoxItem Content="Tyler Mac Fuckface" FontSize="14" FontFamily="Comic Sans MS" />
-                        <ListBoxItem Content="Yordanian" FontSize="14" FontFamily="Comic Sans MS" />
-                        <ListBoxItem Content="Callhoom" FontSize="14" FontFamily="Comic Sans MS" />
+                    <Button Style="{DynamicResource RoundButton}" Grid.Row="0" Content="Group Name" />
+					
+                    <ListBox Grid.Row="1" Style="{StaticResource GeneralList}">
+                        <Button Content="Zander"/>
+                        <Button Content="Tyler Mac Fuckface"/>
+                        <Button Content="Yordanian"/>
+                        <Button Content="Callhoom"/>
                     </ListBox>
+					
                 </Grid>
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
