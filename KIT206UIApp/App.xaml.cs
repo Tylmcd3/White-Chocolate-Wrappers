@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace KIT206.DatabaseConsoleApp.UI
+namespace KIT206.DatabaseApp.UI
 {
 	/// <summary>
 	/// Interaction logic for App.xaml

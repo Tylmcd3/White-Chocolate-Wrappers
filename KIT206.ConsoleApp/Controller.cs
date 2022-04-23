@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KIT206.ConsoleApp
+namespace KIT206.App
 {
     public class Controller
     {

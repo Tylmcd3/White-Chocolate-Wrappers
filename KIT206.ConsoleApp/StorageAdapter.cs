@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KIT206.ConsoleApp
+namespace KIT206.App
 {
     class StorageAdapter
     {

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KIT206.DatabaseConsoleApp.UI
+namespace KIT206.DatabaseApp.UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

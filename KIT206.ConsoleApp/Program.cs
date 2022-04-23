@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace KIT206.ConsoleApp
+namespace KIT206.App
 {
     class Program
     {

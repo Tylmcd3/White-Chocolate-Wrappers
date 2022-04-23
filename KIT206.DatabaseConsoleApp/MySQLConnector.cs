@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 
-namespace KIT206.DatabaseConsoleApp
+namespace KIT206.DatabaseApp
 {
     class MySQLConnector
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace KIT206.DatabaseConsoleApp
+namespace KIT206.DatabaseApp
 {
     class StorageAdapter
     {

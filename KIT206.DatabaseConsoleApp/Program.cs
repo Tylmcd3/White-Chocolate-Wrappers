@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace KIT206.DatabaseConsoleApp
+namespace KIT206.DatabaseApp
 {
     class Program
     {
