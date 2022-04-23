@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KIT206.DatabaseConsoleApp
+namespace KIT206.App
 {
     public class Controller
     {
@@ -12,7 +12,7 @@ namespace KIT206.DatabaseConsoleApp
         //student account at a time. (i.e only store one student, and just grab that student at
         //start of session in driver class
         private List<StudentGroup> groups = new List<StudentGroup>();
-        public List<Student> students = new List<Student>();
+        public List<Student> students = StorageAdapter.GetStudents();
         private List<Class> classes = new List<Class>();
         private List<Meeting> meetings = new List<Meeting>();
 
@@ -109,7 +109,7 @@ namespace KIT206.DatabaseConsoleApp
             student.Category = Enum.Parse<Category>(category);
             student.Phone = phone;
 
-            StorageAdapter.EditStudentDetails(student);
+            //StorageAdapter.EditStudentDetails(student);
 
         }
 
@@ -122,7 +122,7 @@ namespace KIT206.DatabaseConsoleApp
             groupID = Console.ReadLine();
 
             student.StudentGroup = Int32.Parse(groupID);
-            StorageAdapter.EditStudentGroupMembership(student);
+            //StorageAdapter.EditStudentGroupMembership(student);
         }
 
         //TODO Need to move ID Generators/Checkers to this class rather than inside the entity classes
@@ -157,7 +157,7 @@ namespace KIT206.DatabaseConsoleApp
 
             Class toAdd = new Class(group.GroupID, day, start, end, room);
             classes.Add(toAdd);
-            StorageAdapter.AddClass(toAdd);
+            //StorageAdapter.AddClass(toAdd);
             
         }
 

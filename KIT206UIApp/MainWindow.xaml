@@ -1,9 +1,9 @@
-﻿<Window x:Class="KIT206UI.MainWindow"
+﻿<Window x:Class="KIT206.DatabaseApp.UI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KIT206UI"
+        xmlns:local="clr-namespace:KIT206.DatabaseApp.UI"
         mc:Ignorable="d"
         Title="GMIS" Height="450" Width="800"
         Style="{StaticResource GlobalFont}">
@@ -49,7 +49,7 @@
             <ListBox x:Name="Meetings" Style="{StaticResource MeetingsList}" Grid.Row="3" >
                 <ListBoxItem Content="Meetings" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <Separator Background="Black"/>
-                </ListBox>
+            </ListBox>
             <Button Style="{DynamicResource RoundButton}" Content="View Group" Grid.Row="1" />
             <Button Style="{DynamicResource RoundButton}" Content="Student Details" Grid.Row="0"/>
         </Grid>
@@ -58,3 +58,4 @@
         </Viewbox>
     </Grid>
 </Window>
+
