@@ -22,7 +22,19 @@ namespace KIT206UI
 	{
 		public MainWindow()
 		{
+			
 			InitializeComponent();
+			
 		}
-	}
+
+        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+			Meetings.Items.Add("string");
+		}
+
+        private void ListBoxItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }
