@@ -109,7 +109,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.25*"/>
+                        <RowDefinition Height="0.2*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 					
@@ -124,14 +124,12 @@
 					
                 </Grid>
                 <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" FontWeight="Bold" FontFamily="Comic Sans MS" TextAlignment="Left" FontSize="18" VerticalAlignment="Center">Meeting 23/04 23:00<Button Content="Edit" Width="50"/><Button Content="Cancel" Width="70"/></TextBlock>
-                    <TextBlock Grid.Row="1" FontWeight="Bold" FontFamily="Comic Sans MS" TextAlignment="Left" FontSize="18" VerticalAlignment="Center">Meeting 30/04 09:30<Button Content="Edit" Width="50"/><Button Content="Cancel" Width="70"/></TextBlock>
+					<Listbox Style="{StaticResource GeneralList}">
+						<ListBoxItem Content="Meetings"/>
+						<Seperator background="black"/>
+						<Button Content="23/04 23:00"/>
+						<Button Content="30/04 09:30"/>
+					</Listbox>
                 </Grid>
             </Grid>
         </Grid>

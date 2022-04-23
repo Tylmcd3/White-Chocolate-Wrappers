@@ -24,4 +24,5 @@ namespace KIT206UI
         {
             InitializeComponent();
         }
+    }
 }
