@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace plessel
+namespace KIT206UI
 {
     /// <summary>
     /// Interaction logic for groupView.xaml
