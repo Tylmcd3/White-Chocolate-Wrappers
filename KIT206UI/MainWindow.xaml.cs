@@ -24,10 +24,5 @@ namespace KIT206UI
 		{
 			InitializeComponent();
 		}
-		private void ToTheGroupViewSmile(object sender, RoutedEventArgs e)
-       		{
-            		groupView page = new groupView();
-            		this.Content = page;
-        	}
 	}
 }
