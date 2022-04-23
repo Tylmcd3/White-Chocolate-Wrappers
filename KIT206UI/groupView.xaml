@@ -87,6 +87,7 @@
             </Viewbox>
 			
         </Grid>
+		
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.35*"/>
@@ -134,6 +135,7 @@
                 </Grid>
             </Grid>
         </Grid>
+		
 
     </Grid>
 
