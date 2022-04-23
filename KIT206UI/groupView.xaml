@@ -8,50 +8,99 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="groupView">
 
+	<Page.Resources>
+		<Style TargetType="Button" x:Key="RoundButton">
+			<Style.Resources>
+				<Style TargetType="Border">
+					<Setter Property="CornerRadius" Value="5"/>
+				</Style>
+			</Style.Resources>
+			<Setter Property="Margin" Value="2" />
+			<Setter Property="Background" Value="#FF2590E4"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="BorderBrush" Value="#FFABADB3"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+
+		<Style TargetType="ListBox" x:Key="MeetingsList">
+			<Style.Resources>
+				<Style TargetType="Button">
+					<Setter Property="BorderBrush" Value="{x:Null}"/>
+					<Setter Property="Background" Value="{x:Null}"/>
+					<Setter Property="FontSize" Value="18"/>
+				</Style>
+			</Style.Resources>
+			<Setter Property="Margin" Value="2"/>
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="BorderBrush" Value="{x:Null}"/>
+		</Style>
+
+		<Style TargetType="ListBox" x:Key="GeneralList">
+			<Style.Resources>
+				<Style TargetType="Button">
+					<Setter Property="BorderBrush" Value="{x:Null}"/>
+					<Setter Property="Background" Value="{x:Null}"/>
+					<Setter Property="FontSize" Value="18"/>
+					<Setter Property="Foreground" Value="White"/>
+				</Style>
+				<Style TargetType="Border">
+					<Setter Property="CornerRadius" Value="5"/>
+				</Style>
+			</Style.Resources>
+			<Setter Property="BorderBrush" Value="#FFABADB3"/>
+			<Setter Property="Background" Value="#FF2590E4"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+
+	</Page.Resources>
+	
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+		
         <Grid>
-            <Grid.Effect>
-                <DropShadowEffect BlurRadius="2" Opacity="0.5"/>
-            </Grid.Effect>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.4*"/>
                 <RowDefinition/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
-            <Button Content="Student Details" RenderTransformOrigin="-0.52,-0.75" Margin="5" Background="#FFEE66D5" FontSize="20" FontFamily="Comic Sans MS" FontWeight="Bold" Cursor="Hand" BorderBrush="#FFABADB3" />
-            <ListBox Margin="5" Grid.Row="1" Background="#FF95EAA1">
-                <ListBoxItem Background="#00000000" Content="Daily Summary" FontWeight="Bold" FontSize="20" FontFamily="Comic Sans MS" HorizontalContentAlignment="Center"/>
+			
+            <Button Content="Student Details" Style="{DynamicResource RoundButton}"/>
+			
+            <ListBox Grid.Row="1" Style="{StaticResource GeneralList}">
+                <ListBoxItem HorizontalAlignment="Center" Content="Daily Summary"/>
                 <Separator Background="Black"/>
-                <ListBoxItem Content="Lorem ipsum lookin smexy :3" FontSize="14" FontFamily="Comic Sans MS"/>
+                <Button Content="Lorem ipsum lookin smexy :3" />
             </ListBox>
-            <ListBox Grid.Row="2" Background="#fFC066" BorderBrush="#FFABADB3" Margin="5">
-                <ListBoxItem Content="Class Details" FontWeight="Bold" FontSize="20" FontFamily="Comic Sans MS" HorizontalAlignment="Center"/>
+			
+            <ListBox Grid.Row="2" Style="{StaticResource GeneralList}">
+                <ListBoxItem Content="Class Details" HorizontalAlignment="Center"/>
                 <Separator Background="Black"/>
-                <Button BorderBrush="{x:Null}" Background="{x:Null}" Content="2pm Tuesday at D33Z" FontSize="14" FontFamily="Comic Sans MS" Margin="0" Padding="5"/>
+                <Button Content="2pm Tuesday at D33Z"/>
             </ListBox>
-            <Viewbox Grid.Row="3" Margin="5" Stretch="Fill">
-                <Calendar HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comic Sans MS"/>
+			
+            <Viewbox Grid.Row="3" Margin="2" Stretch="Fill">
+                <Calendar HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Viewbox>
+			
         </Grid>
         <Grid Grid.Column="1">
-            <Grid.Effect>
-                <DropShadowEffect BlurRadius="2" Opacity="0.5"/>
-            </Grid.Effect>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.35*"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
+			
             <Grid>
                 <TextBlock Grid.Row="0" FontWeight="Bold" FontFamily="Comic Sans MS" TextAlignment="Center" FontSize="25" VerticalAlignment="Center">White Chocolate Wrappers</TextBlock>
-                <Button Grid.Row="0" Content="Leave" HorizontalAlignment="Right" Height="22"  VerticalAlignment="Top" Width="80"/>
-                <Button Grid.Row="0" Content="Edit" HorizontalAlignment="Right" Height="22"  VerticalAlignment="Top" Width="80" Margin="0,22,0,0"/>
+                <Button Grid.Row="0" Content="Leave" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{DynamicResource RoundButton}"/>
+                <Button Grid.Row="0" Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{DynamicResource RoundButton}" Margin="0,0,65,2"/>
+				<Button Grid.Row="0" Content="Back" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}" Click="ToTheMainPagies"/>
                 <Separator VerticalAlignment="Bottom"/>
             </Grid>
+			
             <Grid Grid.Column="1" Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -62,6 +111,7 @@
                         <RowDefinition Height="0.25*"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
+					
                     <TextBlock Grid.Row="0" TextAlignment="Center" FontFamily="Comic Sans MS" FontWeight="Bold" FontSize="16" Background="#7896B7" Margin="5">Group Name:</TextBlock>
                     <ListBox Grid.Row="1" Background="#ffffba" BorderBrush="#FFABADB3" Margin="5" >
                         <ListBoxItem Content="Zander" FontSize="14" FontFamily="Comic Sans MS" />

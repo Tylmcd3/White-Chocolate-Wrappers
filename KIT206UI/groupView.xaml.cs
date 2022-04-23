@@ -24,5 +24,11 @@ namespace KIT206UI
         {
             InitializeComponent();
         }
+       /*  private void ToTheMainPagies(object sender, RoutedEventArgs e)
+        {
+            MainWindow Window = new MainWindow();
+            this.Content = Window;
+        }
+       */
     }
 }
