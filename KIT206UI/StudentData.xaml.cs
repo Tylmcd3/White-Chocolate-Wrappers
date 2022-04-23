@@ -10,18 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KIT206UI
+namespace WpfApp1
 {
     /// <summary>
-    /// Interaction logic for Window2.xaml
+    /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class Window2 : Window
+    public partial class Page1 : Page
     {
-        public Window2()
+        public Page1()
         {
             InitializeComponent();
+        }
+
+        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
