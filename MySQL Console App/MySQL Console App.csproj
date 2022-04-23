@@ -7,10 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.0.28" />
+    <Compile Include="..\Solution Files\Class.cs" Link="Class.cs" />
+    <Compile Include="..\Solution Files\enums.cs" Link="enums.cs" />
+    <Compile Include="..\Solution Files\Meeting.cs" Link="Meeting.cs" />
+    <Compile Include="..\Solution Files\Program.cs" Link="Program.cs" />
+    <Compile Include="..\Solution Files\Student.cs" Link="Student.cs" />
+    <Compile Include="..\Solution Files\StudentGroup.cs" Link="StudentGroup.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\KIT206\KIT206.csproj" />
+    <PackageReference Include="MySql.Data" Version="8.0.28" />
   </ItemGroup>
 
 </Project>

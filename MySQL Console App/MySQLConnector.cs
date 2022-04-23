@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 
-namespace MySQL
+namespace KIT206
 {
     class MySQLConnector
     {
@@ -15,12 +15,58 @@ namespace MySQL
         private const string pass = "group6";
         private const string server = "alacritas.cis.utas.edu.au";
 
-        static MySqlConnection DatabaseConnect()
+        public static MySqlConnection DatabaseConnect()
         {
+            MySqlConnection conn = null;
             string connectionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", db, server, user, pass);
-            return new MySqlConnection(connectionString);
+            try
+            {
+                conn = new MySqlConnection(connectionString);
+            }
+            catch
+            {
+                Console.WriteLine("Cannot Connect to the database {0}", db);
+            }
+            return conn;
+        }
+
+        public static MySqlDataReader DBReader(MySqlCommand cmd, MySqlConnection conn)
+        {
+
+            MySqlDataReader rdr = null;
+            conn.Open();
+            try
+            {
+                rdr = cmd.ExecuteReader();
+            }
+            catch
+            {
+                Console.WriteLine("Error");
+            }
+            return rdr;
+        }
+        public static void DBExecute(MySqlCommand cmd, MySqlConnection conn)
+        {
+            conn.Open();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                Console.WriteLine("Error");
+            }
         }
 
 
+        public static void DBClose(MySqlDataReader rdr, MySqlConnection conn)
+        {
+            rdr.Close();
+            conn.Close();
+        }
+
+        
+        
+        
     }
 }

@@ -91,26 +91,27 @@ namespace KIT206
 			do
 			{
 				id = (int)(DateTime.Now.Ticks % 1000000);
-			} while (Check_ID(id));
+			} while (false);
 			return id;
 		}
 		//Checking ID's, could potentially be made generic if we use Type of and passed a type of something?
 		//Need to do more research but this will do for now
-		private bool Check_ID(int id)
-		{
-			Class Class = null;
+		//Cant have this list access here
+		//private bool Check_ID(int id)
+		//{
+		//	Class Class = null;
 
-			foreach (Class _class in StorageAdapter.Classes)
-			{
-				if (_class._classID == id)
-					Class = _class;
-			}
-			return Class is Class;
-		}
+		//	foreach (Class _class in StorageAdapter.Classes)
+		//	{
+		//		if (_class._classID == id)
+		//			Class = _class;
+		//	}
+		//	return Class is Class;
+		//}
 
         public override string ToString()
         {
-			return "The Class for the group " + StudentGroup.GetGroup(GroupID, StorageAdapter.Groups).GroupName + " is on every " + Day.ToString() + " at " + Start.ToString("hh:mm tt");
+			return "The Class for the group "  + " is on every " + Day.ToString() + " at " + Start.ToString("hh:mm tt");
 		}
 
     }
