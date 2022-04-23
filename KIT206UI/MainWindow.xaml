@@ -55,7 +55,7 @@
                 <Button Content="4:30pm Monday at C340"/>
                 <Button Content="11:00am Thursday at B122"/>
             </ListBox>
-            <Button Style="{DynamicResource RoundButton}" Content="View Group" Grid.Row="1" />
+            <Button Style="{DynamicResource RoundButton}" Content="View Group" Grid.Row="1" Click="ToTheGroupViewSmile"/>
             <Button Style="{DynamicResource RoundButton}" Content="Student Details" Grid.Row="0"/>
         </Grid>
         <Viewbox Grid.Column="3" Height="419" Margin="5" Width="444">
