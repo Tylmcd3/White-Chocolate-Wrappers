@@ -37,4 +37,12 @@ namespace KIT206UI
 
         }
     }
+			Application.Current.MainWindow = this;
+		}
+		private void ToTheGroupViewSmile(object sender, RoutedEventArgs e)
+       	{
+            	groupView page = new groupView();
+            	this.Content = page;
+        }
+	}
 }
