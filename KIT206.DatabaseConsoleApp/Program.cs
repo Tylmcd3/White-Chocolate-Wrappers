@@ -9,13 +9,169 @@ namespace KIT206.DatabaseApp
         //Driver Class
         public static void Main(string[] args)
         {
+            Student student;
             Student_Controller controller = new Student_Controller();
+            StudentGroup_Controller group_Controller = new();
 
-            foreach(Student student in controller.Students)
+            foreach(Student item in controller.Students)
             {
-                Console.WriteLine(student.ToString(""));
+                Console.WriteLine(item.ToString(""));
             }
 
+            Boolean success;
+            int option = -1;
+            int studentID;
+            Console.WriteLine("Enter your student ID...\n");
+            studentID = int.Parse(Console.ReadLine());
+
+            controller.SelectStudent(studentID);
+            student = controller.CurrentStudent;
+            if(student.StudentGroup != -1)
+            {
+                group_Controller.SelectGroup(student.StudentGroup);
+            }
+            Console.WriteLine("Welcome, " + student.FirstName);
+
+
+
+            while(option != 0)
+            {
+                option = -1;
+
+                Console.WriteLine("Make a selection\n" +
+                                "[0] Exit\n" +
+                                "[1] Personal Data Menu\n" +
+                                "[2] Group Menu\n" +
+                                "[3] View upcoming meetings and classes");
+
+                success = int.TryParse(Console.ReadLine(), out option);
+
+                switch (option)
+                {
+                    case 0:
+                        Console.WriteLine("Bye bye");
+                        break;
+
+                    case 1:
+
+                        while(option != 0)
+                        {
+                            Console.WriteLine("Make a selection\n" +
+                                            "[0] Exit\n" +
+                                            "[1] View Personal data\n" +
+                                            "[2] Edit Personal data\n");
+                            success = int.TryParse(Console.ReadLine(), out option);
+
+                            switch (option)
+                            {
+                                case 0:
+                                    Console.WriteLine("Bye bye");
+                                    break;
+                                case 1:
+                                    //view data
+                                    Console.WriteLine($"{student.Title} {student.FirstName} {student.LastName} | {student.StudentID}\n");
+                                    Console.WriteLine($"Phone: {student.Phone}\n");
+                                    Console.WriteLine($"Email: {student.Email}\n");
+                                    Console.WriteLine($"Campus: {student.Campus.ToString()}\n");
+                                    Console.WriteLine($"Category: {student.Category.ToString()}\n");
+                                    break;
+                                case 2:
+                                    //edit data
+                                    string title, phone, email;
+                                    Category category;
+                                    Campus campus;
+                                    Console.WriteLine("Enter your title (Mr./Mrs./Ms./Dr.)...");
+                                    title = Console.ReadLine();
+                                    Console.WriteLine("Are you completing a Bachelors or a Masters? ([1] for Bachelors, [2] for Masters)...");
+                                    category = int.Parse(Console.ReadLine()) == 1 ? Category.Bachelors : Category.Masters;
+                                    Console.WriteLine("Where do you study? ([1] for Hobart, [2] for Launceston)...");
+                                    campus = int.Parse(Console.ReadLine()) == 1 ? Campus.Hobart : Campus.Launceston;
+                                    Console.WriteLine("Enter your phone number");
+                                    phone = Console.ReadLine();
+                                    Console.WriteLine("Enter your email");
+                                    email = Console.ReadLine();
+
+                                    controller.AddStudentDetails(title, campus, email, category, phone);
+                                    break;
+                                default:
+                                    Console.WriteLine("Please enter a valid option");
+                                    break;
+                            }
+                        }
+                        option = -1;
+                        break;
+
+                    case 2:
+                        while(option != 0)
+                        {
+                            if (student.StudentGroup == -1)
+                            {
+                                Console.WriteLine("You are not currently in a group.\n" +
+                                                "[0] Exit\n" +
+                                                "[1] View Groups\n" +
+                                                "[2] Join Group\n" +
+                                                "[3] Create Group");
+                                success = int.TryParse(Console.ReadLine(), out option);
+
+                                switch (option)
+                                {
+                                    case 0:
+                                        Console.WriteLine("Bye bye");
+                                        break;
+                                    case 1:
+                                        foreach (StudentGroup group in group_Controller.Groups)
+                                        {
+                                            Console.WriteLine(group.ToString());
+                                        }
+                                        break;
+                                    case 2:
+                                        int groupToJoin;
+                                        Console.WriteLine("Enter a group ID to join");
+                                        success = int.TryParse(Console.ReadLine(), out groupToJoin);
+                                        controller.EditStudentGroupMembership(groupToJoin);
+                                        break;
+                                    case 3:
+                                        string groupName;
+                                        Console.WriteLine("Enter a group name");
+                                        groupName = Console.ReadLine();
+                                        group_Controller.AddGroup(groupName);
+                                        controller.EditStudentGroupMembership(1);
+                                        break;
+                                    default:
+                                        Console.WriteLine("Please enter a valid option");
+                                        break;
+                                }
+                            }
+                            //TODO add add meetings and class
+                            else
+                            {
+                                Console.WriteLine($"You are in group {group_Controller.FindStudentGroup(student.StudentGroup).GroupName} ({student.StudentGroup}).\n" +
+                                                "[0] Exit\n" +
+                                                "[1] View Groups\n" +
+                                                "[2] Join Group\n" +
+                                                "[3] Create Group");
+                                success = int.TryParse(Console.ReadLine(), out option);
+                            }
+                        }
+                        option = -1;
+                        break;
+
+                    case 3:
+                        Console.WriteLine(student.StudentGroup);
+                        if(student.StudentGroup != -1)
+                        {
+                            Console.WriteLine("Meetings: \n");
+                            group_Controller.Group_Meetings.ListMeetings();
+                            Console.WriteLine("Class: \n");
+                            group_Controller.Group_Class.GroupClass.ToString();
+                        }
+                        break;
+
+                    default:
+                        Console.WriteLine("Not a valid option");
+                        break;
+                }
+            }
 
 
 

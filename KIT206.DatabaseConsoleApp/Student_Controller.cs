@@ -20,14 +20,12 @@ namespace KIT206.DatabaseApp
             students = StorageAdapter.LoadStudents();
         }
 
-        public List<string> ListStudents()
+        public void ListStudents()
         {
-            List<string> toReturn = new List<string>();
             foreach(Student student in students)
             {
-                toReturn.Add(student.FirstName);
+                Console.WriteLine(student.ToString());
             }
-            return toReturn;
         }
         public void SelectStudent(int id)
         {

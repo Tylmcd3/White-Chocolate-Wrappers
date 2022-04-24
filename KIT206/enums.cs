@@ -1,4 +1,4 @@
-namespace KIT206
+﻿namespace KIT206
 
 {
 public enum Day
@@ -14,7 +14,7 @@ public enum Day
 
 public enum Campus{
       Hobart,
-      Lauceston
+      Launceston
   }
 
 public enum Category{

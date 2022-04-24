@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 namespace KIT206
 {
     public class Student
@@ -114,11 +114,12 @@ namespace KIT206
             _firstName = f_name;
             _lastName = l_name;
             _groupID = group_id;
-            _title = title;
+            //_groupID = group_id;
+            _title = title ?? "";
             _campus = campus;
-            _email = email;
+            _email = email ?? "";
             _category = category;
-            _phone = phone;
+            _phone = phone ?? "";
 
         }
         

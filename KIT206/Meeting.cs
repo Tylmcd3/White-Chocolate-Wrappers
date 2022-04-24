@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace KIT206
 {
@@ -124,7 +124,7 @@ namespace KIT206
             
         public override string ToString()
         {
-            return "The Meeting for the group " + " is on " + Day.ToString() + " at " + Start.ToString();
+            return ($"{_day.ToString()} at {_start.ToString()} in room {_room.ToString()}");
         }
     }
     

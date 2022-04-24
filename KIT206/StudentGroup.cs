@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace KIT206
@@ -56,6 +56,11 @@ namespace KIT206
                 id = (int)(DateTime.Now.Ticks % 1000000);
             } while (false);
             return id;
+        }
+
+        public override string ToString()
+        {
+            return ($"{_groupName} (ID: {_groupID})");
         }
        
     }

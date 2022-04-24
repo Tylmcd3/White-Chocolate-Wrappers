@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 namespace KIT206
 {
 	public class Class
@@ -6,8 +6,8 @@ namespace KIT206
 		private int _classID;
 		private int _groupID;
 		private Day _day;
-		private DateTime _start;
-		private DateTime _end;
+		private TimeSpan _start;
+		private TimeSpan _end;
 		private string _room;
 
 		public int ClassID
@@ -34,7 +34,7 @@ namespace KIT206
 				_day = value;
             }
         }
-		public DateTime Start
+		public TimeSpan Start
         {
 			get => _start;
 			set
@@ -42,7 +42,7 @@ namespace KIT206
 				_start = value;
             }
         }
-		public DateTime End
+		public TimeSpan End
         {
 			get => _end;
 			set
@@ -63,7 +63,7 @@ namespace KIT206
 			get => _groupID;
 		}
 		//Overloading Constructors so we can either generate a new id for a new class or
-		public Class(int groupID, Day day, DateTime start, DateTime end, string room)
+		public Class(int groupID, Day day, TimeSpan start, TimeSpan end, string room)
 		{
 			//Generate classid and set here (5 is placeholder)
 			_classID = GenerateGroupID();
@@ -74,7 +74,7 @@ namespace KIT206
 			_room = room;
 		}
 		//We can get a class from the database and create a new object from that
-		public Class(int classID,int groupID, Day day, DateTime start, DateTime end, string room)
+		public Class(int classID,int groupID, Day day, TimeSpan start, TimeSpan end, string room)
 		{
 			//Generate classid and set here (5 is placeholder)
 			_classID = classID;
@@ -111,7 +111,7 @@ namespace KIT206
 
         public override string ToString()
         {
-			return "The Class for the group "  + " is on every " + Day.ToString() + " at " + Start.ToString("hh:mm tt");
+			return ($"{_day.ToString()} at {_start.ToString()} in room {_room.ToString()}");
 		}
 
     }

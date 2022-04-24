@@ -26,8 +26,9 @@ namespace KIT206.DatabaseApp
                 {
                     students.Add(new Student(
                         (int)rdr[0],
-                        (string)rdr[1], (string)rdr[2],
-                        (int)rdr[3],
+                        (string)rdr[1],
+                        (string)rdr[2],
+                        (rdr[3].GetType().Equals(1.GetType())) ? (int)rdr[3] : -1,
                         (string)rdr[4],
                         (string)rdr[6],
                         Enum.Parse<Campus>((string)rdr[5]),
@@ -148,7 +149,7 @@ namespace KIT206.DatabaseApp
         public static List<StudentGroup> LoadGroups()
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            List<StudentGroup> groups = null;
+            List<StudentGroup> groups = new List<StudentGroup>();
             string sqlcmd = "SELECT * FROM `studentGroup`";
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
@@ -157,7 +158,6 @@ namespace KIT206.DatabaseApp
             while (rdr.Read())
             {
                 groups.Add(new StudentGroup((int)rdr[0], (string)rdr[1]));
-
             }
 
             MySQLConnector.DBClose(rdr, conn);
@@ -251,6 +251,30 @@ namespace KIT206.DatabaseApp
             MySQLConnector.DBExecute(cmd, conn);
         }
 
+        public static Class GetClassByGroup(int groupID)
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            Class returnClass = null;
+            string sqlcmd = "SELECT * FROM `class` WHERE group_id=" + groupID;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
+            while (rdr.Read())
+            {
+                returnClass = new Class(
+                    (int)rdr[0],
+                    (int)rdr[1],
+                    Enum.Parse<Day>((string)rdr[2]),
+                    (TimeSpan)rdr[3],
+                    (TimeSpan)rdr[4],
+                    (string)rdr[5]);
+            }
+
+            MySQLConnector.DBClose(rdr, conn);
+            return returnClass;
+        }
+
         //This could be changed to group id?
         //Returns Class given class id
         public static Class GetClass(int classID)
@@ -268,8 +292,8 @@ namespace KIT206.DatabaseApp
                     (int)rdr[0],
                     (int)rdr[1],
                     Enum.Parse<Day>((string)rdr[2]),
-                    (DateTime)rdr[3],
-                    (DateTime)rdr[4],
+                    (TimeSpan)rdr[3],
+                    (TimeSpan)rdr[4],
                     (string)rdr[5]);
             }
 
@@ -294,8 +318,8 @@ namespace KIT206.DatabaseApp
                     (int)rdr[0],
                     (int)rdr[1],
                     Enum.Parse<Day>((string)rdr[2]),
-                    (DateTime)rdr[3],
-                    (DateTime)rdr[4],
+                    (TimeSpan)rdr[3],
+                    (TimeSpan)rdr[4],
                     (string)rdr[5]
                     ));
             }

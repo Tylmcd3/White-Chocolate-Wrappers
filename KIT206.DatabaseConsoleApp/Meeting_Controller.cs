@@ -36,6 +36,8 @@ namespace KIT206.DatabaseApp
             return null;
         }
 
+        //TODO generate ID rather than calling in param
+
         public void AddMeeting(int meetingID, int groupID, Day day, TimeSpan start, TimeSpan end, string room)
         {
             Meeting meeting = new Meeting(meetingID, groupID, day, start, end, room);
