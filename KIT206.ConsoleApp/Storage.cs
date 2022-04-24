@@ -24,11 +24,11 @@ namespace KIT206.App
         };
         public static List<Meeting> Meetings = new List<Meeting>()
         {
-            new Meeting(728342,938475, Day.Monday, new DateTime(2022, 4, 18, 10,0,0),new DateTime(2022, 4, 18, 11,0,0), "cen.275"),
-            new Meeting(192384,938475, Day.Wednesday, new DateTime(2022, 4, 20, 10,0,0),new DateTime(2022, 4, 20, 11,0,0), "cen.275"),
-            new Meeting(093847,118234, Day.Thursday, new DateTime(2022, 4, 21, 12,0,0),new DateTime(2022, 4, 21, 13,30,0), "cen.272"),
-            new Meeting(462837,118234, Day.Saturday, new DateTime(2022, 4, 23, 12,0,0),new DateTime(2022, 4, 23, 13,30,0), "cen.272"),
-            new Meeting(192837,118234, Day.Sunday, new DateTime(2022, 4, 24, 12,0,0),new DateTime(2022, 4, 24, 13,30,0), "cen.272")
+            new Meeting(728342,938475, Day.Monday, new TimeSpan(10,0,0),new TimeSpan(11,0,0), "cen.275"),
+            new Meeting(192384,938475, Day.Wednesday, new TimeSpan(10,0,0),new TimeSpan(11,0,0), "cen.275"),
+            new Meeting(093847,118234, Day.Thursday, new TimeSpan(12,0,0),new TimeSpan(13,30,0), "cen.272"),
+            new Meeting(462837,118234, Day.Saturday, new TimeSpan(12,0,0),new TimeSpan(13,30,0), "cen.272"),
+            new Meeting(192837,118234, Day.Sunday, new TimeSpan(12,0,0),new TimeSpan(13,30,0), "cen.272")
 
         };
         public static List<Class> Classes = new List<Class>()
@@ -102,7 +102,7 @@ namespace KIT206.App
             return null;
         }
   
-        public static Meeting GetMeeting(DateTime start)
+        public static Meeting GetMeeting(TimeSpan start)
         {
             foreach (Meeting meeting in Meetings)
                 if (meeting.Start == start)

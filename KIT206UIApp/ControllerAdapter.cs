@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KIT206;
 
-namespace KIT206UI
+namespace KIT206.DatabaseApp.UI
 {
     class ControllerAdapter
     {

@@ -163,22 +163,24 @@ namespace KIT206.App
 
         public void AddMeeting(StudentGroup group)
         {
-            string startTime, endTime, room;
-            DateTime start, end;
-            Day day;
+            string startTime, endTime, room,day;
+            TimeSpan start, end;
+            Day Day;
 
             Console.WriteLine("Enter the Start time of the Meeting in 24HR time (HH:MM dd/mm/yyyy):  ");
             startTime = Console.ReadLine();
             Console.WriteLine("Enter the End time of the Meeting (HH:MM dd/mm/yyyy):  ");
             endTime = Console.ReadLine();
+            Console.WriteLine("Enter the Day of the meeting");
+            day = Console.ReadLine();
             Console.WriteLine("Enter the Room Code");
             room = Console.ReadLine();
 
-            start = DateTime.Parse(startTime);
-            end = DateTime.Parse(endTime);
-            day = (Day)Enum.ToObject(typeof(Day), (int)start.DayOfWeek);
+            start = TimeSpan.Parse(startTime);
+            end = TimeSpan.Parse(endTime);
+            Day = Enum.Parse<Day>(day);
 
-            Meeting toAdd = new Meeting(group.GroupID, day, start, end, room);
+            Meeting toAdd = new Meeting(group.GroupID, Day, start, end, room);
             meetings.Add(toAdd);
             StorageAdapter.AddMeeting(toAdd);
         }
@@ -200,14 +202,13 @@ namespace KIT206.App
                 case "1":
                     Console.WriteLine("Enter a time...");
                     response = Console.ReadLine();
-                    meeting.Start = DateTime.Parse(response);
-                    meeting.Day = (Day)Enum.ToObject(typeof(Day), (int)meeting.Start.DayOfWeek);
+                    meeting.Start = TimeSpan.Parse(response);
                     break;
 
                 case "2":
                     Console.WriteLine("Enter a time...");
                     response = Console.ReadLine();
-                    meeting.End = DateTime.Parse(response);
+                    meeting.End = TimeSpan.Parse(response);
                     break;
             }
             StorageAdapter.EditMeeting(meeting);

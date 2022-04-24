@@ -12,21 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace KIT206.DatabaseApp.UI
+namespace KIT206.DatabaseConsoleApp.UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StudentData.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StudentData : Window
     {
-        public MainWindow()
+        public StudentData()
         {
             InitializeComponent();
-            Student_Controller controller = new Student_Controller();
-            foreach(Student student in controller.Students)
-            {
-                Meetings.Items.Add(student.ToString(""));
-            }
+        }
+
+        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KIT206
+namespace KIT206.DatabaseApp
 {
-    class Student_Controller
+    public class Student_Controller
     {
 
         private List<Student> students = new List<Student>();

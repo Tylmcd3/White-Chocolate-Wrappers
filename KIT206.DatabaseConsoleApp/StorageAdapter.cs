@@ -11,12 +11,38 @@ namespace KIT206.DatabaseApp
     {
         //Student Storage Functions
 
-        //I dont remember if we actually need this as we never actually create new users. 
-        //I wont delete it yet though
-        //public static void AddStudent(Student student)
-        //{
-        //    Storage.AddStudent(student);
-        //}
+        public static List<Student> LoadStudents()
+        {
+            List<Student> students = new List<Student>();
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            string sqlcmd = "SELECT * FROM student";
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
+            while (rdr.Read())
+            {
+                if ((string)rdr[7] != "")
+                {
+                    students.Add(new Student(
+                        (int)rdr[0],
+                        (string)rdr[1], (string)rdr[2],
+                        (int)rdr[3],
+                        (string)rdr[4],
+                        (string)rdr[6],
+                        Enum.Parse<Campus>((string)rdr[5]),
+                        (string)rdr[7],
+                        Enum.Parse<Category>((string)rdr[9])));
+                }
+                else
+                {
+                    students.Add(new Student((int)rdr[0], (string)rdr[1], (string)rdr[2]));
+                }
+            }
+
+            MySQLConnector.DBClose(rdr, conn);
+            return students;
+        }
 
         //Edit Student group of given student
         public static void EditStudentGroupMembership(Student student)
@@ -34,11 +60,11 @@ namespace KIT206.DatabaseApp
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             string sqlcmd = $"UPDATE student SET " +
-                $"title ={student.Title}, " +
-                $"campus = {student.Campus.ToString()}, " +
-                $"phone = {student.Phone}, " +
-                $"email = {student.Email}," +
-                $"category = {student.Category.ToString()} " +
+                $"title = \"{student.Title}\", " +
+                $"campus = \'{student.Campus.ToString()}\', " +
+                $"phone = \"{student.Phone}\", " +
+                $"email = \"{student.Email}\"," +
+                $"category = \'{student.Category.ToString()}\' " +
                 $"WHERE student_id = " + student.StudentID;
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
@@ -79,38 +105,7 @@ namespace KIT206.DatabaseApp
             MySQLConnector.DBClose(rdr, conn);
             return student;
         }
-        public static List<Student> GetStudents()
-        {
-            MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            List<Student> students = new List<Student>();
-            string sqlcmd = ("SELECT * from student");
 
-            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
-            MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
-
-            while (rdr.Read())
-            {
-                //Checks if a student has filled out details or not
-                if ((string)rdr[7] != "")
-                {
-                    students.Add(new Student(
-                        (int)rdr[0],
-                        (string)rdr[1], (string)rdr[2],
-                        (int)rdr[3],
-                        (string)rdr[4],
-                        (string)rdr[6],
-                        Enum.Parse<Campus>((string)rdr[5]),
-                        (string)rdr[7],
-                        Enum.Parse<Category>((string)rdr[9])));
-                }
-                else
-                {
-                    students.Add(new Student((int)rdr[0], (string)rdr[1], (string)rdr[2]));
-                }
-            }
-            MySQLConnector.DBClose(rdr, conn);
-            return students;
-        }
 
         //Wasnt sure if we need to be able to add groups?
 
@@ -150,7 +145,7 @@ namespace KIT206.DatabaseApp
         }
 
         //Returns all Student Groups
-        public static List<StudentGroup> GetGroups()
+        public static List<StudentGroup> LoadGroups()
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             List<StudentGroup> groups = null;
@@ -185,11 +180,8 @@ namespace KIT206.DatabaseApp
                     (int)rdr[0],
                     (int)rdr[1],
                     Enum.Parse<Day>((string)rdr[2]),
-                    //TODO error: cant convert timespan to datetime
-                    //The database reads the times as timespan objects rather than datetimes,
-                    //For now just putting in dummy times
-                    new DateTime(2012, 09, 23, 6, 30, 0),
-                    new DateTime(2012, 09, 23, 8, 30, 0),
+                    (TimeSpan)rdr[3],
+                    (TimeSpan)rdr[4],
                     (string)rdr[5]
                     );
             }
@@ -203,22 +195,26 @@ namespace KIT206.DatabaseApp
         public static List<Meeting> GetMeetings(int groupID)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            List<Meeting> meetings = null;
-            string sqlcmd = "SELECT * FROM `meeting` WHERE group_id=" + groupID;
+            List<Meeting> meetings = new List<Meeting>();
+            string sqlcmd = "SELECT * FROM meeting WHERE group_id=" + groupID;
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
 
             while (rdr.Read())
             {
-                meetings.Add(new Meeting(
-                    (int)rdr[0],
-                    (int)rdr[1],
-                    Enum.Parse<Day>((string)rdr[2]),
-                    (DateTime)rdr[3],
-                    (DateTime)rdr[4],
-                    (string)rdr[5]
-                    ));
+                if(rdr != null)
+                {
+                    meetings.Add(new Meeting(
+                        (int)rdr[0],
+                        (int)rdr[1],
+                        Enum.Parse<Day>((string)rdr[2]),
+                        (TimeSpan)rdr[3],
+                        (TimeSpan)rdr[4],
+                        (string)rdr[5]
+                        ));
+                }
+
             }
 
             MySQLConnector.DBClose(rdr, conn);
@@ -232,20 +228,30 @@ namespace KIT206.DatabaseApp
 
         public static void EditMeeting(Meeting meeting)
         {
-            //Are we actually meant to edit the database? This would do so
-            //MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            //string sqlcmd = $"UPDATE meeting SET , " +
-            //    $"day = {meeting.Day}, " +
-            //    $"start = {meeting.Start}, " +
-            //    $"end = {meeting.End}, " +
-            //    $"room = {meeting.Room} " +
-            //    $"WHERE meeting_id = " + meeting.MeetingID;
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            Console.WriteLine(meeting.End);
+            string sqlcmd = $"UPDATE `meeting` SET " +
+                $"day = \'{meeting.Day}\', " +
+                $"start = \'{meeting.Start}\', " +
+                $"end = \'{meeting.End}\', " +
+                $"room = \"{meeting.Room}\" " +
+                $"WHERE meeting_id = " + meeting.MeetingID;
 
-            //MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 
-            //MySQLConnector.DBExecute(cmd, conn);
+            MySQLConnector.DBExecute(cmd, conn);
         }
 
+        public static void RemoveMeeting(int id)
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            string sqlcmd = $"DELETE * from `meeting` WHERE meeting_id = " + id;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            MySQLConnector.DBExecute(cmd, conn);
+        }
+
+        //This could be changed to group id?
         //Returns Class given class id
         public static Class GetClass(int classID)
         {
@@ -271,6 +277,7 @@ namespace KIT206.DatabaseApp
             return returnClass;
         }
 
+        //TODO dont think we need this function:
         //Returns all Classes 
         public static List<Class> GetClasses()
         {

@@ -47,14 +47,19 @@ namespace KIT206.DatabaseApp
         }
         public static void DBExecute(MySqlCommand cmd, MySqlConnection conn)
         {
-            conn.Open();
+
             try
             {
+                conn.Open();
                 cmd.ExecuteNonQuery();
             }
-            catch
+            catch(MySqlException ex)
             {
-                Console.WriteLine("Error");
+                Console.WriteLine("Error - could not execute query", ex);
+            }
+            finally 
+            { 
+                conn.Close(); 
             }
         }
 

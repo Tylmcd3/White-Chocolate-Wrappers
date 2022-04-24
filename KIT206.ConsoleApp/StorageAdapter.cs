@@ -62,7 +62,7 @@ namespace KIT206.App
             return Storage.GetMeeting(id);
         }
 
-        public static Meeting GetMeeting(DateTime start)
+        public static Meeting GetMeeting(TimeSpan start)
         {
             return Storage.GetMeeting(start);
         }

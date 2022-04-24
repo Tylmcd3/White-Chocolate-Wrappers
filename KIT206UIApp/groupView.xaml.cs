@@ -10,23 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace KIT206.DatabaseApp.UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for groupView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class groupView : Page
     {
-        public MainWindow()
+        public groupView()
         {
             InitializeComponent();
-            Student_Controller controller = new Student_Controller();
-            foreach(Student student in controller.Students)
-            {
-                Meetings.Items.Add(student.ToString(""));
-            }
         }
     }
 }

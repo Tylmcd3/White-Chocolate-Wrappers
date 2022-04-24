@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>KIT206.DatabaseApp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -9,9 +9,9 @@ namespace KIT206.DatabaseApp
         //Driver Class
         public static void Main(string[] args)
         {
-            Controller controller = new Controller();
+            Student_Controller controller = new Student_Controller();
 
-            foreach(Student student in controller.students)
+            foreach(Student student in controller.Students)
             {
                 Console.WriteLine(student.ToString(""));
             }
