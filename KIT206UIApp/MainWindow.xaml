@@ -81,7 +81,7 @@
             <ListBox Grid.Row="2" Style="{StaticResource GeneralList}" SelectionChanged="ListBox_SelectionChanged" Margin="2,2,2,2">
                 <ListBoxItem Content="Class Details" HorizontalAlignment="Center"/>
                 <Separator Background="Black"/>
-                <Button Content="2pm Tuesday at D33Z"/>
+                <TextBlock Text="{Binding Path=String}"></TextBlock>
             </ListBox>
 
 
@@ -97,7 +97,7 @@
                     <ColumnDefinition Width="303*"/>
                     <ColumnDefinition Width="281*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name ="GroupName" Grid.Row="0" FontWeight="Bold" FontFamily="Comic Sans MS" TextAlignment="Center" FontSize="25" Text="123456789012345678901234567890" Margin="30,0,10,30" Background="White" TextWrapping="Wrap" Grid.ColumnSpan="2" Height="35" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+                <TextBlock Name ="GroupName" Grid.Row="0" FontWeight="Bold" FontFamily="Comic Sans MS" TextAlignment="Center" FontSize="25" Text="{Binding Path=GroupName, Mode=OneWay}" Margin="30,0,10,30" Background="White" TextWrapping="Wrap" Grid.ColumnSpan="2" Height="35" VerticalAlignment="Stretch" HorizontalAlignment="Center">
 
                     <TextBlock.Effect>
                         <DropShadowEffect BlurRadius="10" Opacity="0.1"/>

@@ -23,7 +23,12 @@ namespace KIT206.DatabaseApp.UI
         public MainWindow()
         {
             InitializeComponent();
-        }
+            int StudentID = 123460;
+            Student_Controller student = new Student_Controller();
+            StudentGroup_Controller groups = new StudentGroup_Controller();
+            student.SelectStudent(StudentID);
+            this.DataContext = groups.FindStudentGroup(student.CurrentStudent.StudentGroup);
+         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
