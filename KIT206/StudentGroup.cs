@@ -33,29 +33,15 @@ namespace KIT206
                 _groupName = value;
             }
         }
-        //either generates a number and checks it doesnt exists or find the next sequential one
-        public StudentGroup(string name)
-        {
-            //Generate group ID and then set to groupID (5 is placeholder)
-
-            _groupID = GenerateGroupID();
-            _groupName = name;
-        }
+        ///<summary>
+		///Creates a new StudentGroup
+		///</summary>
         public StudentGroup(int id, string name)
         {
             //Generate group ID and then set to groupID (5 is placeholder)
 
             _groupID = id;
             _groupName = name;
-        }
-        private int GenerateGroupID()
-        {
-            int id;
-            do
-            {
-                id = (int)(DateTime.Now.Ticks % 1000000);
-            } while (false);
-            return id;
         }
 
         public override string ToString()

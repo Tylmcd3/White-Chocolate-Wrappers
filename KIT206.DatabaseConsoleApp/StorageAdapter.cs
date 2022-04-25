@@ -9,8 +9,9 @@ namespace KIT206.DatabaseApp
 {
     class StorageAdapter
     {
-        //Student Storage Functions
-
+        ///<summary>
+        ///Returns a List of all Students in the database
+        ///</summary>
         public static List<Student> LoadStudents()
         {
             List<Student> students = new List<Student>();
@@ -19,6 +20,7 @@ namespace KIT206.DatabaseApp
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
 
             while (rdr.Read())
             {
@@ -34,6 +36,7 @@ namespace KIT206.DatabaseApp
                         Enum.Parse<Campus>((string)rdr[5]),
                         (string)rdr[7],
                         Enum.Parse<Category>((string)rdr[9])));
+
                 }
                 else
                 {
@@ -45,18 +48,22 @@ namespace KIT206.DatabaseApp
             return students;
         }
 
-        //Edit Student group of given student
+        ///<summary>
+        ///Updates given Students group Membership
+        ///</summary>
         public static void EditStudentGroupMembership(Student student)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = ("UPDATE student SET group_id =" + student.StudentGroup + "WHERE student_id = " + student.StudentID);
+            string sqlcmd = ($"UPDATE student SET group_id = {student.StudentGroup} WHERE student_id = {student.StudentID}");
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 
             MySQLConnector.DBExecute(cmd, conn);
         }
 
-        //Edit Student details of given student
+        ///<summary>
+        ///Updates given Students student details
+        ///</summary>
         public static void EditStudentDetails(Student student)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -73,9 +80,11 @@ namespace KIT206.DatabaseApp
             MySQLConnector.DBExecute(cmd, conn);
         }
 
-        //Returns given Student by ID
+        ///<summary>
+        ///Returns Student given Student ID
+        ///</summary>
         //TODO might not need this one since we work from list
-        public static Student GetStudent(int id)
+        public static Student LoadStudent(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             Student student = null;
@@ -111,8 +120,9 @@ namespace KIT206.DatabaseApp
 
         //Group Methods
 
-
-        //Returns Student Group given Group ID
+        ///<summary>
+        ///Returns StudentGroup given Group ID
+        ///</summary>
         //TODO might not need this method
         public static StudentGroup LoadGroup(int id)
         {
@@ -132,7 +142,9 @@ namespace KIT206.DatabaseApp
             return group;
         }
 
-        //Returns all Student Groups
+        ///<summary>
+        ///Returns a List of all StudentGroups in the database
+        ///</summary>
         public static List<StudentGroup> LoadGroups()
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -151,7 +163,9 @@ namespace KIT206.DatabaseApp
             return groups;
         }
 
-        //Adds given group to database
+        ///<summary>
+        ///Adds given StudentGroup to the database
+        ///</summary>
         public static void AddGroup(StudentGroup group)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -166,7 +180,9 @@ namespace KIT206.DatabaseApp
             MySQLConnector.DBExecute(cmd, conn);
         }
 
-        //Edits group name of given group
+        ///<summary>
+        ///Updates name of given StudentGroup
+        ///</summary>
         public static void EditGroup(StudentGroup group)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -179,7 +195,9 @@ namespace KIT206.DatabaseApp
 
         //Meeting Methods
 
-        //Returns meeting given meeting id
+        ///<summary>
+        ///Returns Meeting from database given Meeting id
+        ///</summary>
         public static Meeting LoadMeeting(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -206,7 +224,9 @@ namespace KIT206.DatabaseApp
 
         }
 
-        //Returns list of meetings in given group
+        ///<summary>
+        ///Returns a List of Meetings associated with a group ID
+        ///</summary>
         public static List<Meeting> LoadMeetings(int groupID)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -235,8 +255,41 @@ namespace KIT206.DatabaseApp
             MySQLConnector.DBClose(rdr, conn);
             return meetings;
         }
+        ///<summary>
+        ///Returns a List of all Meetings in the database
+        ///</summary>
+        public static List<Meeting> LoadMeetings()
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            List<Meeting> meetings = new List<Meeting>();
+            string sqlcmd = "SELECT * FROM meeting";
 
-        //Adds given meeting to database
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
+
+            while (rdr.Read())
+            {
+                if (rdr != null)
+                {
+                    meetings.Add(new Meeting(
+                        (int)rdr[0],
+                        (int)rdr[1],
+                        Enum.Parse<Day>((string)rdr[2]),
+                        (TimeSpan)rdr[3],
+                        (TimeSpan)rdr[4],
+                        (string)rdr[5]
+                        ));
+                }
+
+            }
+
+            MySQLConnector.DBClose(rdr, conn);
+            return meetings;
+        }
+
+        ///<summary>
+        ///Adds given Meeting to database
+        ///</summary>
         public static void AddMeeting(Meeting meeting)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -255,7 +308,9 @@ namespace KIT206.DatabaseApp
             MySQLConnector.DBExecute(cmd, conn);
         }
 
-        //Updates meeting to given meeting
+        ///<summary>
+        ///Updates given Meeting in database
+        ///</summary>
         public static void EditMeeting(Meeting meeting)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -272,7 +327,9 @@ namespace KIT206.DatabaseApp
             MySQLConnector.DBExecute(cmd, conn);
         }
 
-        //Removes meeting from database
+        ///<summary>
+        ///Removes Meeting from database given Meeting ID
+        ///</summary>
         public static void RemoveMeeting(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -284,7 +341,9 @@ namespace KIT206.DatabaseApp
 
         //Class methods
 
-        //Returns class by given groupID
+        ///<summary>
+        ///Returns Class from Database associated with group ID
+        ///</summary>
         public static Class LoadClassByGroup(int groupID)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -309,7 +368,9 @@ namespace KIT206.DatabaseApp
             return returnClass;
         }
 
-        //Returns Class given class id
+        ///<summary>
+        ///Returns Class given Class ID
+        ///</summary>
         //TODO might not need this method
         public static Class LoadClass(int classID)
         {
@@ -336,7 +397,9 @@ namespace KIT206.DatabaseApp
         }
 
         //TODO dont think we need this function:
-        //Returns all Classes 
+        ///<summary>
+        ///Returns a List of all Classes in the database
+        ///</summary>
         public static List<Class> LoadClasses()
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -362,7 +425,9 @@ namespace KIT206.DatabaseApp
             return classes;
         }
 
-        //Addes given class to database
+        ///<summary>
+        ///Adds given Class to the database
+        ///</summary>
         public static void AddClass(Class toAdd)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();

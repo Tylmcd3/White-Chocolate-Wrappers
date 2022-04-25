@@ -100,19 +100,25 @@ namespace KIT206
                 _groupID = value;
             }
         }
-        //Two Constructors, one is for Students who havent added details and the other is for complete students 
+        ///<summary>
+		///Creates a new Student Object given ID and name
+		///</summary>
         public Student(int id, string f_name, string l_name )
 		{
 			_studentID = id;
 			_firstName = f_name;
             _lastName = l_name;
 		}
-
-        public Student(int id, string f_name, string l_name, int group_id, string title,string phone, Campus campus, string email, Category category)
+        ///<summary>
+		///Creates a new Student Object given full Student Details. 
+        ///If Details are empty, sets field to empty value 
+		///</summary>
+        //TODO fix this consttructor and toString
+        public Student(int id, string firstName, string lastName, int group_id, string title,string phone, Campus campus, string email, Category category)
 		{
 			_studentID = id;
-            _firstName = f_name;
-            _lastName = l_name;
+            _firstName = firstName;
+            _lastName = lastName;
             _groupID = group_id;
             //_groupID = group_id;
             _title = title ?? "";
@@ -122,17 +128,32 @@ namespace KIT206
             _phone = phone ?? "";
 
         }
-        
-        public string ToString(string type)
+        ///<summary>
+		///Returns a string containg a students name and ID
+		///</summary>
+        public override string ToString()
         {
-            if (type == "full")
-                if (StudentGroup != 0)
-                    //Add group name again
-                    return "Name: " + Title.ToString() + " " + FirstName + " " + LastName + ", Student ID: " + StudentID + ", in group " +  " Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email;
-                else
-                    return "Name: " + Title.ToString() + " " + FirstName + " " + LastName + ", Student ID: " + StudentID + ",  " + "Completing their " + Category.ToString() + " on the " + Campus.ToString() + " Campus. Their Email is " + Email;
-            else
-                return "Name: " + FirstName + " " + LastName + ", Student ID: " + StudentID;
+            return ($"{_firstName} {_lastName} (ID: {_studentID})");
+        }
+        ///<summary>
+		///Returns a string containg a students full details
+		///</summary>
+        public string ToStringFull()
+        {
+            string toReturn;
+            toReturn = ($"{_firstName} {_lastName} (ID: {_studentID})");
+            if (_title != "")
+            {
+                toReturn = ($"{_title} " + toReturn + $", " +
+                    $"Completing their {_category.ToString()} at {_campus.ToString()}. " +
+                    $"Contact at {_email} or {_phone}.");
+            }
+            if(_groupID != -1)
+            {
+                toReturn = (toReturn + $" They are in group {_groupID}");
+            }
+
+            return toReturn;
         }
 
     }
