@@ -13,7 +13,7 @@ namespace KIT206.DatabaseApp
         public Meeting_Controller(int id)
         {
             meetings = new List<Meeting>();
-            meetings = StorageAdapter.GetMeetings(id);
+            meetings = StorageAdapter.LoadMeetings(id);
         }
 
         public void ListMeetings()
@@ -52,6 +52,14 @@ namespace KIT206.DatabaseApp
             meeting.Day = day;
             Console.WriteLine("edited meeting " + meeting.Day.ToString());
             //update database
+            StorageAdapter.EditMeeting(meeting);
+        }
+        public void EditMeeting(int id, TimeSpan start, TimeSpan end)
+        {
+            Meeting meeting = FindMeeting(id);
+            meeting.Start = start;
+            meeting.End = end;
+            //Update database
             StorageAdapter.EditMeeting(meeting);
         }
         public void EditMeeting(int id, Day day, TimeSpan start, TimeSpan end)
