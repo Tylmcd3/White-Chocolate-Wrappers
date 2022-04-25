@@ -13,7 +13,7 @@ namespace KIT206.App
            new Student(100562,"Julian","Brown", 938475, "Dr",   "0443657473" ,Campus.Hobart, "Julian@email.com", Category.Bachelors),
            new Student(650432,"Tyler", "McDonald",118234, "Mr", "0447637153" ,Campus.Hobart, "Tyler@email.com", Category.Bachelors),
            new Student(375002 ,"Tilly", "Doggy", 118234, "Pup", "0449987423" ,Campus.Hobart, "Tilly@email.com", Category.Masters ),
-           new Student(123456, "Percy", "Jackson",938475, "Mr", "0445655451" ,Campus.Lauceston, "Percy@email.com", Category.Masters ),
+           new Student(123456, "Percy", "Jackson",938475, "Mr", "0445655451" ,Campus.Launceston, "Percy@email.com", Category.Masters ),
            new Student(213243, "Testing", "Account")
 
         };
@@ -33,8 +33,8 @@ namespace KIT206.App
         };
         public static List<Class> Classes = new List<Class>()
         {
-            new Class(823347,938475, Day.Tuesday, new DateTime(2022, 1, 1, 13,0,0),new DateTime(2022, 1, 1, 14,0,0), "cen.275"),
-            new Class(172236,118234, Day.Friday, new DateTime(2022, 1, 1, 9,0,0),new DateTime(2022, 1, 1, 11,0,0), "cen.275"),
+            new Class(823347,938475, Day.Tuesday, new TimeSpan(13,0,0),new TimeSpan(14,0,0), "cen.275"),
+            new Class(172236,118234, Day.Friday, new TimeSpan(9,0,0),new TimeSpan(11,0,0), "cen.275"),
         };
 
         public static void AddStudent(Student student)

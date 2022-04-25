@@ -13,7 +13,7 @@ namespace KIT206.DatabaseApp
             Student_Controller controller = new Student_Controller();
             StudentGroup_Controller group_Controller = new();
 
-            foreach(Student item in controller.Students)
+            foreach (Student item in controller.Students)
             {
                 Console.WriteLine(item.ToString(""));
             }
@@ -26,15 +26,13 @@ namespace KIT206.DatabaseApp
 
             controller.SelectStudent(studentID);
             student = controller.CurrentStudent;
-            if(student.StudentGroup != -1)
+            if (student.StudentGroup != -1)
             {
                 group_Controller.SelectGroup(student.StudentGroup);
             }
             Console.WriteLine("Welcome, " + student.FirstName);
 
-
-
-            while(option != 0)
+            while (option != 0)
             {
                 option = -1;
 
@@ -54,7 +52,7 @@ namespace KIT206.DatabaseApp
 
                     case 1:
 
-                        while(option != 0)
+                        while (option != 0)
                         {
                             Console.WriteLine("Make a selection\n" +
                                             "[0] Exit\n" +
@@ -102,63 +100,120 @@ namespace KIT206.DatabaseApp
                         break;
 
                     case 2:
-                        while(option != 0)
+                        string defaultOptions = ("[0] Exit\n" +
+                                                "[1] View Groups\n" +
+                                                "[2] Join Group\n" +
+                                                "[3] Create Group\n");
+                        while (option != 0)
                         {
                             if (student.StudentGroup == -1)
                             {
-                                Console.WriteLine("You are not currently in a group.\n" +
-                                                "[0] Exit\n" +
-                                                "[1] View Groups\n" +
-                                                "[2] Join Group\n" +
-                                                "[3] Create Group");
-                                success = int.TryParse(Console.ReadLine(), out option);
-
-                                switch (option)
-                                {
-                                    case 0:
-                                        Console.WriteLine("Bye bye");
-                                        break;
-                                    case 1:
-                                        foreach (StudentGroup group in group_Controller.Groups)
-                                        {
-                                            Console.WriteLine(group.ToString());
-                                        }
-                                        break;
-                                    case 2:
-                                        int groupToJoin;
-                                        Console.WriteLine("Enter a group ID to join");
-                                        success = int.TryParse(Console.ReadLine(), out groupToJoin);
-                                        controller.EditStudentGroupMembership(groupToJoin);
-                                        break;
-                                    case 3:
-                                        string groupName;
-                                        Console.WriteLine("Enter a group name");
-                                        groupName = Console.ReadLine();
-                                        group_Controller.AddGroup(groupName);
-                                        controller.EditStudentGroupMembership(1);
-                                        break;
-                                    default:
-                                        Console.WriteLine("Please enter a valid option");
-                                        break;
-                                }
+                                Console.WriteLine("You are not currently in a group.\n" + defaultOptions);
                             }
-                            //TODO add add meetings and class
                             else
                             {
-                                Console.WriteLine($"You are in group {group_Controller.FindStudentGroup(student.StudentGroup).GroupName} ({student.StudentGroup}).\n" +
-                                                "[0] Exit\n" +
-                                                "[1] View Groups\n" +
-                                                "[2] Join Group\n" +
-                                                "[3] Create Group");
-                                success = int.TryParse(Console.ReadLine(), out option);
+                                Console.WriteLine($"You are in group {group_Controller.FindStudentGroup(student.StudentGroup).GroupName} (ID: {student.StudentGroup}).\n" +
+                                    $"{defaultOptions}" +
+                                    $"[4]Add Meeting\n" +
+                                    $"[5]Edit Meeting\n" +
+                                    $"[6]Add Class\n");
+                            }
+                            Console.WriteLine("[0] Exit\n" +
+                                            "[1] View Groups\n" +
+                                            "[2] Join Group\n" +
+                                            "[3] Create Group\n");
+                            success = int.TryParse(Console.ReadLine(), out option);
+
+                            switch (option)
+                            {
+                                case 0:
+                                    Console.WriteLine("Bye bye");
+                                    break;
+                                case 1:
+                                    foreach (StudentGroup group in group_Controller.Groups)
+                                    {
+                                        Console.WriteLine(group.ToString());
+                                    }
+                                    break;
+                                case 2:
+                                    int groupToJoin;
+                                    Console.WriteLine("Enter a group ID to join");
+                                    success = int.TryParse(Console.ReadLine(), out groupToJoin);
+                                    controller.EditStudentGroupMembership(groupToJoin);
+                                    break;
+                                case 3:
+                                    string groupName;
+                                    Console.WriteLine("Enter a group name");
+                                    groupName = Console.ReadLine();
+                                    group_Controller.AddGroup(groupName);
+                                    controller.EditStudentGroupMembership(1);
+                                    break;
+                                case 4://Add meeting
+                                    TimeSpan meetingStart, meetingEnd;
+                                    Day meetingDay;
+                                    string meetingRoom;
+                                    Console.WriteLine("Enter a day for the meeting (Mon-Sun, [0]-[7])");
+                                    meetingDay = (Day)(int.Parse(Console.ReadLine()));
+                                    Console.WriteLine("Enter a start time for the meeting (hh:mm)");
+                                    meetingStart = TimeSpan.Parse(Console.ReadLine());
+                                    Console.WriteLine("Enter an end time for the meeting (hh:mm)");
+                                    meetingEnd = TimeSpan.Parse(Console.ReadLine());
+                                    Console.WriteLine("Enter a room for the meeting");
+                                    meetingRoom = Console.ReadLine();
+                                    group_Controller.Group_Meetings.AddMeeting(4, student.StudentGroup, meetingDay, meetingStart, meetingEnd, meetingRoom);
+                                    break;
+                                case 5://edit meeting
+                                    int meetingId;
+                                    group_Controller.Group_Meetings.ListMeetings();
+                                    meetingId = int.Parse(Console.ReadLine());
+                                    Console.WriteLine("Which meeting would you like to edit? (Enter ID)");
+                                    Console.WriteLine("Do you want to edit the [0] day, or [1] time?");
+                                    option = int.Parse(Console.ReadLine());
+                                    if (option == 1)
+                                    {
+                                        Day editDay;
+                                        Console.WriteLine("Enter a day for the meeting (Mon-Sun, [0]-[7])");
+                                        editDay = (Day)(int.Parse(Console.ReadLine()));
+                                        group_Controller.Group_Meetings.EditMeeting(meetingId, editDay);
+                                    }
+                                    else
+                                    {
+                                        TimeSpan editStart, editEnd;
+                                        Console.WriteLine("Enter a start time for the meeting (hh:mm)");
+                                        editStart = TimeSpan.Parse(Console.ReadLine());
+                                        Console.WriteLine("Enter an end time for the meeting (hh:mm)");
+                                        editEnd = TimeSpan.Parse(Console.ReadLine());
+                                        group_Controller.Group_Meetings.EditMeeting(meetingId, editStart, editEnd);
+                                    }
+                                    option = -1;
+                                    break;
+                                case 6://add class
+                                    TimeSpan classStart, classEnd;
+                                    Day classDay;
+                                    string classRoom;
+                                    Console.WriteLine("Enter a day for the class (Mon-Sun, [0]-[7])");
+                                    classDay = (Day)(int.Parse(Console.ReadLine()));
+                                    Console.WriteLine("Enter a start time for the class (hh:mm)");
+                                    classStart = TimeSpan.Parse(Console.ReadLine());
+                                    Console.WriteLine("Enter an end time for the class (hh:mm)");
+                                    classEnd = TimeSpan.Parse(Console.ReadLine());
+                                    Console.WriteLine("Enter a room for the meeting");
+                                    classRoom = Console.ReadLine();
+                                    group_Controller.Group_Class.AddClass(4, student.StudentGroup, classDay, classStart, classEnd, classRoom);
+                                    break;
+                                default:
+                                    Console.WriteLine("Please enter a valid option");
+                                    break;
                             }
                         }
+
+                        //TODO add add meetings and class
                         option = -1;
                         break;
 
                     case 3:
                         Console.WriteLine(student.StudentGroup);
-                        if(student.StudentGroup != -1)
+                        if (student.StudentGroup != -1)
                         {
                             Console.WriteLine("Meetings: \n");
                             group_Controller.Group_Meetings.ListMeetings();
@@ -172,263 +227,6 @@ namespace KIT206.DatabaseApp
                         break;
                 }
             }
-
-
-
-            //int ID = 1;
-
-
-            //Student user = StorageAdapter.GetStudent(ID);
-            //int MainSelection = 1;
-            //int PersonalSelection = 1;
-            //int GroupSelection = 1;
-            //int MeetingSelection = 1;
-            //bool Success = false;
-            //while (MainSelection != 0)
-            //{
-            //    while (!Success)
-            //    {
-            //        Console.WriteLine("Make a selection\n1.Personal Data Menu\n2.Group Menu\n3.View Upcomming meetings and classes\n0.Quit\n");
-            //        Success = int.TryParse(Console.ReadLine(), out MainSelection);
-            //        if (!Success || MainSelection >= 4)
-            //        {
-            //            Console.WriteLine("That wasnt a valid input, try again");
-            //            Success = false;
-            //        }
-
-            //    }
-            //    Success = false;
-            //    switch (MainSelection)
-            //    {
-            //        case 1://Personal Data Menu Finished
-            //            PersonalSelection = 1;
-            //            while (PersonalSelection != 0)
-            //            {
-            //                while (!Success)
-            //                {
-            //                    Console.WriteLine("Make a selection\n1.View Personal Data\n2.Add Personal Data\n0.Quit\n");
-            //                    Success = int.TryParse(Console.ReadLine(), out PersonalSelection);
-            //                    if (!Success || PersonalSelection >= 3)
-            //                    {
-            //                        Console.WriteLine("That wasnt a valid input, try again");
-            //                        Success = false;
-            //                    }
-
-            //                }
-            //                Success = false;
-            //                switch (PersonalSelection)
-            //                {
-            //                    case 1://View Personal Data
-            //                        Console.WriteLine(user.ToString("full"));
-            //                        break;
-
-            //                    case 2://Add Personal Data
-            //                        if (user.Email == null)
-            //                        {
-            //                            string title;
-            //                            int enumInt = -1;
-            //                            Campus campus;
-            //                            Category category;
-            //                            string Email;
-            //                            string Phone;
-            //                            Console.WriteLine("Enter your Title: ");
-            //                            title = Console.ReadLine();
-
-            //                            while (enumInt == -1 && enumInt <= 2)
-            //                            {
-            //                                Console.WriteLine("Enter your Campus, for Hobart enter 1 and for Launceston enter 2: ");
-            //                                try
-            //                                {
-            //                                    enumInt = Convert.ToInt32(Console.ReadLine()) - 1;
-            //                                }
-            //                                catch
-            //                                {
-            //                                    Console.WriteLine("Try Again");
-            //                                }
-
-            //                            }
-            //                            campus = (Campus)enumInt;
-            //                            enumInt = -1;
-            //                            Console.WriteLine("Enter your Email: ");
-            //                            Email = Console.ReadLine();
-
-            //                            while (enumInt == -1 && enumInt <= 2)
-            //                            {
-            //                                Console.WriteLine("Enter your Category of study, for Batchelors enter 1 and for Masters enter 2: ");
-            //                                try
-            //                                {
-            //                                    enumInt = Convert.ToInt32(Console.ReadLine()) - 1;
-            //                                }
-            //                                catch
-            //                                {
-            //                                    Console.WriteLine("Try Again");
-            //                                }
-
-            //                            }
-            //                            category = (Category)enumInt;
-
-            //                            Console.WriteLine("Enter your phone number: ");
-            //                            Phone = Console.ReadLine();
-            //                            //user.AddStudentDetails(title, campus, category, Email, Phone);
-
-
-            //                        }
-            //                        else
-            //                        {
-            //                            Console.WriteLine("You have already entered your details");
-            //                        }
-            //                        break;
-            //                }
-            //            }
-            //            break;
-            //        case 2://Group Menu
-            //            GroupSelection = 1;
-            //            while (GroupSelection != 0)
-            //            {
-            //                if (user.StudentGroup > 0)
-            //                {
-            //                    StudentGroup group = StorageAdapter.GetGroup(user.StudentGroup);
-            //                    while (!Success)
-            //                    {
-            //                        Console.WriteLine("Make a selection\n1.Show Group Members\n2.Show Class\n3.Edit Group\n4.Meeting menu\n5.Leave Group\n0.Quit\n");
-            //                        Success = int.TryParse(Console.ReadLine(), out GroupSelection);
-            //                        if (!Success || GroupSelection >= 6)
-            //                        {
-            //                            Console.WriteLine("That wasnt a valid input, try again");
-            //                            Success = false;
-            //                        }
-            //                    }
-            //                    Success = false;
-            //                    switch (GroupSelection)
-            //                    {
-            //                        case 1://Show Group Members
-            //                            //List<Student> GroupMembers = group.GetGroupMembers(ID);
-            //                            if (GroupMembers.Count > 0)
-            //                            {
-            //                                foreach (Student Member in GroupMembers)
-            //                                {
-            //                                    //Console.WriteLine(Member.GetStudentString());
-            //                                }
-            //                            }
-            //                            else
-            //                            {
-            //                                Console.WriteLine("There are no members of your group");
-            //                            }
-            //                            break;
-            //                        case 2://Show Class
-            //                            Console.WriteLine(StorageAdapter.GetClass(group.GroupID).ToString());
-            //                            break;
-            //                        case 3://Edit group name
-            //                            Console.WriteLine("Enter the new name for the group");
-            //                            //group.EditGroup(Console.ReadLine());
-            //                            break;
-            //                        case 4://Meeting menu
-            //                            while (MeetingSelection != 0)
-            //                            {
-            //                                while (!Success)
-            //                                {
-            //                                    Console.WriteLine("Make a selection\n1.View Meetings\n2.Create new Meeting\n3.Cancel Meeting\n4.Edit Meeting\n0.Quit\n");
-            //                                    Success = int.TryParse(Console.ReadLine(), out MeetingSelection);
-            //                                    if (!Success || PersonalSelection >= 5)
-            //                                    {
-            //                                        Console.WriteLine("That wasnt a valid input, try again");
-            //                                        Success = false;
-            //                                    }
-            //                                }
-            //                                Success = false;
-
-            //                                switch (MeetingSelection)
-            //                                {
-            //                                    case 1://View Meetings
-
-            //                                        //List<Meeting> Meetings = group.GetMeetings();
-            //                                        Console.WriteLine("----Meeting------");
-            //                                        foreach (Meeting meeting in Meetings)
-            //                                        {
-            //                                            Console.WriteLine(meeting.ToString());
-            //                                        }
-            //                                        break;
-            //                                    case 2://Create New Meetings
-            //                                        /StorageAdapter.AddMeeting(group.AddMeeting());
-            //                                        break;
-            //                                    case 3://Cancel Meeting needs to be fixed
-            //                                        DateTime finder;
-
-            //                                        Console.WriteLine("Enter the original Date for the meeting (hh:mm dd/mm/yyyy)");
-            //                                        finder = DateTime.Parse(Console.ReadLine());
-
-            //                                        StorageAdapter.GetMeeting(finder).CancelMeeting();
-            //                                        break;
-            //                                    //Date time parsing will crash if not typed in properly, could make a try catch thing but
-            //                                    //as the UI will have a calendar and will always send the right thing i cant be bothered 
-            //                                    case 4://Edit meetings this doesnt work either
-            //                                        DateTime start, end, Identifier;
-            //                                        Day day;
-            //                                        Meeting meet;
-
-            //                                        Console.WriteLine("Enter the original Date for the meeting (hh:mm dd/mm/yyyy)");
-            //                                        Identifier = DateTime.Parse(Console.ReadLine());
-            //                                        Console.WriteLine("Enter the new Start Date: HH:MM dd/mm/yyyy");
-            //                                        start = DateTime.Parse(Console.ReadLine());
-            //                                        Console.WriteLine("Enter the new end Date: HH:MM dd/mm/yyyy");
-            //                                        end = DateTime.Parse(Console.ReadLine());
-            //                                        day = (Day)Enum.ToObject(typeof(Day), (int)start.DayOfWeek);
-            //                                        meet = StorageAdapter.GetMeeting(Identifier);
-            //                                        meet.Start = start;
-            //                                        meet.End = end;
-            //                                        meet.Day = day;
-            //                                        StorageAdapter.EditMeeting(meet);
-            //                                        break;
-            //                                }
-            //                            }
-            //                            break;
-            //                        case 5://Leave Group
-            //                            user = user.EditStudentGroup();
-            //                            GroupSelection = 0;
-            //                            break;
-            //                    }
-            //                }
-            //                else
-            //                {
-            //                    Console.WriteLine("You dont have a group, would you like to add one now? (y,n)");
-            //                    if (Console.ReadLine() == "y")
-            //                    {
-            //                        Console.WriteLine("Enter the name for your group: ");
-            //                        string name = Console.ReadLine();
-            //                        StudentGroup newGroup = user.AddGroup(name);
-
-
-            //                        StorageAdapter.AddGroup(newGroup);
-            //                        StorageAdapter.EditStudent(user);
-
-            //                    }
-            //                }
-            //            }
-            //            break;
-            //        case 3://View Upcoming meetings and classes
-            //            if (user.StudentGroup != 0)
-            //            {
-            //                StudentGroup UserGroup = StorageAdapter.GetGroup(user.StudentGroup);
-            //                List<Meeting> meetings = UserGroup.GetMeetings();
-
-            //                Console.WriteLine("-------Class-------");
-            //                Console.WriteLine(StorageAdapter.GetClass(UserGroup.GroupID).ToString());
-            //                if (meetings.Count >= 1)
-            //                {
-            //                    Console.WriteLine("----Meeting------");
-            //                    foreach (Meeting meeting in meetings)
-            //                    {
-            //                        Console.WriteLine(meeting.ToString());
-            //                    }
-            //                }
-            //            }
-            //            else
-            //            {
-            //                Console.WriteLine("The user doesnt have a Group, Join a Group and try again");
-            //            }
-            //            break;
-            //    }
-            //}
         }
     }
 }

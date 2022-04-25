@@ -58,10 +58,6 @@ namespace KIT206
 				_room = value;
             }
         }
-		public int Group_ID
-		{
-			get => _groupID;
-		}
 		//Overloading Constructors so we can either generate a new id for a new class or
 		public Class(int groupID, Day day, TimeSpan start, TimeSpan end, string room)
 		{
