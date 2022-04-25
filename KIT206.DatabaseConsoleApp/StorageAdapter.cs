@@ -73,7 +73,8 @@ namespace KIT206.DatabaseApp
             MySQLConnector.DBExecute(cmd, conn);
         }
 
-        //Returns given Student
+        //Returns given Student by ID
+        //TODO might not need this one since we work from list
         public static Student GetStudent(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -108,26 +109,12 @@ namespace KIT206.DatabaseApp
         }
 
 
-        //Wasnt sure if we need to be able to add groups?
+        //Group Methods
 
-        public static void AddGroup(StudentGroup group)
-        {
-
-        }
-
-        //Edits group name of given group
-        public static void EditGroup(StudentGroup group)
-        {
-            MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = $"UPDATE studentGroup SET group_name = " + group.GroupName + " WHERE group_id = " + group.GroupID;
-
-            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
-
-            MySQLConnector.DBExecute(cmd, conn);
-        }
 
         //Returns Student Group given Group ID
-        public static StudentGroup GetGroup(int id)
+        //TODO might not need this method
+        public static StudentGroup LoadGroup(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             StudentGroup group = null;
@@ -164,8 +151,36 @@ namespace KIT206.DatabaseApp
             return groups;
         }
 
+        //Adds given group to database
+        public static void AddGroup(StudentGroup group)
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+
+            string sqlcmd = "INSERT INTO studentGroup (group_id, group_name)" +
+                $"VALUES (" +
+                $"\'{group.GroupID}\', " +
+                $"\'{group.GroupName}\')";
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+
+            MySQLConnector.DBExecute(cmd, conn);
+        }
+
+        //Edits group name of given group
+        public static void EditGroup(StudentGroup group)
+        {
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            string sqlcmd = $"UPDATE studentGroup SET group_name = " + group.GroupName + " WHERE group_id = " + group.GroupID;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+
+            MySQLConnector.DBExecute(cmd, conn);
+        }
+
+        //Meeting Methods
+
         //Returns meeting given meeting id
-        public static Meeting GetMeeting(int id)
+        public static Meeting LoadMeeting(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             Meeting meeting = null;
@@ -192,7 +207,7 @@ namespace KIT206.DatabaseApp
         }
 
         //Returns list of meetings in given group
-        public static List<Meeting> GetMeetings(int groupID)
+        public static List<Meeting> LoadMeetings(int groupID)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             List<Meeting> meetings = new List<Meeting>();
@@ -221,11 +236,26 @@ namespace KIT206.DatabaseApp
             return meetings;
         }
 
+        //Adds given meeting to database
         public static void AddMeeting(Meeting meeting)
         {
-            //TODO add meeting to database - do we actualyl add it?
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+
+            string sqlcmd = "INSERT INTO meeting (meeting_id, group_id, day, start, end, room)" +
+                $"VALUES (" +
+                $"\'{meeting.MeetingID}\', " +
+                $"\'{meeting.GroupID}\', " +
+                $"\'{meeting.Day.ToString()}\', " +
+                $"\'{meeting.Start}\', " +
+                $"\'{meeting.End}\', " +
+                $"\"{meeting.Room}\")";
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+
+            MySQLConnector.DBExecute(cmd, conn);
         }
 
+        //Updates meeting to given meeting
         public static void EditMeeting(Meeting meeting)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -235,13 +265,14 @@ namespace KIT206.DatabaseApp
                 $"start = \'{meeting.Start}\', " +
                 $"end = \'{meeting.End}\', " +
                 $"room = \"{meeting.Room}\" " +
-                $"WHERE meeting_id = " + meeting.MeetingID;
+                $"WHERE meeting_id = {meeting.MeetingID}";
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 
             MySQLConnector.DBExecute(cmd, conn);
         }
 
+        //Removes meeting from database
         public static void RemoveMeeting(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
@@ -251,7 +282,10 @@ namespace KIT206.DatabaseApp
             MySQLConnector.DBExecute(cmd, conn);
         }
 
-        public static Class GetClassByGroup(int groupID)
+        //Class methods
+
+        //Returns class by given groupID
+        public static Class LoadClassByGroup(int groupID)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             Class returnClass = null;
@@ -275,9 +309,9 @@ namespace KIT206.DatabaseApp
             return returnClass;
         }
 
-        //This could be changed to group id?
         //Returns Class given class id
-        public static Class GetClass(int classID)
+        //TODO might not need this method
+        public static Class LoadClass(int classID)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             Class returnClass = null;
@@ -303,7 +337,7 @@ namespace KIT206.DatabaseApp
 
         //TODO dont think we need this function:
         //Returns all Classes 
-        public static List<Class> GetClasses()
+        public static List<Class> LoadClasses()
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             List<Class> classes = null;
@@ -328,10 +362,23 @@ namespace KIT206.DatabaseApp
             return classes;
         }
 
+        //Addes given class to database
         public static void AddClass(Class toAdd)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            //Deconstruct toAdd into strings then add to db
+
+            string sqlcmd = "INSERT INTO class (class_id, group_id, day, start, end, room)" +
+                $"VALUES (" +
+                $"\'{toAdd.ClassID}\', " +
+                $"\'{toAdd.GroupID}\', " +
+                $"\'{toAdd.Day.ToString()}\', " +
+                $"\'{toAdd.Start}\', " +
+                $"\'{toAdd.End}\', " +
+                $"\"{toAdd.Room}\")";
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+
+            MySQLConnector.DBExecute(cmd, conn);
         }
     }
 }

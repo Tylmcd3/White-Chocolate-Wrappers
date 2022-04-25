@@ -55,7 +55,7 @@ namespace KIT206.DatabaseApp
             }
             catch(MySqlException ex)
             {
-                Console.WriteLine("Error - could not execute query", ex);
+                Console.WriteLine(ex);
             }
             finally 
             { 

@@ -13,7 +13,7 @@ namespace KIT206.DatabaseApp
 
         public Class_Controller(int id)
         {
-            groupClass = StorageAdapter.GetClassByGroup(id);
+            groupClass = StorageAdapter.LoadClassByGroup(id);
         }
 
         public void AddClass(int classID, int groupID, Day day, TimeSpan start, TimeSpan end, string room)
