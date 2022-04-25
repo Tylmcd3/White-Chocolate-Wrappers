@@ -43,6 +43,13 @@ namespace KIT206.DatabaseApp
             }
             return null;
         }
+        public List<Student> FindStudentsByGroup(int id)
+        {
+            var selected = from Student s in students
+                           where id == s.StudentGroup
+                           select s;
+            return selected.ToList<Student>();
+        }
         public void AddStudentDetails(string title, Campus campus, string email, Category category, string phone)
         {
             if (currentStudent == null)
