@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KIT206.DatabaseApp
 {
-    class Meeting_Controller
+    public class Meeting_Controller
     {
         private List<Meeting> meetings;
         public List<Meeting> Meetings { get { return meetings; } set { } }

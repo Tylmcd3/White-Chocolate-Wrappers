@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KIT206.DatabaseApp
 {
-    class Class_Controller
+    public class Class_Controller
     {
         private Class groupClass;
         public Class GroupClass { get { return groupClass; } set { } }
