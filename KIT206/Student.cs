@@ -103,24 +103,22 @@ namespace KIT206
         ///<summary>
 		///Creates a new Student Object given ID and name
 		///</summary>
-        public Student(int id, string f_name, string l_name )
+        public Student(int id, string firstName, string lastName )
 		{
 			_studentID = id;
-			_firstName = f_name;
-            _lastName = l_name;
+			_firstName = firstName;
+            _lastName = lastName;
 		}
         ///<summary>
 		///Creates a new Student Object given full Student Details. 
         ///If Details are empty, sets field to empty value 
 		///</summary>
-        //TODO fix this consttructor and toString
         public Student(int id, string firstName, string lastName, int group_id, string title,string phone, Campus campus, string email, Category category)
 		{
 			_studentID = id;
             _firstName = firstName;
             _lastName = lastName;
             _groupID = group_id;
-            //_groupID = group_id;
             _title = title ?? "";
             _campus = campus;
             _email = email ?? "";
@@ -150,7 +148,7 @@ namespace KIT206
             }
             if(_groupID != -1)
             {
-                toReturn = (toReturn + $" They are in group {_groupID}");
+                toReturn += $" They are in group {_groupID}";
             }
 
             return toReturn;
