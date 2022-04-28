@@ -123,11 +123,18 @@
 
                     <Button Style="{DynamicResource RoundButton}" Grid.Row="0" Content="Group Members" Click="Button_Click_1" Margin="2,2,2,2" />
 
-                    <ListBox Grid.Row="2" Style="{StaticResource GeneralList}">
-                        <TextBlock Text="Zander"/>
-                        <TextBlock Text="Tyler Mac Fuckface"/>
-                        <TextBlock Text="Yordanian"/>
-                        <TextBlock Text="Callhoom"/>
+                    <ListBox x:Name="GroupMembers" Grid.Row="2" Style="{StaticResource GeneralList}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding FirstName}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBlock Text="{Binding LastName}"/>
+                                </StackPanel>
+                                
+                            </DataTemplate>
+                            
+                        </ListBox.ItemTemplate>
                     </ListBox>
 
                 </Grid>

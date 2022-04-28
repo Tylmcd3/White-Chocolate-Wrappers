@@ -28,6 +28,7 @@ namespace KIT206.DatabaseApp.UI
             StudentGroup_Controller groups = new StudentGroup_Controller();
             student.SelectStudent(StudentID);
             this.DataContext = groups.FindStudentGroup(student.CurrentStudent.StudentGroup);
+            GroupMembers.ItemsSource = student.FindStudentsByGroup(student.CurrentStudent.StudentGroup);
          }
 
         private void Button_Click(object sender, RoutedEventArgs e)
