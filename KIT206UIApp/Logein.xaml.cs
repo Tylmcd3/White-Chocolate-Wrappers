@@ -24,5 +24,15 @@ namespace KIT206.DatabaseApp.UI
         {
             InitializeComponent();
         }
+
+        private void BtnClickP1(object sender, RoutedEventArgs e)
+        {
+            Main.content = new Page1();
+        }
+
+        private void BtnClickP2(object sender, RoutedEventArgs e)
+        {
+            Main.content = new Page2();
+        }
     }
 }
