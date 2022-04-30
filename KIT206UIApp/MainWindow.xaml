@@ -8,6 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainWindow" Background="#FFF6F7F8">
 
+
     <Window.Resources>
         <Style TargetType="Button" x:Key="RoundButton">
             <Style.Resources>
@@ -58,7 +59,9 @@
     </Window.Resources>
 
 
+
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="27*"/>
             <ColumnDefinition Width="73*"/>
@@ -181,7 +184,7 @@
                         </Grid>
                     </Grid>
                 </StackPanel>
-                
+
             </Grid>
         </Grid>
 

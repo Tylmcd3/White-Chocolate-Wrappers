@@ -18,18 +18,18 @@ namespace KIT206.DatabaseApp.UI
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Page
+    public partial class Login : Window
     {
         public Login()
         {
             InitializeComponent();
         }
 
-        private void Application_Startup(object sender, StartupEventArgs e)
+        private void GoToMainPage(object sender, RoutedEventArgs e)
         {
-            Grid myGrid = new Grid();
-            myGrid.Children.Add(new Login());
-            //this.RootVisual = myGrid;
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Visibility = Visibility.Hidden;
         }
 
     }
