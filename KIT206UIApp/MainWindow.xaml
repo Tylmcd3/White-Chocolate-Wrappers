@@ -69,20 +69,24 @@
                 <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock FontSize="22" TextAlignment="Center"><Run Language="en-au" Text="La Studentins Name"/><LineBreak/><Run Language="en-au"/></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontSize="22" TextAlignment="Center"><Run Language="en-au" Text="{Binding LastName}"/><LineBreak/><Run Language="en-au"/></TextBlock>
+            </StackPanel>
             <TextBlock Grid.Row="1" FontSize="22" TextAlignment="Center">StudentDetails</TextBlock>
             <Separator Grid.Row="1" Background="Black" VerticalAlignment="Bottom"/>
             <ListBox Grid.Row="2" Style="{StaticResource GeneralList}">
+                <!--
                 <ListBoxItem FontSize="15" Content="Student Name: Meow"/>
-                <ListBoxItem FontSize="15" Content="Student ID: 696969"/>
-                <ListBoxItem FontSize="15" Content="Email: Meow@utas.edu.au"/>
+                <ListBoxItem FontSize="15" Content= "StudentID: 696969"/>
+                <ListBoxItem FontSize="15" Content="Email:"/>
+                -->
             </ListBox>
 
 
             <ListBox Grid.Row="3" Style="{StaticResource GeneralList}" SelectionChanged="ListBox_SelectionChanged" Margin="2,2,2,2">
                 <ListBoxItem Content="Class Details" HorizontalAlignment="Center"/>
                 <Separator Background="Black"/>
-                <TextBlock Text="{Binding Path=String}"></TextBlock>
+                <TextBlock x:Name ="ClassName" Text="{Binding Path=String}"></TextBlock>
             </ListBox>
 
 
@@ -144,10 +148,10 @@
                         <ListBoxItem Content="Meetings" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
                         <Separator Background="Black"/>
                         <ListBoxItem>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Background="Black">
                                 <TextBlock VerticalAlignment="Center" FontWeight="Bold" FontSize="20">23/04 23:00</TextBlock>
-                                <Button Content="Edit" Style="{DynamicResource RoundButton}" Margin="200,0,0,0" Width="40"/>
-                                <Button Content="Council" Style="{DynamicResource RoundButton}" Margin="0,0,0,0"/>
+                                <Button HorizontalAlignment="Right" Content="Edit" Style="{DynamicResource RoundButton}" Margin="200,0,0,0" Width="40"/>
+                                <Button HorizontalAlignment="Right" Content="Council" Style="{DynamicResource RoundButton}" Margin="0,0,0,0"/>
                             </StackPanel>
                         </ListBoxItem>
                         <ListBoxItem>

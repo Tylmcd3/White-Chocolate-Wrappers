@@ -23,11 +23,13 @@ namespace KIT206.DatabaseApp.UI
         public MainWindow()
         {
             InitializeComponent();
-            int StudentID = 123460;
+            int StudentID = 123465;
             Student_Controller student = new Student_Controller();
             StudentGroup_Controller groups = new StudentGroup_Controller();
             student.SelectStudent(StudentID);
             this.DataContext = groups.FindStudentGroup(student.CurrentStudent.StudentGroup);
+            groups.SelectGroup(student.CurrentStudent.StudentGroup);
+            ClassName.Text = groups.Group_Class.GroupClass.ToString();
             GroupMembers.ItemsSource = student.FindStudentsByGroup(student.CurrentStudent.StudentGroup);
          }
 
