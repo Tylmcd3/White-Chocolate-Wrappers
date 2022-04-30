@@ -9,6 +9,7 @@
       Title="Page1">
 
     <Grid>
-        
+        <RadioButton Content="RadioButton" Background="Bisque" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
     </Grid>
 </Page>

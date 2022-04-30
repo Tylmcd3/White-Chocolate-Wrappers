@@ -16,13 +16,22 @@ using System.Windows.Shapes;
 namespace KIT206.DatabaseApp.UI
 {
     /// <summary>
-    /// Interaction logic for Page2.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Page2 : Page
+    public partial class Login : Page
     {
-        public Page2()
+        public Login()
         {
             InitializeComponent();
         }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            Grid myGrid = new Grid();
+            myGrid.Children.Add(new Login());
+            this.RootVisual = myGrid;
+        }
+
     }
+
 }

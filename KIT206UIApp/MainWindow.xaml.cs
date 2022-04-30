@@ -53,5 +53,10 @@ namespace KIT206.DatabaseApp.UI
         {
 
         }
+
+        private void GoToEditGroup(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
