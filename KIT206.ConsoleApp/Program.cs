@@ -13,7 +13,7 @@ namespace KIT206.App
 
 			foreach (Student student in controller.students)
 			{
-				Console.WriteLine(student.ToString(""));
+				Console.WriteLine(student.ToString());
 			}
 
 

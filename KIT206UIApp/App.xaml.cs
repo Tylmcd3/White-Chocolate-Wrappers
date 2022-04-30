@@ -13,5 +13,7 @@ namespace KIT206.DatabaseApp.UI
 	/// </summary>
 	public partial class App : Application
 	{
+
+
 	}
 }

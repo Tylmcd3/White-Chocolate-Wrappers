@@ -10,29 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace KIT206.DatabaseApp.UI
 {
     /// <summary>
-    /// Interaction logic for Logein.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Logein : Page
+    public partial class Window1 : Window
     {
-        public Logein()
+        public Window1()
         {
             InitializeComponent();
-        }
-
-        private void BtnClickP1(object sender, RoutedEventArgs e)
-        {
-            Main.content = new Page1();
-        }
-
-        private void BtnClickP2(object sender, RoutedEventArgs e)
-        {
-            Main.content = new Page2();
         }
     }
 }
