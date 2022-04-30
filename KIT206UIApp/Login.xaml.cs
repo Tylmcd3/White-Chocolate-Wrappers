@@ -29,7 +29,7 @@ namespace KIT206.DatabaseApp.UI
         {
             Grid myGrid = new Grid();
             myGrid.Children.Add(new Login());
-            this.RootVisual = myGrid;
+            //this.RootVisual = myGrid;
         }
 
     }

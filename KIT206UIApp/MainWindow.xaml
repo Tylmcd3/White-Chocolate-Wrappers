@@ -67,30 +67,29 @@
         <Grid Background="#FFF5AE69">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*"/>
-                <RowDefinition Height="0.3*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="22" TextAlignment="Center"><Run Language="en-au" Text="{Binding LastName}"/><LineBreak/><Run Language="en-au"/></TextBlock>
+            <!-- Student Details-->
+            <TextBlock Grid.Row="0" Text="Firstname Lastname" FontSize="22" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">
+                <TextBlock FontSize="20" TextAlignment="Center" FontWeight="SemiBold">Student Details</TextBlock>
+                <ListBox Style="{StaticResource GeneralList}" Background="#00000000">
+                    <Separator Background="Black"/>
+                </ListBox>
             </StackPanel>
-            <TextBlock Grid.Row="1" FontSize="22" TextAlignment="Center">StudentDetails</TextBlock>
+
             <Separator Grid.Row="1" Background="Black" VerticalAlignment="Bottom"/>
-            <ListBox Grid.Row="2" Style="{StaticResource GeneralList}">
-                <!--
-                <ListBoxItem FontSize="15" Content="Student Name: Meow"/>
-                <ListBoxItem FontSize="15" Content= "StudentID: 696969"/>
-                <ListBoxItem FontSize="15" Content="Email:"/>
-                -->
-            </ListBox>
 
 
-            <ListBox Grid.Row="3" Style="{StaticResource GeneralList}" SelectionChanged="ListBox_SelectionChanged" Margin="2,2,2,2">
-                <ListBoxItem Content="Class Details" HorizontalAlignment="Center"/>
-                <Separator Background="Black"/>
-                <TextBlock x:Name ="ClassName" Text="{Binding}" FontSize="18"></TextBlock>
-            </ListBox>
+            <StackPanel Grid.Row="2" HorizontalAlignment="Stretch">
+                <TextBlock Text="Class Details" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                <ListBox Style="{StaticResource GeneralList}" Background="#00000000" SelectionChanged="ListBox_SelectionChanged" Margin="2,2,2,2">
+                    <Separator Background="Black"/>
+                    <TextBlock x:Name ="ClassName" Text="{Binding}" FontSize="18"></TextBlock>
+                </ListBox>
+            </StackPanel>
 
 
         </Grid>
@@ -138,16 +137,17 @@
                     <ColumnDefinition Width="0.4*"/>
                 </Grid.ColumnDefinitions>
 
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1"/>
+                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0"/>
+
                 <StackPanel Grid.Column="1">
                     <TextBlock Text="Members" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
                     <Separator Background="Black"/>
-                    <ListBox x:Name="GroupMembers" Grid.Row="2" Style="{StaticResource GeneralList}" Background="White">
+                    <ListBox x:Name="GroupMembers" Grid.Row="1" Style="{StaticResource GeneralList}" Background="White">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding FirstName}" FontSize="18"/>
-                                    <TextBlock Text=" " FontSize="18"/>
-                                    <TextBlock Text="{Binding LastName}" FontSize="18"/>
+                                    <TextBlock Text="{Binding}" FontSize="18"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -169,7 +169,7 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <Grid>
+                        <Grid Margin="5,0,5,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
