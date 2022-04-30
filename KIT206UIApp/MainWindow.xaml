@@ -111,9 +111,9 @@
                            TextAlignment="Center" FontSize="28" 
                            Text="This is my cool group"
                            Margin="10,0,0,0"
-                           TextWrapping="Wrap" Grid.ColumnSpan="2" 
+                           TextWrapping="Wrap" Grid.ColumnSpan="1" 
                            VerticalAlignment="Center" 
-                           HorizontalAlignment="Left">
+                           HorizontalAlignment="Center">
 
                     <TextBlock.Effect>
                         <DropShadowEffect BlurRadius="10" Opacity="0.25"/>
@@ -167,21 +167,40 @@
                                     <WrapPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding}" FontSize="18"/>
                                     </WrapPanel>
-
-
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <Grid Margin="5,0,5,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Button Style="{DynamicResource RoundButton}" Grid.Column="0" Content="Add" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
-                            <Button Style="{DynamicResource RoundButton}" Grid.Column="1" Content="Edit" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center"/>
-                            <Button Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
+
+                        <Grid>
+                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                     </Grid.ColumnDefinitions>
+                                     <Button Style="{DynamicResource RoundButton}" Grid.Column="0" Content="Add" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
+                                     <Button Style="{DynamicResource RoundButton}" Grid.Column="1" Content="Edit" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                                     <Button Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
                         </Grid>
+
+                        <!--<ListBox>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button Style="{DynamicResource RoundButton}" Grid.Column="0" Content="Add" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
+                                        <Button Style="{DynamicResource RoundButton}" Grid.Column="1" Content="Edit"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                                        <Button Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
+                                        
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>-->
+                        
                     </Grid>
                 </StackPanel>
 

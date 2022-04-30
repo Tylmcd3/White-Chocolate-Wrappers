@@ -24,7 +24,7 @@
 
             <TextBlock Grid.Row="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">Welcome User</TextBlock>
             <TextBlock Grid.Row="2" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1">Please enter your studentID</TextBlock>
-            <!--<Image Grid.Row="1" Source="twitter-avi-gender-balanced-figure.png" Height="100" VerticalAlignment="Top" Width="100"/>-->
+            <Image Grid.Row="1" Source="person twvitter.jpg" Height="100" VerticalAlignment="Top" Width="100"/>
             <PasswordBox Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="120" Margin="0,30,0,0"/>
             <Button Grid.Row="2" Content="Submit" Click="GoToMainPage" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
