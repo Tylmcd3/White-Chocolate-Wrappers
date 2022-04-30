@@ -23,15 +23,16 @@ namespace KIT206.DatabaseApp.UI
         public MainWindow()
         {
             InitializeComponent();
-            int StudentID = 123465;
-            Student_Controller student = new Student_Controller();
-            StudentGroup_Controller groups = new StudentGroup_Controller();
-            student.SelectStudent(StudentID);
-            this.DataContext = groups.FindStudentGroup(student.CurrentStudent.StudentGroup);
-            groups.SelectGroup(student.CurrentStudent.StudentGroup);
-            ClassName.Text = groups.Group_Class.GroupClass.ToString();
-            GroupMembers.ItemsSource = student.FindStudentsByGroup(student.CurrentStudent.StudentGroup);
-         }
+            int StudentID = 123460;
+            //Student_Controller student = new Student_Controller();
+            //StudentGroup_Controller groups = new StudentGroup_Controller();
+            //student.SelectStudent(StudentID);
+            //this.DataContext = groups.FindStudentGroup(student.CurrentStudent.StudentGroup);
+            //groups.SelectGroup(student.CurrentStudent.StudentGroup);
+            ////ClassName.Text = groups.Group_Class.GroupClass;
+            //GroupMembers.ItemsSource = student.FindStudentsByGroup();
+            //MeetingsList.ItemsSource = groups.Group_Meetings.Meetings;
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

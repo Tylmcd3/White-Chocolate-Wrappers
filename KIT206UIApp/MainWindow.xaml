@@ -12,14 +12,16 @@
         <Style TargetType="Button" x:Key="RoundButton">
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="CornerRadius" Value="2"/>
                 </Style>
             </Style.Resources>
-            <Setter Property="Margin" Value="2" />
+            <Setter Property="Margin" Value="0" />
             <Setter Property="Background" Value="#FFE87511"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="BorderBrush" Value="#FFABADB3"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#00000000"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="18"/>
         </Style>
 
         <Style TargetType="ListBox" x:Key="MeetingsList">
@@ -44,12 +46,13 @@
                     <Setter Property="Foreground" Value="Black"/>
                 </Style>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="CornerRadius" Value="0"/>
                 </Style>
             </Style.Resources>
             <Setter Property="BorderBrush" Value="#FFABADB3"/>
             <Setter Property="Background" Value="#FFE87511"/>
             <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="3,0,3,0"/>
         </Style>
 
     </Window.Resources>
@@ -86,30 +89,46 @@
             <ListBox Grid.Row="3" Style="{StaticResource GeneralList}" SelectionChanged="ListBox_SelectionChanged" Margin="2,2,2,2">
                 <ListBoxItem Content="Class Details" HorizontalAlignment="Center"/>
                 <Separator Background="Black"/>
-                <TextBlock x:Name ="ClassName" Text="{Binding Path=String}"></TextBlock>
+                <TextBlock x:Name ="ClassName" Text="{Binding}" FontSize="18"></TextBlock>
             </ListBox>
 
 
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.35*"/>
-                <RowDefinition />
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="303*"/>
-                    <ColumnDefinition Width="281*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.4*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name ="GroupName" Grid.Row="0" FontWeight="Bold" FontFamily="Comic Sans MS" TextAlignment="Center" FontSize="25" Text="{Binding Path=GroupName, Mode=OneWay}" Margin="30,0,10,30" Background="White" TextWrapping="Wrap" Grid.ColumnSpan="2" Height="35" VerticalAlignment="Stretch" HorizontalAlignment="Center">
+                <TextBlock Name ="GroupName" Grid.Row="0" FontWeight="Bold"
+                           TextAlignment="Center" FontSize="28" 
+                           Text="This is my cool group"
+                           Margin="10,0,0,0"
+                           TextWrapping="Wrap" Grid.ColumnSpan="2" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Left">
 
                     <TextBlock.Effect>
-                        <DropShadowEffect BlurRadius="10" Opacity="0.1"/>
+                        <DropShadowEffect BlurRadius="10" Opacity="0.25"/>
                     </TextBlock.Effect>
                 </TextBlock>
-                <Button Grid.Row="0" Content="Leave" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}" Grid.Column="1" Width="50"/>
-                <Button Grid.Row="0" Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}" Margin="0,2,52,0" Grid.Column="1" Width="50"/>
+                <Grid Grid.Column="1" Margin="0,0,0,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Content="Edit Group" Style="{DynamicResource RoundButton}"/>
+                    <Button Grid.Row="1" Content="Leave Group" Style="{DynamicResource RoundButton}"/>
+                </Grid>
+
+
+                <!--<Button Grid.Row="0" Content="Leave" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}" Grid.Column="1" Width="50"/>-->
+                <!--<Button Grid.Row="0" Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}" Margin="0,2,52,0" Grid.Column="1" Width="50"/>-->
                 <Separator VerticalAlignment="Bottom" Grid.ColumnSpan="2" Margin="0,0,0,2"/>
             </Grid>
 
@@ -118,51 +137,51 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="0.4*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="15*"/>
-                        <RowDefinition/>
-                        <RowDefinition Height="145*"/>
-                    </Grid.RowDefinitions>
 
-                    <Button Style="{DynamicResource RoundButton}" Grid.Row="0" Content="Group Members" Click="Button_Click_1" Margin="2,2,2,2" />
-
-                    <ListBox x:Name="GroupMembers" Grid.Row="2" Style="{StaticResource GeneralList}">
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Members" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
+                    <Separator Background="Black"/>
+                    <ListBox x:Name="GroupMembers" Grid.Row="2" Style="{StaticResource GeneralList}" Background="White">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding FirstName}"/>
-                                    <TextBlock Text=" "/>
-                                    <TextBlock Text="{Binding LastName}"/>
+                                    <TextBlock Text="{Binding FirstName}" FontSize="18"/>
+                                    <TextBlock Text=" " FontSize="18"/>
+                                    <TextBlock Text="{Binding LastName}" FontSize="18"/>
                                 </StackPanel>
-                                
                             </DataTemplate>
-                            
                         </ListBox.ItemTemplate>
                     </ListBox>
+                </StackPanel>
 
-                </Grid>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Grid.Row="0" Text="Meetings" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
+                    <Separator Background="Black"/>
+                    <Grid>
+                        <ListBox x:Name="MeetingsList" Style="{StaticResource GeneralList}" Background="White">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding}" FontSize="18"/>
+                                    </WrapPanel>
 
-                <Grid Grid.Column="0">
-                    <ListBox>
-                        <ListBoxItem Content="Meetings" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
-                        <Separator Background="Black"/>
-                        <ListBoxItem>
-                            <StackPanel Orientation="Horizontal" Background="Black">
-                                <TextBlock VerticalAlignment="Center" FontWeight="Bold" FontSize="20">23/04 23:00</TextBlock>
-                                <Button HorizontalAlignment="Right" Content="Edit" Style="{DynamicResource RoundButton}" Margin="200,0,0,0" Width="40"/>
-                                <Button HorizontalAlignment="Right" Content="Council" Style="{DynamicResource RoundButton}" Margin="0,0,0,0"/>
-                            </StackPanel>
-                        </ListBoxItem>
-                        <ListBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center" FontWeight="Bold" FontSize="20">30/04 09:30</TextBlock>
-                                <Button Content="Edit" Style="{DynamicResource RoundButton}" Margin="200,0,0,0" Width="40"/>
-                                <Button Content="Council" Style="{DynamicResource RoundButton}" Margin="0,0,0,0"/>
-                            </StackPanel>
-                        </ListBoxItem>
-                    </ListBox>
-                </Grid>
+
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Style="{DynamicResource RoundButton}" Grid.Column="0" Content="Add" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
+                            <Button Style="{DynamicResource RoundButton}" Grid.Column="1" Content="Edit" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                            <Button Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+                
             </Grid>
         </Grid>
 

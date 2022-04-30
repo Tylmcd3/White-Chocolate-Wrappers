@@ -18,12 +18,14 @@ namespace KIT206.DatabaseApp
         ///<summary>
         ///Prints list of Meetings to Console
         ///</summary>
-        public void ListMeetings()
+        public List<string> ListMeetings()
         {
+            List<string> toReturn = new List<string>();
             foreach (Meeting meeting in meetings)
             {
-                Console.WriteLine(meeting.ToString());
+                toReturn.Add(meeting.ToString());
             }
+            return toReturn;
         }
         ///<summary>
         ///Finds Meeting given an ID
