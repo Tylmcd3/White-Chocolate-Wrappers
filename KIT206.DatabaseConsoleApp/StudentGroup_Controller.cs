@@ -22,12 +22,17 @@ namespace KIT206.DatabaseApp
             groups = StorageAdapter.LoadGroups();
         }
 
+        ///<summary>
+        ///Sets Meetings and Class to given groups Meetings and Class
+        ///</summary>
         public void SelectGroup(int id)
         {
             group_Meetings = new Meeting_Controller(id);
             group_Class = new Class_Controller(id);
         }
-
+        ///<summary>
+        ///Finds Student Group given Group ID
+        ///</summary>
         public StudentGroup FindStudentGroup(int id)
         {
             foreach (StudentGroup group in groups)
@@ -39,8 +44,10 @@ namespace KIT206.DatabaseApp
             }
             return null;
         }
-
-        public List<StudentGroup> FindStudentGroupByName(string name)
+        ///<summary>
+        ///Finds Student Groups given a name
+        ///</summary>
+        public List<StudentGroup> FindStudentGroups(string name)
         {
             var selected = from StudentGroup g in groups
                            where name == g.GroupName
@@ -48,7 +55,9 @@ namespace KIT206.DatabaseApp
             return selected.ToList<StudentGroup>();
 
         }
-
+        ///<summary>
+        ///Creates new StudentGroup and adds to database
+        ///</summary>
         public void AddGroup(string name)
         {
             int id = GenerateID();
@@ -58,7 +67,9 @@ namespace KIT206.DatabaseApp
             StorageAdapter.AddGroup(group);
 
         }
-
+        ///<summary>
+        ///Changes given Student Group name to given name
+        ///</summary>
         public void EditGroup(int groupID, string name)
         {
             StudentGroup group = FindStudentGroup(groupID);
@@ -67,7 +78,9 @@ namespace KIT206.DatabaseApp
             StorageAdapter.EditGroup(group);
         }
 
-        //Iterates on the highest group id
+        ////<summary>
+        ///Generates StudentGroup ID iteratively
+        ///</summary>
         public int GenerateID()
         {
             int highest = 0;

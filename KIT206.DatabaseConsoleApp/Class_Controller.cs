@@ -15,7 +15,9 @@ namespace KIT206.DatabaseApp
         {
             groupClass = StorageAdapter.LoadClassByGroup(id);
         }
-
+        ///<summary>
+        ///Creates new Class and adds to database
+        ///</summary>
         public void AddClass(int classID, int groupID, Day day, TimeSpan start, TimeSpan end, string room)
         {
             Class toAdd = new Class(classID, groupID, day, start, end, room);
@@ -23,5 +25,24 @@ namespace KIT206.DatabaseApp
             //update database
             StorageAdapter.AddClass(toAdd);
         }
+        ///<summary>
+        ///Generates Class ID iteratively
+        ///</summary>
+        public int GenerateID()
+        {
+            int highest = 0;
+
+            List<Class> allClasses = StorageAdapter.LoadClasses();
+
+            foreach (Class item in allClasses)
+            {
+                if (highest <= item.ClassID)
+                {
+                    highest = item.ClassID;
+                }
+            }
+            return highest++;
+        }
+
     }
 }

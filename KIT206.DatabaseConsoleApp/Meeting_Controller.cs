@@ -15,7 +15,9 @@ namespace KIT206.DatabaseApp
             meetings = new List<Meeting>();
             meetings = StorageAdapter.LoadMeetings(id);
         }
-
+        ///<summary>
+        ///Prints list of Meetings to Console
+        ///</summary>
         public void ListMeetings()
         {
             foreach (Meeting meeting in meetings)
@@ -23,7 +25,9 @@ namespace KIT206.DatabaseApp
                 Console.WriteLine(meeting.ToString());
             }
         }
-
+        ///<summary>
+        ///Finds Meeting given an ID
+        ///</summary>
         public Meeting FindMeeting(int id)
         {
             foreach (Meeting meeting in meetings)
@@ -37,15 +41,21 @@ namespace KIT206.DatabaseApp
         }
 
         //TODO generate ID rather than calling in param
-
-        public void AddMeeting(int meetingID, int groupID, Day day, TimeSpan start, TimeSpan end, string room)
+        ///<summary>
+        ///Creates new Meeting and adds to database
+        ///</summary>
+        public void AddMeeting(int groupID, Day day, TimeSpan start, TimeSpan end, string room)
         {
+            int meetingID = GenerateID();
+
             Meeting meeting = new Meeting(meetingID, groupID, day, start, end, room);
             meetings.Add(meeting);
             //Update database
             StorageAdapter.AddMeeting(meeting);
         }
-
+        ///<summary>
+        ///Edits Meeting Day
+        ///</summary>
         public void EditMeeting(int id, Day day)
         {
             Meeting meeting = FindMeeting(id);
@@ -54,6 +64,9 @@ namespace KIT206.DatabaseApp
             //update database
             StorageAdapter.EditMeeting(meeting);
         }
+        ///<summary>
+        ///Edits Meeting start and end time
+        ///</summary>
         public void EditMeeting(int id, TimeSpan start, TimeSpan end)
         {
             Meeting meeting = FindMeeting(id);
@@ -62,6 +75,9 @@ namespace KIT206.DatabaseApp
             //Update database
             StorageAdapter.EditMeeting(meeting);
         }
+        ///<summary>
+        ///Edits Meeting Day, and start/end time.
+        ///</summary>
         public void EditMeeting(int id, Day day, TimeSpan start, TimeSpan end)
         {
             Meeting meeting = FindMeeting(id);
@@ -71,13 +87,33 @@ namespace KIT206.DatabaseApp
             //Update database
             StorageAdapter.EditMeeting(meeting);
         }
-
+        ///<summary>
+        ///Removes Meeting from database
+        ///</summary>
         public void CancelMeeting(int id)
         {
             Meeting meeting = FindMeeting(id);
             meetings.Remove(meeting);
             //Update database
             StorageAdapter.RemoveMeeting(id);
+        }
+        ///<summary>
+        ///Generates Meeting ID iteratively
+        ///</summary>
+        public int GenerateID()
+        {
+            int highest = 0;
+
+            List<Meeting> allMeetings = StorageAdapter.LoadMeetings();
+
+            foreach (Meeting meeting in allMeetings)
+            {
+                if (highest <= meeting.MeetingID)
+                {
+                    highest = meeting.MeetingID;
+                }
+            }
+            return highest++;
         }
 
     }

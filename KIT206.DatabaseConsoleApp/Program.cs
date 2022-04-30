@@ -15,7 +15,7 @@ namespace KIT206.DatabaseApp
 
             foreach (Student item in controller.Students)
             {
-                Console.WriteLine(item.ToString(""));
+                Console.WriteLine(item.ToStringFull());
             }
 
             Boolean success;
@@ -160,7 +160,7 @@ namespace KIT206.DatabaseApp
                                     meetingEnd = TimeSpan.Parse(Console.ReadLine());
                                     Console.WriteLine("Enter a room for the meeting");
                                     meetingRoom = Console.ReadLine();
-                                    group_Controller.Group_Meetings.AddMeeting(4, student.StudentGroup, meetingDay, meetingStart, meetingEnd, meetingRoom);
+                                    group_Controller.Group_Meetings.AddMeeting(student.StudentGroup, meetingDay, meetingStart, meetingEnd, meetingRoom);
                                     break;
                                 case 5://edit meeting
                                     int meetingId;
