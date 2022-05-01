@@ -164,28 +164,28 @@
                 <StackPanel Grid.Column="0">
                     <TextBlock Grid.Row="0" Text="Meetings" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
                     <Separator Background="Black"/>
-                    <ListBox x:Name="MeetingsList" Style="{StaticResource GeneralList}" Background="White">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <WrapPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding}" FontSize="18"/>
-                                    </WrapPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                    <ListBox x:Name="MeetingsList" Style="{StaticResource GeneralList}" Background="White" SelectionChanged="List_Disable_Element">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding}" FontSize="18"/>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Button Style="{DynamicResource RoundButton}" Grid.Column="0" Content="Add" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Click="Add_Meeting" />
-                            <Button Style="{DynamicResource RoundButton}" Grid.Column="1" Content="Edit" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center"/>
-                            <Button Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel" Margin="0,0,0,0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
-                        </Grid>
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{DynamicResource RoundButton}" Grid.Column="0" Content="Add" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Click="Add_Meeting" />
+                        <Button Style="{DynamicResource RoundButton}" Grid.Column="1" Content="Edit" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
+                        <Button Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
+                    </Grid>
 
-                        <!--<ListBox>
+                    <!--<ListBox>
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -203,7 +203,7 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>-->
-                        
+
                 </StackPanel>
 
             </Grid>

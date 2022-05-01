@@ -40,8 +40,16 @@ namespace KIT206.DatabaseApp.UI
 
         private void Add_Meeting(object sender, RoutedEventArgs e)
         {
+            //Then need to grab data from dialog box and use addmeeting on controller
             AddMeetingDialog addMeetingDialog = new AddMeetingDialog();
             addMeetingDialog.ShowDialog();
+        }
+
+        private void Edit_Meeting(object sender, RoutedEventArgs e)
+        {
+            //Then need to grab data from dialog box and use Editmeeting on controller
+            EditMeetingDialog editMeetingDialog = new EditMeetingDialog();
+            editMeetingDialog.ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -67,6 +75,11 @@ namespace KIT206.DatabaseApp.UI
         private void GoToEditGroup(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void List_Disable_Element(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show("HELP");
         }
     }
 }
