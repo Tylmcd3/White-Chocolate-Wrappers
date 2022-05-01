@@ -19,9 +19,13 @@ namespace KIT206.DatabaseApp.UI
     /// </summary>
     public partial class EditMeetingDialog : Window
     {
-        public EditMeetingDialog()
+        public EditMeetingDialog(Meeting meeting)
         {
             InitializeComponent();
+            roomTextBox.Text = meeting.Room;
+            startTextBox.Text = meeting.Start.ToString();
+            endTextBox.Text = meeting.End.ToString();
+            daySelector.SelectedIndex = meeting.Day.GetHashCode();
         }
     }
 }

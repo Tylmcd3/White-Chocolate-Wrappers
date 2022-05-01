@@ -78,7 +78,7 @@ namespace KIT206
 
         public override string ToString()
         {
-            return ($"{_day.ToString()} at {_start.ToString()} in room {_room.ToString()}");
+            return ($"{_day.ToString()} from {_start.ToString()} to {_end.ToString()} in room {_room.ToString()}");
         }
     }
     

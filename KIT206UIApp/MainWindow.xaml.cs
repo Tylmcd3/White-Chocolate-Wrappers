@@ -48,8 +48,14 @@ namespace KIT206.DatabaseApp.UI
         private void Edit_Meeting(object sender, RoutedEventArgs e)
         {
             //Then need to grab data from dialog box and use Editmeeting on controller
-            EditMeetingDialog editMeetingDialog = new EditMeetingDialog();
-            editMeetingDialog.ShowDialog();
+            if(MeetingsList.SelectedIndex >= 0)
+            {
+                Meeting toEdit = MeetingsList.SelectedItem as Meeting;
+
+                EditMeetingDialog editMeetingDialog = new EditMeetingDialog(toEdit);
+                editMeetingDialog.ShowDialog();
+            }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -76,10 +82,16 @@ namespace KIT206.DatabaseApp.UI
         {
 
         }
-
-        private void List_Disable_Element(object sender, SelectionChangedEventArgs e)
+        private void List_Unselected_Event(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("HELP");
+            //EditMeetingBtn.IsEnabled = false;
+            //CancelMeetingBtn.IsEnabled = false;
+        }
+
+        private void List_GotFocus_Event(object sender, RoutedEventArgs e)
+        {
+            //EditMeetingBtn.IsEnabled = true;
+            //CancelMeetingBtn.IsEnabled = true;  
         }
     }
 }
