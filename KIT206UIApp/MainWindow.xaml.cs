@@ -33,11 +33,11 @@ namespace KIT206.DatabaseApp.UI
             student.SelectStudent(StudentID);
             this.DataContext = group.FindStudentGroup(student.CurrentStudent.StudentGroup);
             group.SelectGroup(student.CurrentStudent.StudentGroup);
-            //ClassName.Text = group.Group_Class.GroupClass.ToString();
+            ClassName.Text = group.Group_Class.GroupClass.ToString(); //doesnt work if not in a group
             GroupMembers.ItemsSource = student.FindStudentsByGroup();
             MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
 
-            if (student.CurrentStudent.StudentGroup == 0)
+            if (student.CurrentStudent.StudentGroup != 0) //Change this to == for add group view to pop up
             {
                 NichtGroup ng = new NichtGroup();
                 this.Content = ng;
@@ -99,11 +99,6 @@ namespace KIT206.DatabaseApp.UI
             //EditMeetingBtn.IsEnabled = true;
             //CancelMeetingBtn.IsEnabled = true;  
         }
-        /*private void Fuck(object sender, RoutedEventArgs e)
-        {
-            NichtGroup ng = new NichtGroup();
-            ng.();
-        }*/
        
     }
 }
