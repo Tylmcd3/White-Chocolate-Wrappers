@@ -29,13 +29,19 @@ namespace KIT206.DatabaseApp.UI
             student = new StudentViewController();
             group = new StudentGroupViewController();
 
-            int StudentID = 123460;
+            int StudentID = 123475;
             student.SelectStudent(StudentID);
             this.DataContext = group.FindStudentGroup(student.CurrentStudent.StudentGroup);
             group.SelectGroup(student.CurrentStudent.StudentGroup);
-            ClassName.Text = group.Group_Class.GroupClass.ToString();
+            //ClassName.Text = group.Group_Class.GroupClass.ToString();
             GroupMembers.ItemsSource = student.FindStudentsByGroup();
             MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
+
+            if (student.CurrentStudent.StudentGroup == 0)
+            {
+                NichtGroup ng = new NichtGroup();
+                this.Content = ng;
+            }
         }
 
         private void Add_Meeting(object sender, RoutedEventArgs e)
@@ -93,5 +99,11 @@ namespace KIT206.DatabaseApp.UI
             //EditMeetingBtn.IsEnabled = true;
             //CancelMeetingBtn.IsEnabled = true;  
         }
+        /*private void Fuck(object sender, RoutedEventArgs e)
+        {
+            NichtGroup ng = new NichtGroup();
+            ng.();
+        }*/
+       
     }
 }
