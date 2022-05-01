@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace KIT206.DatabaseApp.UI
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for AddGroup.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class AddGroup : Page
     {
-        public Page1()
+        public AddGroup()
         {
             InitializeComponent();
         }

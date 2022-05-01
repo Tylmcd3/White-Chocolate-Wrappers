@@ -66,7 +66,7 @@
             <ColumnDefinition Width="27*"/>
             <ColumnDefinition Width="73*"/>
         </Grid.ColumnDefinitions>
-        <Frame Background="White" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="Main" Background="White" NavigationUIVisibility="Hidden"/>
         <Grid Background="#FFF5AE69">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*"/>
@@ -124,7 +124,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Content="Edit Group" Style="{DynamicResource RoundButton}"/>
+                    <Button Grid.Row="0" Content="Edit Group" Style="{DynamicResource RoundButton}" Click="GoToEditGroup"/>
                     <Button Grid.Row="1" Content="Leave Group" Style="{DynamicResource RoundButton}"/>
                 </Grid>
 
