@@ -20,18 +20,28 @@ namespace KIT206.DatabaseApp.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private StudentViewController student;
+        private StudentGroupViewController group;
         public MainWindow()
         {
             InitializeComponent();
+            student = new StudentViewController();
+            group = new StudentGroupViewController();
+
             int StudentID = 123460;
-            //Student_Controller student = new Student_Controller();
-            //StudentGroup_Controller groups = new StudentGroup_Controller();
-            //student.SelectStudent(StudentID);
-            //this.DataContext = groups.FindStudentGroup(student.CurrentStudent.StudentGroup);
-            //groups.SelectGroup(student.CurrentStudent.StudentGroup);
-            ////ClassName.Text = groups.Group_Class.GroupClass;
-            //GroupMembers.ItemsSource = student.FindStudentsByGroup();
-            //MeetingsList.ItemsSource = groups.Group_Meetings.Meetings;
+            student.SelectStudent(StudentID);
+            this.DataContext = group.FindStudentGroup(student.CurrentStudent.StudentGroup);
+            group.SelectGroup(student.CurrentStudent.StudentGroup);
+            ClassName.Text = group.Group_Class.GroupClass.ToString();
+            GroupMembers.ItemsSource = student.FindStudentsByGroup();
+            MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
+        }
+
+        private void Add_Meeting(object sender, RoutedEventArgs e)
+        {
+            AddMeetingDialog addMeetingDialog = new AddMeetingDialog();
+            addMeetingDialog.ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
