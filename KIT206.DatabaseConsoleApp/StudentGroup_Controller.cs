@@ -56,6 +56,17 @@ namespace KIT206.DatabaseApp
 
         }
         ///<summary>
+        ///Finds Student Groups given an id
+        ///</summary>
+        public List<StudentGroup> FindStudentGroups(int id)
+        {
+            var selected = from StudentGroup g in groups
+                           where id == g.GroupID
+                           select g;
+            return selected.ToList<StudentGroup>();
+
+        }
+        ///<summary>
         ///Creates new StudentGroup and adds to database
         ///</summary>
         public void AddGroup(string name)

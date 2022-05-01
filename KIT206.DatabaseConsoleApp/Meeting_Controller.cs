@@ -8,7 +8,7 @@ namespace KIT206.DatabaseApp
 {
     public class Meeting_Controller
     {
-        private List<Meeting> meetings;
+        protected List<Meeting> meetings;
         public List<Meeting> Meetings { get { return meetings; } set { } }
         public Meeting_Controller(int id)
         {

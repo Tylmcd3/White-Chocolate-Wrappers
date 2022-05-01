@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace KIT206.DatabaseApp
 {
-    class StorageAdapter
+    public class StorageAdapter
     {
         ///<summary>
         ///Returns a List of all Students in the database
