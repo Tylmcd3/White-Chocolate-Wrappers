@@ -19,14 +19,22 @@ namespace KIT206.DatabaseApp.UI
     /// </summary>
     public partial class AddGroupDialog : Window
     {
+        private StudentGroupViewController group;
         public AddGroupDialog()
         {
             InitializeComponent();
+            group = new StudentGroupViewController();
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void okButton_Click(object sender, RoutedEventArgs e)
+        {
+            group.AddGroup(GroupNameTextBox.Text);
+            
         }
     }
 }

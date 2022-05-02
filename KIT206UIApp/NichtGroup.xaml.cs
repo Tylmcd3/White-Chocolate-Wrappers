@@ -32,12 +32,14 @@ namespace KIT206.DatabaseApp.UI
         {
             AddMeetingDialog addMeetingDialog = new AddMeetingDialog();
             addMeetingDialog.ShowDialog();
+
         }
 
         private void NowToMain(object sender, RoutedEventArgs e)
         {
             AddGroupDialog addGroupDialog = new AddGroupDialog();
             addGroupDialog.ShowDialog();
+
 
 
             MainWindow mainWindow = new MainWindow();
