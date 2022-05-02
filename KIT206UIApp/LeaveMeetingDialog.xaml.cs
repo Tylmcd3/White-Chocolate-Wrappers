@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace KIT206.DatabaseApp.UI
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for LeaveMeetingDialog.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class LeaveMeetingDialog : Window
     {
-        public Window1()
+        public LeaveMeetingDialog()
         {
             InitializeComponent();
         }

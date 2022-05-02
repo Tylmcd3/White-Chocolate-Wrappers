@@ -33,11 +33,11 @@ namespace KIT206.DatabaseApp.UI
             student.SelectStudent(StudentID);
             this.DataContext = group.FindStudentGroup(student.CurrentStudent.StudentGroup);
             group.SelectGroup(student.CurrentStudent.StudentGroup);
-            ClassName.Text = group.Group_Class.GroupClass.ToString(); //doesnt work if not in a group
+            //ClassName.Text = group.Group_Class.GroupClass.ToString(); //doesnt work if not in a group
             GroupMembers.ItemsSource = student.FindStudentsByGroup();
             MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
 
-            if (student.CurrentStudent.StudentGroup != 0) //Change this to == for add group view to pop up
+            if (student.CurrentStudent.StudentGroup == 0) //Change this to == for add group view to pop up
             {
                 NichtGroup ng = new NichtGroup();
                 this.Content = ng;
@@ -62,6 +62,13 @@ namespace KIT206.DatabaseApp.UI
                 editMeetingDialog.ShowDialog();
             }
 
+        }
+
+        private void Leave_Meeting(object sender, RoutedEventArgs e)
+        {
+            //Then need to grab data from dialog box and use addmeeting on controller
+            LeaveMeetingDialog LeaveMeetingDialog = new LeaveMeetingDialog();
+            LeaveMeetingDialog.ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
