@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="WPFCustomMessageBox" Version="1.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\KIT206.DatabaseConsoleApp\KIT206.DatabaseConsoleApp.csproj" />
   </ItemGroup>
 

@@ -23,5 +23,9 @@ namespace KIT206.DatabaseApp.UI
         {
             InitializeComponent();
         }
+        public void LeaveMeeting1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

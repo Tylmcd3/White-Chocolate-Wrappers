@@ -21,10 +21,14 @@ namespace KIT206.DatabaseApp.UI
     public partial class NoGroupMainView : UserControl
     {
         MainWindow window;
-        public NoGroupMainView(MainWindow win)
+        StudentViewController student;
+        StudentGroupViewController group;
+        public NoGroupMainView(MainWindow win, StudentViewController stu, StudentGroupViewController gro)
         {
             InitializeComponent();
             window = win;
+            student = stu;
+            group = gro;
         }
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -35,16 +39,21 @@ namespace KIT206.DatabaseApp.UI
             AddMeetingDialog addMeetingDialog = new AddMeetingDialog();
             addMeetingDialog.ShowDialog();
         }
+        private void OpenGroupDialog(object sender, RoutedEventArgs e)
+        {
+            AddGroupDialog addGroupDialog = new AddGroupDialog(group);
+            addGroupDialog.ShowDialog();
+            if(addGroupDialog.groupObject != null)
+            {
+                student.EditStudentGroupMembership(addGroupDialog.groupObject.GroupID);
+                NowToMain(sender,e);
+            }
 
+        }
         private void NowToMain(object sender, RoutedEventArgs e)
         {
-            AddGroupDialog addGroupDialog = new AddGroupDialog();
-            addGroupDialog.ShowDialog();
-
-
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Visibility = Visibility.Hidden;
+            group.SelectGroup(student.CurrentStudent.StudentGroup);
+            window.Overlay.Content = new GroupMainView(window, student, group );
         }
 
         private void Edit_Meeting(object sender, RoutedEventArgs e)

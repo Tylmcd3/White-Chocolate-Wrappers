@@ -28,15 +28,19 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-
             int StudentID = 123475;
             student.SelectStudent(StudentID);
-            this.DataContext = group.FindStudentGroup(student.CurrentStudent.StudentGroup);
+
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
+            selectMainView();
+        }
+
+        public void selectMainView()
+        {
             if (student.CurrentStudent.StudentGroup == 0) //Change this to == for add group view to pop up
             {
-                NoGroupMainView ng = new NoGroupMainView(this);
+                NoGroupMainView ng = new NoGroupMainView(this, student, group);
                 Overlay.Content = ng;
             }
             else

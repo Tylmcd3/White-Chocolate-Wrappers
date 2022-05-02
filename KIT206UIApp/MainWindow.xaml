@@ -104,7 +104,7 @@
 
         </Grid>
 
-        <Frame Grid.Column="0" Grid.ColumnSpan="3" Name="Overlay" Content="hello"/>
+        <Frame Grid.Column="0" Grid.ColumnSpan="3" Name="Overlay" Content="hello" NavigationUIVisibility="Hidden"/>
 
 
     </Grid>

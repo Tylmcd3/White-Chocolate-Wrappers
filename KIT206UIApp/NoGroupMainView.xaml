@@ -86,7 +86,7 @@
                     </TextBlock.Effect>
                 </TextBlock>-->
 
-                <Button Content="ADD Group" Style="{DynamicResource RoundButton}" Margin="0,0,0,0" Click="NowToMain"/>
+                <Button Content="ADD Group" Style="{DynamicResource RoundButton}" Margin="0,0,0,0" Click="OpenGroupDialog"/>
 
                 <Separator VerticalAlignment="Bottom" Grid.ColumnSpan="2" Margin="0,0,0,2"/>
             </Grid>

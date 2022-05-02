@@ -20,20 +20,48 @@ namespace KIT206.DatabaseApp.UI
     public partial class AddGroupDialog : Window
     {
         private StudentGroupViewController group;
-        public AddGroupDialog()
+        public StudentGroup groupObject = null;
+        public AddGroupDialog(StudentGroupViewController gro)
         {
             InitializeComponent();
-            group = new StudentGroupViewController();
+            group = gro;
         }
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            group.AddGroup(GroupNameTextBox.Text);
+            if(this.GroupNameTextBox.Text == "")
+            {
+                MessageBox.Show("You did not enter a group name, Please try again.","Error", MessageBoxButton.OK, MessageBoxImage.Hand);
+            }
+            else
+            {
+                List<StudentGroup> groups = group.FindStudentGroups(this.GroupNameTextBox.Text);
+                if(groups.Count == 0)
+                {
+                    if (MessageBox.Show("This group doesnt exist, would you like to create this group?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        
+                        group.AddGroup(this.GroupNameTextBox.Text);
+                        groupObject = group.Groups.Find(group => group.GroupName == this.GroupNameTextBox.Text);
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    if (MessageBox.Show("A group exists with that name, would you like to join it?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+
+                        group.AddGroup(this.GroupNameTextBox.Text);
+                        groupObject = group.Groups.Find(group => group.GroupName == this.GroupNameTextBox.Text);
+                        this.Close();
+                    }
+                }
+            }
             
         }
     }
