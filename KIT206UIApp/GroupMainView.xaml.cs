@@ -36,21 +36,62 @@ namespace KIT206.DatabaseApp.UI
         }
         private void Add_Meeting(object sender, RoutedEventArgs e)
         {
-            //Then need to grab data from dialog box and use addmeeting on controller
             AddMeetingDialog addMeetingDialog = new AddMeetingDialog();
-            addMeetingDialog.ShowDialog();
+            bool? result = addMeetingDialog.ShowDialog();
+            
+            //Only process if they pressed OK
+            //will also need to do some form of form validation on the dialog TODO
+            if(result == true)
+            {
+                Day day;
+                TimeSpan start, end;
+                string room;
+
+                ComboBoxItem selectedDay = (ComboBoxItem)addMeetingDialog.daySelector.SelectedItem;
+                day = Enum.Parse<Day>(selectedDay.Content.ToString());
+
+                room = addMeetingDialog.roomTextBox.Text;
+                start = TimeSpan.Parse(addMeetingDialog.startTextBox.Text);
+                end = TimeSpan.Parse(addMeetingDialog.endTextBox.Text);
+
+                group.Group_Meetings.AddMeeting(student.CurrentStudent.StudentGroup,
+                                                day, start, end, room);
+
+            }
         }
 
         private void Edit_Meeting(object sender, RoutedEventArgs e)
         {
-            //Then need to grab data from dialog box and use Editmeeting on controller
+            //If an item is actually selected
             if (MeetingsList.SelectedIndex >= 0)
             {
                 Meeting toEdit = MeetingsList.SelectedItem as Meeting;
 
                 EditMeetingDialog editMeetingDialog = new EditMeetingDialog(toEdit);
-                editMeetingDialog.ShowDialog();
+
+                bool? result = editMeetingDialog.ShowDialog();
+
+                //Only process if they pressed OK
+                if( result == true)
+                {
+                    Day day;
+                    TimeSpan start, end;
+
+                    ComboBoxItem selectedDay = (ComboBoxItem)editMeetingDialog.daySelector.SelectedItem;
+                    day = Enum.Parse<Day>(selectedDay.Content.ToString());
+
+                    start = TimeSpan.Parse(editMeetingDialog.startTextBox.Text);
+                    end = TimeSpan.Parse(editMeetingDialog.endTextBox.Text);
+
+                    group.Group_Meetings.EditMeeting(toEdit.MeetingID, day, start, end);
+                    
+                }
             }
+
+        }
+
+        private void Cancel_Meeting(Object sender, RoutedEventArgs e)
+        {
 
         }
 

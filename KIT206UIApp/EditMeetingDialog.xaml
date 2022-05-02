@@ -43,8 +43,6 @@
         </Grid.RowDefinitions>
 
         <!-- Left,Top,Right,Bottom margins-->
-        <Label Grid.Column="0" Grid.Row="0">Enter a Room:</Label>
-        <TextBox x:Name="roomTextBox" Grid.Column="1" Grid.Row="0" />
 
         <Label Grid.Column="0" Grid.Row="1">Enter a Start Time:</Label>
         <TextBox x:Name="startTextBox" Grid.Column="1" Grid.Row="1" />
@@ -65,8 +63,8 @@
 
         <!-- Accept or Cancel -->
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="okButton" IsDefault="True">OK</Button>
-            <Button x:Name="cancelButton" IsCancel="True">Cancel</Button>
+            <Button x:Name="okButton" Click="okButton_Click" IsDefault="True">OK</Button>
+            <Button x:Name="cancelButton" Click="cancelButton_Click" IsCancel="True">Cancel</Button>
         </StackPanel>
 
     </Grid>
