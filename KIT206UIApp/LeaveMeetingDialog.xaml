@@ -44,7 +44,7 @@
         <Label VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Column="0" Grid.Row="0"  Margin="0,3,5,5">Are you sure you would like to leave meeting x?</Label>
 
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" Margin="60,0,0,50" Grid.RowSpan="2" Width="160">
-            <Button x:Name="okButton" IsDefault="True" Click="LeaveMeeting1">Leave</Button>
+            <Button x:Name="okButton" IsDefault="True" >Leave</Button>
             <Button x:Name="cancelButton" IsCancel="True">Cancel</Button>
         </StackPanel>
     </Grid>

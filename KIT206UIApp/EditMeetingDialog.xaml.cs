@@ -22,10 +22,19 @@ namespace KIT206.DatabaseApp.UI
         public EditMeetingDialog(Meeting meeting)
         {
             InitializeComponent();
-            roomTextBox.Text = meeting.Room;
             startTextBox.Text = meeting.Start.ToString();
             endTextBox.Text = meeting.End.ToString();
             daySelector.SelectedIndex = meeting.Day.GetHashCode();
+        }
+
+        private void okButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }
