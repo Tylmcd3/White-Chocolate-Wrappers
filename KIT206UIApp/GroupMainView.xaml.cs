@@ -16,41 +16,24 @@ using System.Windows.Shapes;
 namespace KIT206.DatabaseApp.UI
 {
     /// <summary>
-    /// Interaction logic for groupView.xaml
+    /// Interaction logic for GroupMainView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GroupMainView : UserControl
     {
-
+        MainWindow window;
         private StudentViewController student;
         private StudentGroupViewController group;
-        public MainWindow()
+        public GroupMainView(MainWindow win, StudentViewController stu, StudentGroupViewController gru)
         {
             InitializeComponent();
-            student = new StudentViewController();
-            group = new StudentGroupViewController();
-
-            int StudentID = 123475;
-            student.SelectStudent(StudentID);
-            this.DataContext = group.FindStudentGroup(student.CurrentStudent.StudentGroup);
-            group.SelectGroup(student.CurrentStudent.StudentGroup);
-
-            if (student.CurrentStudent.StudentGroup == 0) //Change this to == for add group view to pop up
-            {
-                NoGroupMainView ng = new NoGroupMainView(this);
-                Overlay.Content = ng;
-            }
-            else
-            {
-                GroupMainView ng = new GroupMainView(this, student, group);
-                Overlay.Content = ng;
-            }
+            window = win;
+            student = stu;
+            group = gru;
+            window.ClassName.Text = group.Group_Class.GroupClass.ToString(); //doesnt work if not in a group
+            GroupMembers.ItemsSource = student.FindStudentsByGroup();
+            MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
+            
         }
-
-        public void setClass(string ClassString)
-        {
-            ClassName.Text = ClassString;
-        }
-
         private void Add_Meeting(object sender, RoutedEventArgs e)
         {
             //Then need to grab data from dialog box and use addmeeting on controller
@@ -61,13 +44,13 @@ namespace KIT206.DatabaseApp.UI
         private void Edit_Meeting(object sender, RoutedEventArgs e)
         {
             //Then need to grab data from dialog box and use Editmeeting on controller
-            //if(MeetingsList.SelectedIndex >= 0)
-            //{
-            //    Meeting toEdit = MeetingsList.SelectedItem as Meeting;
+            if (MeetingsList.SelectedIndex >= 0)
+            {
+                Meeting toEdit = MeetingsList.SelectedItem as Meeting;
 
-            //    EditMeetingDialog editMeetingDialog = new EditMeetingDialog(toEdit);
-            //    editMeetingDialog.ShowDialog();
-            //}
+                EditMeetingDialog editMeetingDialog = new EditMeetingDialog(toEdit);
+                editMeetingDialog.ShowDialog();
+            }
 
         }
 
@@ -106,6 +89,5 @@ namespace KIT206.DatabaseApp.UI
             //EditMeetingBtn.IsEnabled = true;
             //CancelMeetingBtn.IsEnabled = true;  
         }
-       
     }
 }

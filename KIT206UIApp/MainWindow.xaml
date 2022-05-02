@@ -67,11 +67,12 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="27*"/>
-            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition Width="67*"/>
+            <ColumnDefinition Width="292*"/>
         </Grid.ColumnDefinitions>
-        <Frame Background="White" NavigationUIVisibility="Hidden"/>
-        <Grid Background="#FFF5AE69">
+        <Frame Background="White" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
+        <Grid Background="#FFF5AE69" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*"/>
                 <RowDefinition Height="1*"/>
@@ -100,115 +101,10 @@
             </StackPanel>
 
 
+
         </Grid>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="5*"/>
-            </Grid.RowDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="0.4*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Name ="GroupName" Grid.Row="0" FontWeight="Bold"
-                           TextAlignment="Center" FontSize="28" 
-                           Text="This is my cool group"
-                           Margin="10,0,0,0"
-                           TextWrapping="Wrap" Grid.ColumnSpan="1" 
-                           VerticalAlignment="Center" 
-                           HorizontalAlignment="Center">
-
-                    <TextBlock.Effect>
-                        <DropShadowEffect BlurRadius="10" Opacity="0.25"/>
-                    </TextBlock.Effect>
-                </TextBlock>
-                <Grid Grid.Column="1" Margin="0,0,0,5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Button Grid.Row="0" Content="Edit Group" Style="{DynamicResource RoundButton}" Margin="0,0,3,0"/>
-                    <Button Grid.Row="1" Content="Leave Group" Style="{DynamicResource RoundButton}" Margin="0,0,3,0"/>
-                </Grid>
-
-
-                <!--<Button Grid.Row="0" Content="Leave" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}" Grid.Column="1" Width="50"/>-->
-                <!--<Button Grid.Row="0" Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}" Margin="0,2,52,0" Grid.Column="1" Width="50"/>-->
-                <Separator VerticalAlignment="Bottom" Grid.ColumnSpan="2" Margin="0,0,0,2"/>
-            </Grid>
-
-            <Grid Grid.Column="1" Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="0.4*"/>
-                </Grid.ColumnDefinitions>
-
-                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1"/>
-                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0"/>
-
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="Members" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
-                    <Separator Background="Black"/>
-                    <ListBox x:Name="GroupMembers" Grid.Row="1" Style="{StaticResource GeneralList}" Background="White">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding}" FontSize="14"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
-
-                <StackPanel Grid.Column="0">
-                    <TextBlock Grid.Row="0" Text="Meetings" HorizontalAlignment="Center" FontSize="20" FontWeight="SemiBold"/>
-                    <Separator Background="Black"/>
-                    <ListBox x:Name="MeetingsList" Style="{StaticResource GeneralList}" Background="White" LostFocus="List_Unselected_Event" GotFocus="List_GotFocus_Event">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <WrapPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding}" FontSize="18"/>
-                                </WrapPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button x:Name="AddMeetingBtn" Style="{DynamicResource RoundButton}" Grid.Column="0" Content="Add" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Click="Add_Meeting" />
-                        <Button x:Name="EditMeetingBtn" Style="{DynamicResource RoundButton}" Grid.Column="1" Content="Edit" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Click="Edit_Meeting" />
-                        <Button x:Name="CancelMeetingBtn" Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
-                    </Grid>
-
-                    <!--<ListBox>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="1*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Button Style="{DynamicResource RoundButton}" Grid.Column="0" Content="Add" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
-                                        <Button Style="{DynamicResource RoundButton}" Grid.Column="1" Content="Edit"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center"/>
-                                        <Button Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
-                                        
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>-->
-
-                </StackPanel>
-
-            </Grid>
-        </Grid>
+        <Frame Grid.Column="0" Grid.ColumnSpan="3" Name="Overlay" Content="hello"/>
 
 
     </Grid>
