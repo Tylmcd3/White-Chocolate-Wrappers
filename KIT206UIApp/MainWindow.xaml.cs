@@ -64,6 +64,13 @@ namespace KIT206.DatabaseApp.UI
 
         }
 
+        private void Leave_Meeting(object sender, RoutedEventArgs e)
+        {
+            //Then need to grab data from dialog box and use addmeeting on controller
+            LeaveMeetingDialog LeaveMeetingDialog = new LeaveMeetingDialog();
+            LeaveMeetingDialog.ShowDialog();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
