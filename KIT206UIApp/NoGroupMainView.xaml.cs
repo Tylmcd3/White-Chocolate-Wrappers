@@ -29,10 +29,7 @@ namespace KIT206.DatabaseApp.UI
             window = win;
             student = stu;
             group = gro;
-        }
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            window.ClassName.Text = "You need to join a group before you can see your class details.";
         }
         private void Add_Meeting(object sender, RoutedEventArgs e)
         {
@@ -53,51 +50,7 @@ namespace KIT206.DatabaseApp.UI
         private void NowToMain(object sender, RoutedEventArgs e)
         {
             group.SelectGroup(student.CurrentStudent.StudentGroup);
-            window.Overlay.Content = new GroupMainView(window, student, group );
-        }
-
-        private void Edit_Meeting(object sender, RoutedEventArgs e)
-        {
-            //Then need to grab data from dialog box and use Editmeeting on controller
-            if (MeetingsList.SelectedIndex >= 0)
-            {
-                Meeting toEdit = MeetingsList.SelectedItem as Meeting;
-
-                EditMeetingDialog editMeetingDialog = new EditMeetingDialog(toEdit);
-                editMeetingDialog.ShowDialog();
-            }
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void GoToEditGroup(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void List_Unselected_Event(object sender, RoutedEventArgs e)
-        {
-            //EditMeetingBtn.IsEnabled = false;
-            //CancelMeetingBtn.IsEnabled = false;
-        }
-
-        private void List_GotFocus_Event(object sender, RoutedEventArgs e)
-        {
-            //EditMeetingBtn.IsEnabled = true;
-            //CancelMeetingBtn.IsEnabled = true;  
+            window.Overlay.Content = new GroupMainView(window, student, group);
         }
     }
 }

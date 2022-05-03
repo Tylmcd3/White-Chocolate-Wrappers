@@ -28,7 +28,7 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-            int StudentID = 123460;
+            int StudentID = 123474;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
             BindStudentDetails();
@@ -40,7 +40,7 @@ namespace KIT206.DatabaseApp.UI
 
         public void selectMainView()
         {
-            if (student.CurrentStudent.StudentGroup == 0) //Change this to == for add group view to pop up
+            if (student.CurrentStudent.StudentGroup <= 0) //Change this to == for add group view to pop up
             {
                 NoGroupMainView ng = new NoGroupMainView(this, student, group);
                 Overlay.Content = ng;
@@ -59,10 +59,12 @@ namespace KIT206.DatabaseApp.UI
 
         public void BindStudentDetails()
         {
-            StudentDetails.Text = "Name: " + student.CurrentStudent.Title + " " + student.CurrentStudent.FirstName + " " +
-                student.CurrentStudent.LastName + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group ID: "
+            string Name, Id, GroupName, Campus, Email, Category, Phone;
+
+
+            StudentDetails.Text = "Name: " + Name + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group Name: "
                 + student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " +
-                student.CurrentStudent.Email + "\n" + "Catagory: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
+                student.CurrentStudent.Email + "\n" + "Category: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
                 student.CurrentStudent.Phone;
         }
 

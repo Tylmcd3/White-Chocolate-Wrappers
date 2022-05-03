@@ -8,6 +8,8 @@
       d:DesignHeight="450" d:DesignWidth="800"
       MaxWidth="1200"
       MaxHeight="800"
+      MinWidth="800"
+      MinHeight="450"
       Title="MainWindow" Background="#f6f7f8">
 
 
@@ -71,11 +73,12 @@
             <ColumnDefinition Width="73*"/>
         </Grid.ColumnDefinitions>
         <Frame x:Name="Main" Background="White" NavigationUIVisibility="Hidden"/>
+        <Frame Grid.Column="0" Grid.ColumnSpan="3" x:Name="Overlay" Content="" NavigationUIVisibility="Hidden" Navigated="Overlay_Navigated"/>
         <Grid Background="#FFF5AE69">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*" MinHeight="120"/>
             </Grid.RowDefinitions>
 
             <!-- Student Details-->
@@ -93,13 +96,13 @@
 
             <Separator Grid.Row="1" Background="Black" VerticalAlignment="Bottom"/>
 
-            
+
             <StackPanel Grid.Row="2" HorizontalAlignment="Center">
                 <TextBlock Text="Class Details" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center"/>
 
                 <Separator Background="Black"/>
-                <TextBlock x:Name ="ClassName" Text="{Binding}" FontSize="18"></TextBlock>
-                
+                <TextBlock x:Name ="ClassName" Text="{Binding}" FontSize="18" TextAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+
                 <Button Visibility="Collapsed" Click="Add_Class" x:Name="classDetailsBtn" Margin="0" Style="{DynamicResource RoundButton}" Padding="8" HorizontalAlignment="Center">Add Class Details</Button>
 
             </StackPanel>
@@ -107,8 +110,6 @@
 
 
         </Grid>
-
-        <Frame Grid.Column="0" Grid.ColumnSpan="3" Name="Overlay" Content="" NavigationUIVisibility="Hidden" Navigated="Overlay_Navigated"/>
 
 
     </Grid>
