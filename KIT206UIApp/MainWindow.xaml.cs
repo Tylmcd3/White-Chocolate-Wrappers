@@ -31,7 +31,7 @@ namespace KIT206.DatabaseApp.UI
             int StudentID = 123460;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
-            StudentDeets();
+            StudentDetails();
 
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
@@ -57,7 +57,7 @@ namespace KIT206.DatabaseApp.UI
             ClassName.Text = ClassString;
         }
 
-        public void StudentDeets()
+        public void StudentDetails()
         {
             ShtudentDetails.Text = "Name: " + student.CurrentStudent.Title + " " + student.CurrentStudent.FirstName + " " +
                 student.CurrentStudent.LastName + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group ID: "
