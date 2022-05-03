@@ -80,7 +80,8 @@
             </Grid.RowDefinitions>
 
             <!-- Student Details-->
-            <TextBlock Grid.Row="0" Text="Firstname Lastname" FontSize="22" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock x:Name="StudentName" Text="{Binding}" Grid.Row="0" FontSize="22" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">
                 <TextBlock FontSize="20" TextAlignment="Center" FontWeight="SemiBold">Student Details</TextBlock>
                 <ListBox Style="{StaticResource GeneralList}" Background="#00000000">
@@ -90,7 +91,7 @@
 
             <Separator Grid.Row="1" Background="Black" VerticalAlignment="Bottom"/>
 
-
+            
             <StackPanel Grid.Row="2" HorizontalAlignment="Stretch">
                 <TextBlock Text="Class Details" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center"/>
                 <ListBox Style="{StaticResource GeneralList}" Background="#00000000" SelectionChanged="ListBox_SelectionChanged" Margin="2,2,2,2">
@@ -104,7 +105,7 @@
 
         </Grid>
 
-        <Frame Grid.Column="0" Grid.ColumnSpan="3" Name="Overlay" Content="hello" NavigationUIVisibility="Hidden"/>
+        <Frame Grid.Column="0" Grid.ColumnSpan="3" Name="Overlay" Content="hello" NavigationUIVisibility="Hidden" Navigated="Overlay_Navigated"/>
 
 
     </Grid>

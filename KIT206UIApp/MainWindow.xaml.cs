@@ -28,8 +28,9 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-            int StudentID = 123475;
+            int StudentID = 123460;
             student.SelectStudent(StudentID);
+            StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
 
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
@@ -117,6 +118,10 @@ namespace KIT206.DatabaseApp.UI
             //EditMeetingBtn.IsEnabled = true;
             //CancelMeetingBtn.IsEnabled = true;  
         }
-       
+
+        private void Overlay_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
     }
 }
