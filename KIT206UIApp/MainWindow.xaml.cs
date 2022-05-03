@@ -65,32 +65,6 @@ namespace KIT206.DatabaseApp.UI
                 student.CurrentStudent.Email + "\n" + "Catagory: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
                 student.CurrentStudent.Phone;
         }
-        private void Add_Meeting(object sender, RoutedEventArgs e)
-        {
-            //Then need to grab data from dialog box and use addmeeting on controller
-            AddMeetingDialog addMeetingDialog = new AddMeetingDialog();
-            addMeetingDialog.ShowDialog();
-        }
-
-        private void Edit_Meeting(object sender, RoutedEventArgs e)
-        {
-            //Then need to grab data from dialog box and use Editmeeting on controller
-            //if(MeetingsList.SelectedIndex >= 0)
-            //{
-            //    Meeting toEdit = MeetingsList.SelectedItem as Meeting;
-
-            //    EditMeetingDialog editMeetingDialog = new EditMeetingDialog(toEdit);
-            //    editMeetingDialog.ShowDialog();
-            //}
-
-        }
-
-        private void Cancel_Meeting(object sender, RoutedEventArgs e)
-        {
-            //Then need to grab data from dialog box and use addmeeting on controller
-            CancelMeetingDialog CancelMeetingDialog = new CancelMeetingDialog();
-            CancelMeetingDialog.ShowDialog();
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -114,7 +88,7 @@ namespace KIT206.DatabaseApp.UI
 
         private void GoToEditGroup(object sender, RoutedEventArgs e)
         {
-            Main.Content = new AddGroup();
+            //Main.Content = new AddGroup();
         }
         private void List_Unselected_Event(object sender, RoutedEventArgs e)
         {

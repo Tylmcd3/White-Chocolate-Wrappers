@@ -115,7 +115,7 @@ namespace KIT206.DatabaseApp
                     highest = meeting.MeetingID;
                 }
             }
-            return highest++;
+            return ++highest;
         }
 
     }

@@ -100,8 +100,16 @@ namespace KIT206.DatabaseApp.UI
         {
             if (MeetingsList.SelectedIndex >= 0)
             { 
-            CancelMeetingDialog CancelMeetingDialog = new CancelMeetingDialog();
-            CancelMeetingDialog.ShowDialog();
+                Meeting toCancel = MeetingsList.SelectedItem as Meeting;
+
+                CancelMeetingDialog cancelMeetingDialog = new CancelMeetingDialog(toCancel);
+
+                bool? result = cancelMeetingDialog.ShowDialog();
+
+                if(result == true)
+                {
+                    group.Group_Meetings.CancelMeeting(toCancel.MeetingID);
+                }
             }
         }
 

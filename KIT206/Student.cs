@@ -103,7 +103,7 @@ namespace KIT206
         ///<summary>
 		///Creates a new Student Object given ID and name
 		///</summary>
-        public Student(int id, string firstName, string lastName )
+        public Student(int id, string firstName, string lastName)
 		{
 			_studentID = id;
 			_firstName = firstName;
