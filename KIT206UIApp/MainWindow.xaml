@@ -86,6 +86,7 @@
                 <TextBlock FontSize="20" TextAlignment="Center" FontWeight="SemiBold">Student Details</TextBlock>
                 <ListBox Style="{StaticResource GeneralList}" Background="#00000000">
                     <Separator Background="Black"/>
+                    <TextBlock x:Name="ShtudentDetails" Text="{Binding}" FontSize="18" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                 </ListBox>
             </StackPanel>
 

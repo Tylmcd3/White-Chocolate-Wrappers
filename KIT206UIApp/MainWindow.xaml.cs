@@ -31,7 +31,7 @@ namespace KIT206.DatabaseApp.UI
             int StudentID = 123460;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
-
+            StudentDeets();
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
             selectMainView();
@@ -54,6 +54,15 @@ namespace KIT206.DatabaseApp.UI
         public void setClass(string ClassString)
         {
             ClassName.Text = ClassString;
+        }
+
+        public void StudentDeets()
+        {
+            ShtudentDetails.Text = "Name: " + student.CurrentStudent.Title + " " + student.CurrentStudent.FirstName + " " + 
+                student.CurrentStudent.LastName + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group ID: " 
+                + student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " + 
+                student.CurrentStudent.Email + "\n" + "Catagory: " + student.CurrentStudent.Category + "\n" + "Phone No: " + 
+                student.CurrentStudent.Phone;
         }
 
         private void Add_Meeting(object sender, RoutedEventArgs e)
@@ -123,5 +132,6 @@ namespace KIT206.DatabaseApp.UI
         {
 
         }
+
     }
 }
