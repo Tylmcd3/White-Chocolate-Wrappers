@@ -28,12 +28,24 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-            int StudentID = 123460;
+            int StudentID = 123466;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
             BindStudentDetails();
 
             group.SelectGroup(student.CurrentStudent.StudentGroup);
+
+
+            var image = new Image();
+            var fullFilePath = $"{student.CurrentStudent.Photo}";
+
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+            bitmap.EndInit();
+
+            StudentImage.Source = bitmap;
+
 
             selectMainView();
         }
