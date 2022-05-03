@@ -40,7 +40,11 @@ namespace KIT206.DatabaseApp
                 }
                 else
                 {
-                    students.Add(new Student((int)rdr[0], (string)rdr[1], (string)rdr[2], (rdr[3].GetType().Equals(typeof(int))) ? (int)rdr[3] : -1));
+                    students.Add(new Student(
+                        (int)rdr[0], 
+                        (string)rdr[1], 
+                        (string)rdr[2], 
+                        (rdr[3].GetType().Equals(typeof(int))) ? (int)rdr[3] : -1));
                 }
             }
 
