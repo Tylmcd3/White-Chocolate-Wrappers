@@ -28,10 +28,10 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-            int StudentID = 123460;
+            int StudentID = 123475;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
-            StudentDetails();
+            BindStudentDetails();
 
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
@@ -57,9 +57,9 @@ namespace KIT206.DatabaseApp.UI
             ClassName.Text = ClassString;
         }
 
-        public void StudentDetails()
+        public void BindStudentDetails()
         {
-            ShtudentDetails.Text = "Name: " + student.CurrentStudent.Title + " " + student.CurrentStudent.FirstName + " " +
+            StudentDetails.Text = "Name: " + student.CurrentStudent.Title + " " + student.CurrentStudent.FirstName + " " +
                 student.CurrentStudent.LastName + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group ID: "
                 + student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " +
                 student.CurrentStudent.Email + "\n" + "Catagory: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
