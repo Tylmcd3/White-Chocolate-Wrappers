@@ -102,7 +102,7 @@ namespace KIT206.DatabaseApp
                     highest = group.GroupID;
                 }
             }
-            return highest++;
+            return ++highest;
         }
     }
 }

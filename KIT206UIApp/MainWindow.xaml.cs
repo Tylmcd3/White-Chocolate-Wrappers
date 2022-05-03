@@ -28,15 +28,20 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-
             int StudentID = 123460;
             student.SelectStudent(StudentID);
-            this.DataContext = group.FindStudentGroup(student.CurrentStudent.StudentGroup);
+            StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
+
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
-            if (student.CurrentStudent.StudentGroup == -1) //Change this to == for add group view to pop up
+            selectMainView();
+        }
+
+        public void selectMainView()
+        {
+            if (student.CurrentStudent.StudentGroup == 0) //Change this to == for add group view to pop up
             {
-                NoGroupMainView ng = new NoGroupMainView(this);
+                NoGroupMainView ng = new NoGroupMainView(this, student, group);
                 Overlay.Content = ng;
             }
             else
@@ -113,6 +118,10 @@ namespace KIT206.DatabaseApp.UI
             //EditMeetingBtn.IsEnabled = true;
             //CancelMeetingBtn.IsEnabled = true;  
         }
-       
+
+        private void Overlay_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
     }
 }

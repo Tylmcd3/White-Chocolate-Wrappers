@@ -147,25 +147,6 @@
                         <Button x:Name="CancelMeetingBtn" Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
                     </Grid>
 
-                    <!--<ListBox>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="1*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Button Style="{DynamicResource RoundButton}" Grid.Column="0" Content="Add" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
-                                        <Button Style="{DynamicResource RoundButton}" Grid.Column="1" Content="Edit"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center"/>
-                                        <Button Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel"  VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
-                                        
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>-->
-
                 </StackPanel>
 
             </Grid>

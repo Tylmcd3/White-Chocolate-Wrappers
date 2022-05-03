@@ -30,7 +30,8 @@ namespace KIT206.DatabaseApp.UI
             window = win;
             student = stu;
             group = gru;
-            window.ClassName.Text = group.Group_Class.GroupClass.ToString(); //doesnt work if not in a group
+            if (group.Group_Class.GroupClass != null)
+                window.ClassName.Text = group.Group_Class.GroupClass.ToString();//doesnt work if not in a group
             GroupMembers.ItemsSource = student.FindStudentsByGroup();
             //MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
             testList = new MeetingViewController(5);
