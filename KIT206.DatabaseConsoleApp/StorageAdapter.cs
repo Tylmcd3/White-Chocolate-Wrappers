@@ -36,7 +36,7 @@ namespace KIT206.DatabaseApp
                         Enum.Parse<Campus>((string)rdr[5]),
                         (string)rdr[7],
                         Enum.Parse<Category>((string)rdr[9]),
-                        (rdr[8].GetType().Equals(typeof(string))) ? (string)rdr[8] : ""));
+                        (rdr[8].GetType().Equals(typeof(byte[]))) ? (Encoding.UTF8.GetString((byte[])rdr[8])) : "")); 
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace KIT206.DatabaseApp
                         Enum.Parse<Campus>((string)rdr[5]),
                         (string)rdr[7],
                         Enum.Parse<Category>((string)rdr[9]),
-                        (string)rdr[8]);
+                        (rdr[8].GetType().Equals(typeof(byte[]))) ? (Encoding.UTF8.GetString((byte[])rdr[8])) : "");
                 }
                 else
                 {

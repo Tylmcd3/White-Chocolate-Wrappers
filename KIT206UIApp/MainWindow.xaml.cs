@@ -28,28 +28,36 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-            int StudentID = 123466;
+            int StudentID = 123460;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
             BindStudentDetails();
 
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
-
-            var image = new Image();
-            var fullFilePath = $"{student.CurrentStudent.Photo}";
-
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-            bitmap.EndInit();
-
-            StudentImage.Source = bitmap;
-
+            BindStudentImage();
 
             selectMainView();
         }
 
+        public void BindStudentImage()
+        {
+            var image = new Image();
+            string path = student.CurrentStudent.Photo.Remove(0, 1);
+            path = path.Remove(path.Length - 1, 1);
+            if(path.Length < 100)
+            {
+                var fullFilePath = path;
+
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                bitmap.EndInit();
+
+                StudentImage.Source = bitmap;
+            }
+
+        }
         public void selectMainView()
         {
             if (student.CurrentStudent.StudentGroup == 0) //Change this to == for add group view to pop up

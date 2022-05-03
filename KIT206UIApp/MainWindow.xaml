@@ -73,7 +73,7 @@
         <Frame x:Name="Main" Background="White" NavigationUIVisibility="Hidden"/>
         <Grid Background="#FFF5AE69">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.2*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
@@ -84,7 +84,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="StudentImage" Source="{Binding}"></Image>
+                <Image x:Name="StudentImage" Source="{Binding}" Margin="3"></Image>
                 <TextBlock x:Name="StudentName" Text="{Binding}" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
             </Grid>
