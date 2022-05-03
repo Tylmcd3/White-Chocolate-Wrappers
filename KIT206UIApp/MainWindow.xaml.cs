@@ -31,6 +31,7 @@ namespace KIT206.DatabaseApp.UI
             int StudentID = 123460;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
+            StudentDeets();
 
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
@@ -56,6 +57,14 @@ namespace KIT206.DatabaseApp.UI
             ClassName.Text = ClassString;
         }
 
+        public void StudentDeets()
+        {
+            ShtudentDetails.Text = "Name: " + student.CurrentStudent.Title + " " + student.CurrentStudent.FirstName + " " +
+                student.CurrentStudent.LastName + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group ID: "
+                + student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " +
+                student.CurrentStudent.Email + "\n" + "Catagory: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
+                student.CurrentStudent.Phone;
+        }
         private void Add_Meeting(object sender, RoutedEventArgs e)
         {
             //Then need to grab data from dialog box and use addmeeting on controller
