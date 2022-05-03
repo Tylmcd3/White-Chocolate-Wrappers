@@ -24,7 +24,7 @@ namespace KIT206.DatabaseApp.UI
 
         public void SearchStudents(int id)
         {
-            var selected = from Student s in students
+            var selected = from Student s in Students
                            where id == s.StudentID
                            select s;
             viewableStudents.Clear();
