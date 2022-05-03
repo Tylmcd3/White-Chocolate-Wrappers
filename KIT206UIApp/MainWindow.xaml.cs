@@ -73,14 +73,6 @@ namespace KIT206.DatabaseApp.UI
             EditStudentDialog editStudentDialog = new EditStudentDialog();
             editStudentDialog.ShowDialog();
         }
-
-        private void Cancel_Meeting(object sender, RoutedEventArgs e)
-        {
-            //Then need to grab data from dialog box and use addmeeting on controller
-            CancelMeetingDialog CancelMeetingDialog = new CancelMeetingDialog();
-            CancelMeetingDialog.ShowDialog();
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
