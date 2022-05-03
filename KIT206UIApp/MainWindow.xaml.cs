@@ -66,9 +66,7 @@ namespace KIT206.DatabaseApp.UI
                 student.CurrentStudent.Phone;
         }
 
-        }
-
-        private void ToEditShtudent(object sender, RoutedEventArgs e)
+        private void ToEditStudent(object sender, RoutedEventArgs e)
         {
             EditStudentDialog editStudentDialog = new EditStudentDialog();
             editStudentDialog.ShowDialog();
