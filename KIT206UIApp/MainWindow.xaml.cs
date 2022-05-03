@@ -66,12 +66,30 @@ namespace KIT206.DatabaseApp.UI
                 student.CurrentStudent.Phone;
         }
 
-        }
+        
 
-        private void ToEditShtudent(object sender, RoutedEventArgs e)
+        private void ToEditStudent(object sender, RoutedEventArgs e)
         {
-            EditStudentDialog editStudentDialog = new EditStudentDialog();
-            editStudentDialog.ShowDialog();
+           Student theStudent = student.CurrentStudent;
+           EditStudentDialog editStudentDialog = new EditStudentDialog(theStudent);
+           editStudentDialog.ShowDialog();
+  
+           Campus campus;
+           Category category;
+           string title, email, phone;
+
+           ComboBoxItem selectedCampus = (ComboBoxItem)editStudentDialog.campusSelector.SelectedItem;
+           campus = Enum.Parse<Campus>(selectedCampus.Content.ToString());
+
+           ComboBoxItem selectedCategory = (ComboBoxItem)editStudentDialog.categorySelector.SelectedItem;
+           category = Enum.Parse<Category>(selectedCategory.Content.ToString());
+
+            title = editStudentDialog.titleBox.Text;
+            email = editStudentDialog.emailBox.Text;
+            phone = editStudentDialog.phoneBox.Text;
+
+            student.AddStudentDetails(title, campus, email, category, phone);
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
