@@ -89,6 +89,7 @@
                     <TextBlock x:Name="StudentDetails" Text="{Binding}" FontSize="18" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                 </ListBox>
             </StackPanel>
+            <Button Content="Edit" Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource RoundButton}" Click="ToEditShtudent"/>
 
             <Separator Grid.Row="1" Background="Black" VerticalAlignment="Bottom"/>
 

@@ -69,13 +69,14 @@ namespace KIT206.DatabaseApp
         ///<summary>
         ///Creates new StudentGroup and adds to database
         ///</summary>
-        public void AddGroup(string name)
+        public int AddGroup(string name)
         {
             int id = GenerateID();
             StudentGroup group = new StudentGroup(id, name);
             groups.Add(group);
             //Update database
             StorageAdapter.AddGroup(group);
+            return id;
 
         }
         ///<summary>

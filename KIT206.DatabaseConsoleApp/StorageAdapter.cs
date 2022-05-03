@@ -30,7 +30,7 @@ namespace KIT206.DatabaseApp
                         (int)rdr[0],
                         (string)rdr[1],
                         (string)rdr[2],
-                        (rdr[3].GetType().Equals(1.GetType())) ? (int)rdr[3] : -1,
+                        (rdr[3].GetType().Equals(typeof(int))) ? (int)rdr[3] : -1,
                         (string)rdr[4],
                         (string)rdr[6],
                         Enum.Parse<Campus>((string)rdr[5]),
@@ -40,7 +40,7 @@ namespace KIT206.DatabaseApp
                 }
                 else
                 {
-                    students.Add(new Student((int)rdr[0], (string)rdr[1], (string)rdr[2]));
+                    students.Add(new Student((int)rdr[0], (string)rdr[1], (string)rdr[2], (rdr[3].GetType().Equals(typeof(int))) ? (int)rdr[3] : -1));
                 }
             }
 
@@ -101,7 +101,7 @@ namespace KIT206.DatabaseApp
                     student = new Student(
                         (int)rdr[0],
                         (string)rdr[1], (string)rdr[2],
-                        (int)rdr[3],
+                        (rdr[3].GetType().Equals(typeof(int))) ? (int)rdr[3] : -1,
                         (string)rdr[4],
                         (string)rdr[6],
                         Enum.Parse<Campus>((string)rdr[5]),
@@ -110,7 +110,7 @@ namespace KIT206.DatabaseApp
                 }
                 else
                 {
-                    student = new Student((int)rdr[0], (string)rdr[1], (string)rdr[2]);
+                    student = new Student((int)rdr[0], (string)rdr[1], (string)rdr[2], (rdr[3].GetType().Equals(typeof(int))) ? (int)rdr[3] : -1);
                 }
             }
             MySQLConnector.DBClose(rdr, conn);

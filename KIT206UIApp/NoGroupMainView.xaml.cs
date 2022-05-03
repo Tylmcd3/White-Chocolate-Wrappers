@@ -43,9 +43,9 @@ namespace KIT206.DatabaseApp.UI
         {
             AddGroupDialog addGroupDialog = new AddGroupDialog(group);
             addGroupDialog.ShowDialog();
-            if(addGroupDialog.groupObject != null)
+            if(addGroupDialog.groupID != -1)
             {
-                student.EditStudentGroupMembership(addGroupDialog.groupObject.GroupID);
+                student.EditStudentGroupMembership(addGroupDialog.groupID);
                 NowToMain(sender,e);
             }
 

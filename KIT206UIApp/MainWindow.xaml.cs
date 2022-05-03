@@ -28,7 +28,7 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-            int StudentID = 420;
+            int StudentID = 123460;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
             BindStudentDetails();
@@ -66,6 +66,11 @@ namespace KIT206.DatabaseApp.UI
                 student.CurrentStudent.Phone;
         }
 
+        private void ToEditStudent(object sender, RoutedEventArgs e)
+        {
+            EditStudentDialog editStudentDialog = new EditStudentDialog();
+            editStudentDialog.ShowDialog();
+        }
         private void Add_Class(object sender, RoutedEventArgs e)
         {
             AddClassDialog addClassDialog = new AddClassDialog();
