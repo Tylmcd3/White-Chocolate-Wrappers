@@ -403,7 +403,7 @@ namespace KIT206.DatabaseApp
         public static List<Class> LoadClasses()
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            List<Class> classes = null;
+            List<Class> classes = new List<Class>();
             string sqlcmd = "SELECT * FROM `class`";
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);

@@ -75,7 +75,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
 
             <!-- Student Details-->
@@ -93,13 +93,14 @@
             <Separator Grid.Row="1" Background="Black" VerticalAlignment="Bottom"/>
 
             
-            <StackPanel Grid.Row="2" HorizontalAlignment="Stretch">
+            <StackPanel Grid.Row="2" HorizontalAlignment="Center">
                 <TextBlock Text="Class Details" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center"/>
-                <ListBox Style="{StaticResource GeneralList}" Background="#00000000" SelectionChanged="ListBox_SelectionChanged" Margin="2,2,2,2">
-                    <Separator Background="Black"/>
-                    <TextBlock x:Name ="ClassName" Text="{Binding}" FontSize="18"></TextBlock>
-                    <WindowsFormsHost Height="100" Width="100"/>
-                </ListBox>
+
+                <Separator Background="Black"/>
+                <TextBlock x:Name ="ClassName" Text="{Binding}" FontSize="18"></TextBlock>
+                
+                <Button Visibility="Collapsed" Click="Add_Class" x:Name="classDetailsBtn" Margin="0" Style="{DynamicResource RoundButton}" Padding="8" HorizontalAlignment="Center">Add Class Details</Button>
+
             </StackPanel>
 
 

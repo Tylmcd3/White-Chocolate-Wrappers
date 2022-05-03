@@ -28,7 +28,7 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-            int StudentID = 123475;
+            int StudentID = 420;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
             BindStudentDetails();
@@ -66,26 +66,32 @@ namespace KIT206.DatabaseApp.UI
                 student.CurrentStudent.Phone;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Add_Class(object sender, RoutedEventArgs e)
         {
+            AddClassDialog addClassDialog = new AddClassDialog();
+            bool? result = addClassDialog.ShowDialog();
 
+            //Only process if they pressed OK
+            //will also need to do some form of form validation on the dialog TODO
+            if (result == true)
+            {
+                int id;
+
+                Day day;
+                TimeSpan start, end;
+                string room;
+
+                ComboBoxItem selectedDay = (ComboBoxItem)addClassDialog.daySelector.SelectedItem;
+                day = Enum.Parse<Day>(selectedDay.Content.ToString());
+
+                room = addClassDialog.roomTextBox.Text;
+                start = TimeSpan.Parse(addClassDialog.startTextBox.Text);
+                end = TimeSpan.Parse(addClassDialog.endTextBox.Text);
+
+                id = group.Group_Class.AddClass(student.CurrentStudent.StudentGroup, day, start, end, room);
+                student.EditStudentGroupMembership(id);
+            }
         }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void GoToEditGroup(object sender, RoutedEventArgs e)
         {
             //Main.Content = new AddGroup();

@@ -18,12 +18,14 @@ namespace KIT206.DatabaseApp
         ///<summary>
         ///Creates new Class and adds to database
         ///</summary>
-        public void AddClass(int classID, int groupID, Day day, TimeSpan start, TimeSpan end, string room)
+        public int AddClass(int groupID, Day day, TimeSpan start, TimeSpan end, string room)
         {
+            int classID = GenerateID();
             Class toAdd = new Class(classID, groupID, day, start, end, room);
             groupClass = toAdd;
             //update database
             StorageAdapter.AddClass(toAdd);
+            return classID;
         }
         ///<summary>
         ///Generates Class ID iteratively
