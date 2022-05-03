@@ -28,7 +28,7 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-            int StudentID = 123475;
+            int StudentID = 123460;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
             BindStudentDetails();
@@ -64,6 +64,21 @@ namespace KIT206.DatabaseApp.UI
                 + student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " +
                 student.CurrentStudent.Email + "\n" + "Catagory: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
                 student.CurrentStudent.Phone;
+        }
+
+        }
+
+        private void ToEditShtudent(object sender, RoutedEventArgs e)
+        {
+            EditStudentDialog editStudentDialog = new EditStudentDialog();
+            editStudentDialog.ShowDialog();
+        }
+
+        private void Cancel_Meeting(object sender, RoutedEventArgs e)
+        {
+            //Then need to grab data from dialog box and use addmeeting on controller
+            CancelMeetingDialog CancelMeetingDialog = new CancelMeetingDialog();
+            CancelMeetingDialog.ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
