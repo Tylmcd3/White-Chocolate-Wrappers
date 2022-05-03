@@ -333,7 +333,7 @@ namespace KIT206.DatabaseApp
         public static void RemoveMeeting(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = $"DELETE * from `meeting` WHERE meeting_id = " + id;
+            string sqlcmd = $"DELETE from `meeting` WHERE meeting_id = " + id;
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             MySQLConnector.DBExecute(cmd, conn);

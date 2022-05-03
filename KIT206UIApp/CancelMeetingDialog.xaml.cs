@@ -19,9 +19,10 @@ namespace KIT206.DatabaseApp.UI
     /// </summary>
     public partial class CancelMeetingDialog : Window
     {
-        public CancelMeetingDialog()
+        public CancelMeetingDialog(Meeting meeting)
         {
             InitializeComponent();
+            dialogConfirmation.Content = $"Are you sure you want to cancel the meeting on {meeting.Day.ToString()}?";
         }
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
