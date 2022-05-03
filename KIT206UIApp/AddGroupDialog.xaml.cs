@@ -20,7 +20,7 @@ namespace KIT206.DatabaseApp.UI
     public partial class AddGroupDialog : Window
     {
         private StudentGroupViewController group;
-        public StudentGroup groupObject = null;
+        public int groupID = -1;
         public AddGroupDialog(StudentGroupViewController gro)
         {
             InitializeComponent();
@@ -46,8 +46,7 @@ namespace KIT206.DatabaseApp.UI
                     if (MessageBox.Show("This group doesnt exist, would you like to create this group?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         
-                        group.AddGroup(this.GroupNameTextBox.Text);
-                        groupObject = group.Groups.Find(group => group.GroupName == this.GroupNameTextBox.Text);
+                        groupID = group.AddGroup(this.GroupNameTextBox.Text);
                         this.Close();
                     }
                 }
@@ -56,8 +55,7 @@ namespace KIT206.DatabaseApp.UI
                     if (MessageBox.Show("A group exists with that name, would you like to join it?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
 
-                        group.AddGroup(this.GroupNameTextBox.Text);
-                        groupObject = group.Groups.Find(group => group.GroupName == this.GroupNameTextBox.Text);
+                        groupID = group.AddGroup(this.GroupNameTextBox.Text);
                         this.Close();
                     }
                 }
