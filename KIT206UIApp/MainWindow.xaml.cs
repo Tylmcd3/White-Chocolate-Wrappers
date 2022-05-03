@@ -112,10 +112,10 @@ namespace KIT206.DatabaseApp.UI
 
         }
 
-        private void GoToEditGroup(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new AddGroup();
-        }
+        //private void GoToEditGroup(object sender, RoutedEventArgs e)
+        //{
+        //    Main.Content = new AddGroup();
+        //}
         private void List_Unselected_Event(object sender, RoutedEventArgs e)
         {
             //EditMeetingBtn.IsEnabled = false;

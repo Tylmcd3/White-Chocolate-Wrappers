@@ -67,9 +67,8 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="41*"/>
-            <ColumnDefinition Width="67*"/>
-            <ColumnDefinition Width="292*"/>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="73*"/>
         </Grid.ColumnDefinitions>
         <Frame x:Name="Main" Background="White" NavigationUIVisibility="Hidden"/>
         <Grid Background="#FFF5AE69">
