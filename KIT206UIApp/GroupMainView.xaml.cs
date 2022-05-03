@@ -98,7 +98,11 @@ namespace KIT206.DatabaseApp.UI
 
         private void Cancel_Meeting(Object sender, RoutedEventArgs e)
         {
-
+            if (MeetingsList.SelectedIndex >= 0)
+            { 
+            CancelMeetingDialog CancelMeetingDialog = new CancelMeetingDialog();
+            CancelMeetingDialog.ShowDialog();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

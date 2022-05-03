@@ -144,7 +144,7 @@
                         </Grid.ColumnDefinitions>
                         <Button x:Name="AddMeetingBtn" Style="{DynamicResource RoundButton}" Grid.Column="0" Content="Add" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Click="Add_Meeting" />
                         <Button x:Name="EditMeetingBtn" Style="{DynamicResource RoundButton}" Grid.Column="1" Content="Edit" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Click="Edit_Meeting" />
-                        <Button x:Name="CancelMeetingBtn" Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" />
+                        <Button x:Name="CancelMeetingBtn" Style="{DynamicResource RoundButton}" Grid.Column="2" Content="Cancel" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Click="Cancel_Meeting"/>
                     </Grid>
 
                 </StackPanel>

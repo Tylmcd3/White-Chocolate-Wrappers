@@ -15,17 +15,23 @@ using System.Windows.Shapes;
 namespace KIT206.DatabaseApp.UI
 {
     /// <summary>
-    /// Interaction logic for LeaveMeetingDialog.xaml
+    /// Interaction logic for CancelMeetingDialog.xaml
     /// </summary>
-    public partial class LeaveMeetingDialog : Window
+    public partial class CancelMeetingDialog : Window
     {
-        public LeaveMeetingDialog()
+        public CancelMeetingDialog()
         {
             InitializeComponent();
         }
-        public void LeaveMeeting1(object sender, RoutedEventArgs e)
+        private void okButton_Click(object sender, RoutedEventArgs e)
         {
+            DialogResult = true;
+        }
 
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
+
 }
