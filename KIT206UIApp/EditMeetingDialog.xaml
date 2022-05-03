@@ -38,16 +38,15 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
         <!-- Left,Top,Right,Bottom margins-->
 
-        <Label Grid.Column="0" Grid.Row="1">Enter a Start Time:</Label>
+        <Label Grid.Column="0" Grid.Row="0">Enter a Start Time:</Label>
         <TextBox x:Name="startTextBox" Grid.Column="1" Grid.Row="1" />
 
-        <Label Grid.Column="0" Grid.Row="2">Enter a End Time:</Label>
+        <Label Grid.Column="0" Grid.Row="1">Enter a End Time:</Label>
         <TextBox x:Name="endTextBox" Grid.Column="1" Grid.Row="2" />
 
         <ComboBox x:Name="daySelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Top" >

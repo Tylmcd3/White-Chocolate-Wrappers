@@ -24,7 +24,8 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             startTextBox.Text = meeting.Start.ToString();
             endTextBox.Text = meeting.End.ToString();
-            daySelector.SelectedIndex = meeting.Day.GetHashCode();
+            //Starts indexing at 1 (??) so add 1
+            daySelector.SelectedIndex = (int)meeting.Day + 1; 
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)

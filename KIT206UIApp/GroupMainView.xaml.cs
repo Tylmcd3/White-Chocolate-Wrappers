@@ -23,6 +23,7 @@ namespace KIT206.DatabaseApp.UI
         MainWindow window;
         private StudentViewController student;
         private StudentGroupViewController group;
+        private MeetingViewController testList;
         public GroupMainView(MainWindow win, StudentViewController stu, StudentGroupViewController gru)
         {
             InitializeComponent();
@@ -31,7 +32,9 @@ namespace KIT206.DatabaseApp.UI
             group = gru;
             window.ClassName.Text = group.Group_Class.GroupClass.ToString(); //doesnt work if not in a group
             GroupMembers.ItemsSource = student.FindStudentsByGroup();
-            MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
+            //MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
+            testList = new MeetingViewController(5);
+            MeetingsList.ItemsSource = testList.ViewableMeetings;
             
         }
         private void Add_Meeting(object sender, RoutedEventArgs e)
@@ -54,8 +57,10 @@ namespace KIT206.DatabaseApp.UI
                 start = TimeSpan.Parse(addMeetingDialog.startTextBox.Text);
                 end = TimeSpan.Parse(addMeetingDialog.endTextBox.Text);
 
-                group.Group_Meetings.AddMeeting(student.CurrentStudent.StudentGroup,
-                                                day, start, end, room);
+                testList.AddMeeting(student.CurrentStudent.StudentGroup,
+                                    day, start, end, room);
+                //group.Group_Meetings.AddMeeting(student.CurrentStudent.StudentGroup,
+                //                                day, start, end, room);
 
             }
         }
