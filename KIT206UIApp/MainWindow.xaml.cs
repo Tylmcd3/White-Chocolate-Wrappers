@@ -35,9 +35,29 @@ namespace KIT206.DatabaseApp.UI
 
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
+            BindStudentImage();
+
             selectMainView();
         }
 
+        public void BindStudentImage()
+        {
+            var image = new Image();
+            string path = student.CurrentStudent.Photo.Remove(0, 1);
+            path = path.Remove(path.Length - 1, 1);
+            if(path.Length < 100)
+            {
+                var fullFilePath = path;
+
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                bitmap.EndInit();
+
+                StudentImage.Source = bitmap;
+            }
+
+        }
         public void selectMainView()
         {
             if (student.CurrentStudent.StudentGroup <= 0) //Change this to == for add group view to pop up
