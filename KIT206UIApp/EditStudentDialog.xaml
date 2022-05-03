@@ -39,10 +39,46 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0">Enter Title:</Label>
+        <TextBox x:Name="titleBox" Grid.Column="1" Grid.Row="0" />
+
+        <Label Grid.Column="0" Grid.Row="1">Enter First Name:</Label>
+        <TextBox x:Name="firstNameBox" Grid.Column="1" Grid.Row="1" />
         
+        <Label Grid.Column="0" Grid.Row="2">Enter Last Name:</Label>
+        <TextBox x:Name="lastNameBox" Grid.Column="1" Grid.Row="2" />
         
+        <Label Grid.Column="0" Grid.Row="3">Enter Student ID:</Label>
+        <TextBox x:Name="studentIdBox" Grid.Column="1" Grid.Row="3" DataContext="int"/>
+        
+        <Label Grid.Column="0" Grid.Row="4">Enter Email:</Label>
+        <TextBox x:Name="emailBox" Grid.Column="1" Grid.Row="4" />
+
+        <Label Grid.Column="0" Grid.Row="5">Enter Phone No:</Label>
+        <TextBox x:Name="phoneBox" Grid.Column="1" Grid.Row="5" /> 
+
+        <ComboBox x:Name="campusSelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="6" VerticalAlignment="Top" Margin="5">
+            <ComboBoxItem IsSelected="True" IsEnabled="False">Select Campus:</ComboBoxItem>
+            <ComboBoxItem>Hobart</ComboBoxItem>
+            <ComboBoxItem>Launceston</ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox x:Name="categorySelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="7" VerticalAlignment="Top" Margin="5">
+            <ComboBoxItem IsSelected="True" IsEnabled="False">Select Catagory:</ComboBoxItem>
+            <ComboBoxItem>Bachelors</ComboBoxItem>
+            <ComboBoxItem>Masters</ComboBoxItem>
+        </ComboBox>
+
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="okButton" Click="okClick" IsDefault="True">Ok</Button>
+            <Button x:Name="cancelButton" Click="cancelClick" IsCancel="True">Cancel</Button>
+        </StackPanel>
         
     </Grid>
 </Window>

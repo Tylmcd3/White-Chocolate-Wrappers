@@ -19,9 +19,27 @@ namespace KIT206.DatabaseApp.UI
     /// </summary>
     public partial class EditStudentDialog : Window
     {
-        public EditStudentDialog()
+        public EditStudentDialog(Student student)
         {
             InitializeComponent();
+            titleBox.Text = student.Title.ToString();
+            firstNameBox.Text = student.FirstName.ToString();
+            lastNameBox.Text = student.LastName.ToString();
+            //studentIdBox.Text = student.StudentID;
+            emailBox.Text = student.Email.ToString();
+            phoneBox.Text = student.Phone.ToString();
+            campusSelector.SelectedIndex = (int)student.Campus + 1;
+            categorySelector.SelectedIndex = (int)student.Category + 1;
+        }
+
+        private void okClick(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        private void cancelClick(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }
