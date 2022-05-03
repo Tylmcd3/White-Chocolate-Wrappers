@@ -71,8 +71,8 @@
             <ColumnDefinition Width="67*"/>
             <ColumnDefinition Width="292*"/>
         </Grid.ColumnDefinitions>
-        <Frame Background="White" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"/>
-        <Grid Background="#FFF5AE69" Grid.ColumnSpan="2">
+        <Frame x:Name="Main" Background="White" NavigationUIVisibility="Hidden"/>
+        <Grid Background="#FFF5AE69">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.3*"/>
                 <RowDefinition Height="1*"/>
