@@ -107,7 +107,15 @@ namespace KIT206.DatabaseApp.UI
         {
 
         }
+        
+        private void NewGroupPlease(object sender, RoutedEventArgs e)
+        {
 
+        }
 
+        /*private void GoToMainPage(object sender, RoutedEventArgs e)
+        {
+
+        }*/
     }
 }

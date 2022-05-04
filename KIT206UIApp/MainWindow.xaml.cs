@@ -23,17 +23,21 @@ namespace KIT206.DatabaseApp.UI
 
         private StudentViewController student;
         private StudentGroupViewController group;
-        public MainWindow()
+        
+        public MainWindow(int id)
         {
+            //Console.WriteLine(StudentID);
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-            int StudentID = 123460;
+            int StudentID=id;
             student.SelectStudent(StudentID);
+            
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
             BindStudentDetails();
 
             group.SelectGroup(student.CurrentStudent.StudentGroup);
+
 
             BindStudentImage();
 
@@ -78,18 +82,17 @@ namespace KIT206.DatabaseApp.UI
             ClassName.Text = ClassString;
         }
 
+
         public void BindStudentDetails()
         {
             string Name, Id, GroupName, Campus, Email, Category, Phone;
 
-
-            //StudentDetails.Text = "Name: " + Name + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group Name: "
-                //+ student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " +
-                //student.CurrentStudent.Email + "\n" + "Category: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
-                //student.CurrentStudent.Phone;
+            StudentDetails.Text = "Name: " + student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group Name: "
+                + student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " +
+                student.CurrentStudent.Email + "\n" + "Category: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
+                student.CurrentStudent.Phone;
         }
         
-
         private void ToEditStudent(object sender, RoutedEventArgs e)
         {
            Student theStudent = student.CurrentStudent;
@@ -139,6 +142,11 @@ namespace KIT206.DatabaseApp.UI
                 student.EditStudentGroupMembership(id);
             }
         }
+
+         private void checkID()
+        {
+            
+        } 
         private void GoToEditGroup(object sender, RoutedEventArgs e)
         {
             //Main.Content = new AddGroup();
