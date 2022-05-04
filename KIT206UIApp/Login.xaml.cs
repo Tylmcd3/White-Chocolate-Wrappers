@@ -18,20 +18,40 @@ namespace KIT206.DatabaseApp.UI
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
+    /// 
+
+
     public partial class Login : Window
     {
+        private StudentViewController student;
         public Login()
         {
             InitializeComponent();
+            student = new StudentViewController();
         }
 
         private void GoToMainPage(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Visibility = Visibility.Hidden;
-        }
+            int id;
+            id = int.Parse(loginIdBox.Text);
 
+            Student student1 = (student.FindStudent(id));
+            if(student1 != null)
+            {
+                MainWindow mainWindow = new MainWindow(id);
+                mainWindow.Show();
+                this.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MessageBox.Show("Incorrect ID, Enter valid StudentID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+         
+            /*MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Visibility = Visibility.Hidden;*/
+        }
+      
     }
 
 }

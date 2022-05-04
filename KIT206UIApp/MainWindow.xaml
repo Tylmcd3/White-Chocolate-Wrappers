@@ -89,7 +89,7 @@
                 </Grid.ColumnDefinitions>
                 <Image x:Name="StudentImage" Source="{Binding}" Margin="3"></Image>
                 <TextBlock x:Name="StudentName" Text="{Binding}" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
+                
             </Grid>
 
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">

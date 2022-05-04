@@ -43,10 +43,10 @@
 
             <Rectangle Grid.Column="1" Fill="Orange"/>
             <TextBlock Grid.Row="0" FontWeight="Bold" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1">some bullshit i forgor what jordan said</TextBlock>
-            <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="50" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1">Welcome User</TextBlock>
+            <TextBlock Text="Welcome User" Grid.Row="1" FontWeight="Bold" FontSize="50" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1"></TextBlock>
             <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="25" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Please enter your studentID</TextBlock>
-            <PasswordBox Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="120" Margin="0,30,0,0"/>
-            <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="2" Content="Submit" Click="GoToMainPage" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="loginIdBox" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="120" Margin="0,30,0,0"/>
+            <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="2" Content="Submit" HorizontalAlignment="Center" VerticalAlignment="Center" IsCancel="True" Click="GoToMainPage"/>
 
         </Grid>
 

@@ -38,6 +38,7 @@ namespace KIT206.DatabaseApp.UI
             {
                 window.classDetailsBtn.Visibility = Visibility.Visible;
             }
+
             GroupMembers.ItemsSource = student.FindStudentsByGroup();
             GroupName.Text = group.FindStudentGroup(student.CurrentStudent.StudentGroup).GroupName;
             //MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
