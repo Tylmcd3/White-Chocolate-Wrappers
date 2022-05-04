@@ -94,9 +94,6 @@
                     <Button Click="Leave_Group" Grid.Row="1" Content="Leave Group" Style="{DynamicResource RoundButton}" Margin="0,0,3,0"/>
                 </Grid>
 
-
-                <!--<Button Grid.Row="0" Content="Leave" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}" Grid.Column="1" Width="50"/>-->
-                <!--<Button Grid.Row="0" Content="Edit" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RoundButton}" Margin="0,2,52,0" Grid.Column="1" Width="50"/>-->
                 <Separator VerticalAlignment="Bottom" Grid.ColumnSpan="2" Margin="0,0,0,2"/>
             </Grid>
 

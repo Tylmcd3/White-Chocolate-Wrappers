@@ -42,6 +42,9 @@
                 <Setter Property="Height" Value="25" />
                 <Setter Property="Margin" Value="5" />
             </Style>
+            <Style TargetType="{x:Type ComboBox}">
+                <Setter Property="Background" Value="Black"/>
+            </Style>
             <Style TargetType="{x:Type ComboBoxItem}">
                 <Setter Property="Background" Value="#FFF5AE69"/>
             </Style>
@@ -70,7 +73,7 @@
         <Label Grid.Column="0" Grid.Row="2">Enter Phone No:</Label>
         <TextBox x:Name="phoneBox" Grid.Column="1" Grid.Row="2" /> 
 
-        <ComboBox x:Name="campusSelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Top" Margin="5">
+        <ComboBox x:Name="campusSelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Top" Margin="5" SelectionChanged="campusSelector_SelectionChanged">
             <ComboBoxItem IsSelected="True" IsEnabled="False">Select Campus:</ComboBoxItem>
             <ComboBoxItem>Hobart</ComboBoxItem>
             <ComboBoxItem>Launceston</ComboBoxItem>

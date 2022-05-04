@@ -46,10 +46,7 @@ namespace KIT206.DatabaseApp.UI
             {
                 MessageBox.Show("Incorrect ID, Enter valid StudentID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-         
-            /*MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Visibility = Visibility.Hidden;*/
+        
         }
       
     }

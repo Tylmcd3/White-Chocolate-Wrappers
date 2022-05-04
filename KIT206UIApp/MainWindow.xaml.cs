@@ -77,7 +77,7 @@ namespace KIT206.DatabaseApp.UI
         }
         public void selectMainView()
         {
-            if (student.CurrentStudent.StudentGroup <= 0) //Change this to == for add group view to pop up
+            if (student.CurrentStudent.StudentGroup <= 0) 
             {
                 NoGroupMainView ng = new NoGroupMainView(this, student, group);
                 Overlay.Content = ng;
@@ -97,7 +97,7 @@ namespace KIT206.DatabaseApp.UI
 
         public void BindStudentDetails()
         {
-            //Super ugly but it works
+            
             string name, id, campus, email, category, phone;
             string groupName = "";
             List<string> studentDetails = new List<string>();
@@ -168,8 +168,7 @@ namespace KIT206.DatabaseApp.UI
             AddClassDialog addClassDialog = new AddClassDialog();
             bool? result = addClassDialog.ShowDialog();
 
-            //Only process if they pressed OK
-            //will also need to do some form of form validation on the dialog TODO
+            //Only process if they pressed OK //will also need to do some form of form validation on the dialog TODO
             if (result == true)
             {
                 int id;
@@ -190,27 +189,6 @@ namespace KIT206.DatabaseApp.UI
                 ClassName.Text = group.Group_Class.GroupClass.ToString();
             }
         }
-
-         private void checkID()
-        {
-            
-        } 
-        private void GoToEditGroup(object sender, RoutedEventArgs e)
-        {
-            //Main.Content = new AddGroup();
-        }
-        private void List_Unselected_Event(object sender, RoutedEventArgs e)
-        {
-            //EditMeetingBtn.IsEnabled = false;
-            //CancelMeetingBtn.IsEnabled = false;
-        }
-
-        private void List_GotFocus_Event(object sender, RoutedEventArgs e)
-        {
-            //EditMeetingBtn.IsEnabled = true;
-            //CancelMeetingBtn.IsEnabled = true;  
-        }
-
         private void Overlay_Navigated(object sender, NavigationEventArgs e)
         {
 
