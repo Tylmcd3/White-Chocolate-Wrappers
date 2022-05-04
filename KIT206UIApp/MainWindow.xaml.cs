@@ -32,12 +32,11 @@ namespace KIT206.DatabaseApp.UI
             group = new StudentGroupViewController();
             int StudentID=id;
             student.SelectStudent(StudentID);
+
+            StudentName.Text = $"{student.CurrentStudent.FirstName} {student.CurrentStudent.LastName}";   
             
-            StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
+            group.SelectGroup(StudentID);
             BindStudentDetails();
-
-            group.SelectGroup(student.CurrentStudent.StudentGroup);
-
 
             BindStudentImage();
 
@@ -47,20 +46,33 @@ namespace KIT206.DatabaseApp.UI
         //Maybe change the Students name from centre to the right when theres an image but leave it when there isint.
         public void BindStudentImage()
         {
-            var image = new Image();
-            string path = student.CurrentStudent.Photo.Remove(0, 1);
-            path = path.Remove(path.Length - 1, 1);
-            if(path.Length < 100)
+            if (student.CurrentStudent.Photo != null && student.CurrentStudent.Photo.Length < 100)
             {
-               var fullFilePath = path;
+                var image = new Image();
 
-               BitmapImage bitmap = new BitmapImage();
-               bitmap.BeginInit();
-               bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-               bitmap.EndInit();
+                string path = student.CurrentStudent.Photo.Remove(0, 1);
+                path = path.Remove(path.Length - 1, 1);
 
-               StudentImage.Source = bitmap;
-           }
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(path, UriKind.Absolute);
+                bitmap.EndInit();
+
+                StudentImage.Source = bitmap;
+            }
+            else
+            {
+                Image defaultImage = new Image();
+                defaultImage.Width = 50;
+                defaultImage.Margin = new Thickness(5);
+                string path = "https://i.imgur.com/DJcv9pB.png";
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.UriSource = new Uri(path, UriKind.RelativeOrAbsolute);
+                bi.EndInit();
+                defaultImage.Source = bi;
+
+            }
 
         }
         public void selectMainView()
@@ -85,35 +97,70 @@ namespace KIT206.DatabaseApp.UI
 
         public void BindStudentDetails()
         {
-            string Name, Id, GroupName, Campus, Email, Category, Phone;
+            //Super ugly but it works
+            string name, id, campus, email, category, phone;
+            string groupName = "";
+            List<string> studentDetails = new List<string>();
+            List<string> labels = new List<string>();
 
-            StudentDetails.Text = "Name: " + student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group Name: "
-                + student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " +
-                student.CurrentStudent.Email + "\n" + "Category: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
-                student.CurrentStudent.Phone;
+            name = $"{student.CurrentStudent.FirstName} {student.CurrentStudent.LastName}";
+            id = student.CurrentStudent.StudentID.ToString();
+            campus = student.CurrentStudent.Campus.ToString();
+            category = student.CurrentStudent.Category.ToString();
+            email = student.CurrentStudent.Email;
+            phone = student.CurrentStudent.Phone;
+
+            if (student.CurrentStudent.StudentGroup > -1)
+            {
+                groupName = group.FindStudentGroup(student.CurrentStudent.StudentGroup).GroupName;
+            }
+
+            if (student.CurrentStudent.Title != null)
+                name = $"{student.CurrentStudent.Title} {name}";
+
+            studentDetails.Add(name); studentDetails.Add(id); studentDetails.Add(groupName); studentDetails.Add(campus);
+            studentDetails.Add(category);  studentDetails.Add(email); studentDetails.Add(phone);
+
+            labels.Add("Name:"); labels.Add("ID: "); labels.Add("Group: "); labels.Add("Campus: ");
+            labels.Add("Category: "); labels.Add("Email: "); labels.Add("Phone: ");
+
+            studentDetailsListBox.ItemsSource = studentDetails;
+            studentDetailsLabels.ItemsSource = labels;
         }
         
         private void ToEditStudent(object sender, RoutedEventArgs e)
         {
-           Student theStudent = student.CurrentStudent;
-           EditStudentDialog editStudentDialog = new EditStudentDialog(theStudent);
-           editStudentDialog.ShowDialog();
-  
-           Campus campus;
-           Category category;
-           string title, email, phone;
+            Student toEdit = student.CurrentStudent;
+            
+            EditStudentDialog editStudentDialog = new EditStudentDialog(toEdit);
 
-           ComboBoxItem selectedCampus = (ComboBoxItem)editStudentDialog.campusSelector.SelectedItem;
-           campus = Enum.Parse<Campus>(selectedCampus.Content.ToString());
+            bool? result = editStudentDialog.ShowDialog();
 
-           ComboBoxItem selectedCategory = (ComboBoxItem)editStudentDialog.categorySelector.SelectedItem;
-           category = Enum.Parse<Category>(selectedCategory.Content.ToString());
+            if(result == true)
+            {
+                string title, email, phone;
+                Campus campus = Campus.None;
+                Category category = Category.None;
 
-            title = editStudentDialog.titleBox.Text;
-            email = editStudentDialog.emailBox.Text;
-            phone = editStudentDialog.phoneBox.Text;
+                if(editStudentDialog.campusSelector.SelectedIndex > 0)
+                {
+                    ComboBoxItem selectedCampus = (ComboBoxItem)editStudentDialog.campusSelector.SelectedItem;
+                    campus = Enum.Parse<Campus>(selectedCampus.Content.ToString());
+                }
+                if(editStudentDialog.categorySelector.SelectedIndex > 0)
+                {
+                    ComboBoxItem selectedCategory = (ComboBoxItem)editStudentDialog.categorySelector.SelectedItem;
+                    category = Enum.Parse<Category>(selectedCategory.Content.ToString());
+                }
 
-            student.AddStudentDetails(title, campus, email, category, phone);
+                title = editStudentDialog.titleBox.Text;
+                email = editStudentDialog.emailBox.Text;
+                phone = editStudentDialog.phoneBox.Text;
+
+                student.AddStudentDetails(title, campus, email, category, phone);
+                BindStudentDetails();
+
+            }
 
         }
         private void Add_Class(object sender, RoutedEventArgs e)
@@ -139,7 +186,8 @@ namespace KIT206.DatabaseApp.UI
                 end = TimeSpan.Parse(addClassDialog.endTextBox.Text);
 
                 id = group.Group_Class.AddClass(student.CurrentStudent.StudentGroup, day, start, end, room);
-                student.EditStudentGroupMembership(id);
+                classDetailsBtn.Visibility = Visibility.Collapsed;
+                ClassName.Text = group.Group_Class.GroupClass.ToString();
             }
         }
 

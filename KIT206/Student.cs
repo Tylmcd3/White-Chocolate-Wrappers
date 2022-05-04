@@ -108,6 +108,8 @@ namespace KIT206
 			_studentID = id;
 			_firstName = firstName;
             _lastName = lastName;
+            _campus = Campus.None;
+            _category = Category.None;
             _groupID = groupID;
 		}
         ///<summary>

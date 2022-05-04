@@ -14,12 +14,14 @@ public enum Day
 
 public enum Campus{
       Hobart,
-      Launceston
+      Launceston,
+      None
   }
 
 public enum Category{
       Bachelors,
-      Masters
+      Masters,
+      None
   }
 
 
