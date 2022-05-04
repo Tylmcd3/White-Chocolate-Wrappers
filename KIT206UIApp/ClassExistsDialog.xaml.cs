@@ -23,5 +23,10 @@ namespace KIT206.DatabaseApp.UI
         {
             InitializeComponent();
         }
+
+        /*private void GoToMainPage(object sender, RoutedEventArgs e)
+        {
+
+        }*/
     }
 }

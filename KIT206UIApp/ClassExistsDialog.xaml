@@ -54,7 +54,7 @@
             <TextBlock Grid.Row="7" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Student5</TextBlock>
             <TextBlock Grid.Row="8" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Student6</TextBlock>
             <TextBlock Grid.Row="8" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Student6</TextBlock>
-            <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="11" Content="Submit" Click="GoToMainPage" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="11" Content="Submit" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         </Grid>
 
