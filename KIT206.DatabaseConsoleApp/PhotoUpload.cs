@@ -99,7 +99,6 @@ namespace KIT206.DatabaseApp
                     var json = values["data"].GetRawText();
                     values = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(json);
 
-                    StorageAdapter.EditStudentImage(id, values["link"].GetRawText());
                     return values["link"].GetRawText();
                 }
             }

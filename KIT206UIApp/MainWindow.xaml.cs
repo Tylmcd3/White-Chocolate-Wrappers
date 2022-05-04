@@ -153,6 +153,15 @@ namespace KIT206.DatabaseApp.UI
                 title = editStudentDialog.titleBox.Text;
                 email = editStudentDialog.emailBox.Text;
                 phone = editStudentDialog.phoneBox.Text;
+                if(editStudentDialog.studentImage != null)
+                {
+                    
+                    PhotoUpload.GetNewAccessTokensAsync();
+                    string upload = PhotoUpload.UploadImage(editStudentDialog.studentImage, student.CurrentStudent.StudentID);
+                    student.CurrentStudent.Photo = upload;
+                    StorageAdapter.EditStudentImage(student.CurrentStudent);
+                    BindStudentImage();
+                }
 
                 student.AddStudentDetails(title, campus, email, category, phone);
                 BindStudentDetails();

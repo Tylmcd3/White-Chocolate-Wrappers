@@ -22,7 +22,7 @@ namespace KIT206.DatabaseApp.UI
     /// </summary>
     public partial class EditStudentDialog : Window
     {
-        System.Drawing.Image studentImage;
+        public string studentImage = "";
         public EditStudentDialog(Student student)
         {
             InitializeComponent();
@@ -76,8 +76,10 @@ namespace KIT206.DatabaseApp.UI
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                MemoryStream ms = new MemoryStream(File.ReadAllBytes(openFileDialog.FileName));
-                studentImage = System.Drawing.Image.FromStream(ms);
+
+                studentImage = openFileDialog.FileName;
+                
+
             }
                 
         }
