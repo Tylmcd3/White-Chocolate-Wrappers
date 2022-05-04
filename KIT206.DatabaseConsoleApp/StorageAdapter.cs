@@ -57,8 +57,16 @@ namespace KIT206.DatabaseApp
         ///</summary>
         public static void EditStudentGroupMembership(Student student)
         {
+            string sqlcmd;
+            if (student.StudentGroup <= 0)
+            {
+                sqlcmd = "UPDATE student SET group_id = NULL WHERE student_id = " + student.StudentID;
+            }
+            else
+            {
+                sqlcmd = ($"UPDATE student SET group_id = \'{student.StudentGroup}\' WHERE student_id = {student.StudentID}");
+            }
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = ($"UPDATE student SET group_id = {student.StudentGroup} WHERE student_id = {student.StudentID}");
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 
@@ -354,7 +362,7 @@ namespace KIT206.DatabaseApp
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             Class returnClass = null;
-            string sqlcmd = "SELECT * FROM `class` WHERE group_id=" + groupID;
+            string sqlcmd = "SELECT * FROM class WHERE group_id= " + groupID;
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);

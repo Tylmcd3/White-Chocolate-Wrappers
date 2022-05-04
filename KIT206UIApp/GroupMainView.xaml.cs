@@ -41,8 +41,7 @@ namespace KIT206.DatabaseApp.UI
 
             GroupMembers.ItemsSource = student.FindStudentsByGroup();
             GroupName.Text = group.FindStudentGroup(student.CurrentStudent.StudentGroup).GroupName;
-            //MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
-            meetings = new MeetingViewController(5);
+            meetings = new MeetingViewController(student.CurrentStudent.StudentGroup);
             MeetingsList.ItemsSource = meetings.ViewableMeetings;
             
         }
@@ -75,9 +74,6 @@ namespace KIT206.DatabaseApp.UI
                 meetings.AddMeeting(student.CurrentStudent.StudentGroup,
                                     day, start, end, room);
                 UpdateMeetings();
-                //group.Group_Meetings.AddMeeting(student.CurrentStudent.StudentGroup,
-                //                                day, start, end, room);
-
             }
         }
 
@@ -139,6 +135,7 @@ namespace KIT206.DatabaseApp.UI
             {
                 string newName = editGroupDialog.nameTextBox.Text;
                 group.EditGroup(student.CurrentStudent.StudentGroup, newName);
+                GroupName.Text = newName;
             }
         }
         private void Leave_Group(object sender, RoutedEventArgs e)
@@ -150,13 +147,9 @@ namespace KIT206.DatabaseApp.UI
             if(result== true)
             {
                 //Also need to update view
-                student.EditStudentGroupMembership(-1);                
+                student.EditStudentGroupMembership(0);
+                window.Overlay.Content = new NoGroupMainView(window, student, group);
             }
-        }
-
-        private void GoToEditGroup(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

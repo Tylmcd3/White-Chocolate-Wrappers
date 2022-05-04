@@ -47,7 +47,7 @@ namespace KIT206.DatabaseApp.UI
             }
             if (student.Category != Category.None)
             {
-                categorySelector.SelectedIndex = (int)student.Campus + 1;
+                categorySelector.SelectedIndex = (int)student.Category + 1;
                 categorySelector.IsEnabled = false;
             }
         }

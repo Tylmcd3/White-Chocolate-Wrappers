@@ -32,12 +32,11 @@ namespace KIT206.DatabaseApp.UI
             group = new StudentGroupViewController();
             int StudentID=id;
             student.SelectStudent(StudentID);
+
+            StudentName.Text = $"{student.CurrentStudent.FirstName} {student.CurrentStudent.LastName}";   
             
-            StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
+            group.SelectGroup(StudentID);
             BindStudentDetails();
-
-            group.SelectGroup(student.CurrentStudent.StudentGroup);
-
 
             BindStudentImage();
 
@@ -47,7 +46,7 @@ namespace KIT206.DatabaseApp.UI
         //Maybe change the Students name from centre to the right when theres an image but leave it when there isint.
         public void BindStudentImage()
         {
-            if (student.CurrentStudent.Photo.Length < 100)
+            if (student.CurrentStudent.Photo != null && student.CurrentStudent.Photo.Length < 100)
             {
                 var image = new Image();
                 string path = student.CurrentStudent.Photo.Remove(0, 1);
@@ -133,12 +132,12 @@ namespace KIT206.DatabaseApp.UI
                 Campus campus = Campus.None;
                 Category category = Category.None;
 
-                if(editStudentDialog.campusSelector.SelectedIndex > 1)
+                if(editStudentDialog.campusSelector.SelectedIndex > 0)
                 {
                     ComboBoxItem selectedCampus = (ComboBoxItem)editStudentDialog.campusSelector.SelectedItem;
                     campus = Enum.Parse<Campus>(selectedCampus.Content.ToString());
                 }
-                if(editStudentDialog.categorySelector.SelectedIndex > 1)
+                if(editStudentDialog.categorySelector.SelectedIndex > 0)
                 {
                     ComboBoxItem selectedCategory = (ComboBoxItem)editStudentDialog.categorySelector.SelectedItem;
                     category = Enum.Parse<Category>(selectedCategory.Content.ToString());
@@ -149,7 +148,7 @@ namespace KIT206.DatabaseApp.UI
                 phone = editStudentDialog.phoneBox.Text;
 
                 student.AddStudentDetails(title, campus, email, category, phone);
-
+                BindStudentDetails();
 
             }
 
@@ -177,7 +176,8 @@ namespace KIT206.DatabaseApp.UI
                 end = TimeSpan.Parse(addClassDialog.endTextBox.Text);
 
                 id = group.Group_Class.AddClass(student.CurrentStudent.StudentGroup, day, start, end, room);
-                student.EditStudentGroupMembership(id);
+                classDetailsBtn.Visibility = Visibility.Collapsed;
+                ClassName.Text = group.Group_Class.GroupClass.ToString();
             }
         }
 
