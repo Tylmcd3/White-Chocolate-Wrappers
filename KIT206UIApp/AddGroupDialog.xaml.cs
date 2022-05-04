@@ -63,7 +63,7 @@ namespace KIT206.DatabaseApp.UI
                 }
                 else
                 {
-                    MessageBox.Show("Multiple group exists with that name")
+                    MessageBox.Show("Multiple group exists with that name");
 
  
 

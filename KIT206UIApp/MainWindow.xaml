@@ -95,10 +95,28 @@
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">
                 <Separator Background="Black"/>
                 <TextBlock FontSize="20" TextAlignment="Center" FontWeight="SemiBold">Student Details</TextBlock>
-                <ListBox Style="{StaticResource GeneralList}" Background="#00000000">
-                    <Separator Background="Black"/>
-                    <TextBlock x:Name="StudentDetails" Text="{Binding}" FontSize="18" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                </ListBox>
+                <Separator Background="Black"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ItemsControl BorderBrush="#00000000" Margin="3" Grid.Column="1" x:Name="studentDetailsListBox" Background="#00000000" FontSize="16">
+                        <ItemsControl.ItemContainerStyle>
+                            <Style>
+                                <Setter Property="FrameworkElement.Margin" Value="5"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                    </ItemsControl>
+                    <ItemsControl BorderBrush="#00000000" Margin="3" Grid.Column="0" x:Name="studentDetailsLabels" Background="#00000000" FontSize="16" FontWeight="Light">
+                        <ItemsControl.ItemContainerStyle>
+                            <Style>
+                                <Setter Property="FrameworkElement.Margin" Value="5"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                    </ItemsControl>
+                </Grid>
+
             </StackPanel>
             <Button Content="Edit" Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource RoundButton}" Click="ToEditStudent"/>
 

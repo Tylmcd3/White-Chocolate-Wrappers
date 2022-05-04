@@ -80,13 +80,30 @@ namespace KIT206.DatabaseApp.UI
 
         public void BindStudentDetails()
         {
-            string Name, Id, GroupName, Campus, Email, Category, Phone;
+            //Super ugly but it works
+            string name, id, groupName, campus, email, category, phone;
+            List<string> studentDetails = new List<string>();
+            List<string> labels = new List<string>();
 
+            name = $"{student.CurrentStudent.FirstName} {student.CurrentStudent.LastName}";
+            id = student.CurrentStudent.StudentID.ToString();
+            groupName = group.FindStudentGroup(student.CurrentStudent.StudentGroup).GroupName;
+            campus = student.CurrentStudent.Campus.ToString();
+            category = student.CurrentStudent.Category.ToString();
+            email = student.CurrentStudent.Email;
+            phone = student.CurrentStudent.Phone;
 
-            //StudentDetails.Text = "Name: " + Name + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group Name: "
-                //+ student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " +
-                //student.CurrentStudent.Email + "\n" + "Category: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
-                //student.CurrentStudent.Phone;
+            if(student.CurrentStudent.Title.Length > 0)
+                name = student.CurrentStudent.Title + name;
+
+            studentDetails.Add(name); studentDetails.Add(id); studentDetails.Add(groupName); studentDetails.Add(campus);
+            studentDetails.Add(category);  studentDetails.Add(email); studentDetails.Add(phone);
+
+            labels.Add("Name:"); labels.Add("ID: "); labels.Add("Group: "); labels.Add("Campus: ");
+            labels.Add("Category: "); labels.Add("Email: "); labels.Add("Phone: ");
+
+            studentDetailsListBox.ItemsSource = studentDetails;
+            studentDetailsLabels.ItemsSource = labels;
         }
         
 

@@ -17,12 +17,12 @@ namespace KIT206.DatabaseApp.UI
     /// <summary>
     /// Interaction logic for ClassExistsDialog.xaml
     /// </summary>
-    public partial class GroupExistsDialog : Window
+    public partial class ClassExistsDialog : Window
     {
         MainWindow window;
         StudentViewController student;
         StudentGroupViewController group;
-        public GroupExistsDialog(MainWindow win, StudentViewController stu, StudentGroupViewController gro)
+        public ClassExistsDialog(MainWindow win, StudentViewController stu, StudentGroupViewController gro)
         {
             InitializeComponent();
             window = win;
@@ -50,7 +50,7 @@ namespace KIT206.DatabaseApp.UI
 
         private void NewGroupPlease(object sender, RoutedEventArgs e)
         {
-            if (group.Count==0)
+
         }
         //Change the Xaml for the main window to the no group case
         public void NoGroup()
@@ -72,11 +72,6 @@ namespace KIT206.DatabaseApp.UI
 
         }
         private void CreateGroup()
-        {
-
-        }
-        
-        private void NewGroupPlease(object sender, RoutedEventArgs e)
         {
 
         }
