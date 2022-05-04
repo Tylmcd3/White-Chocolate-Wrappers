@@ -34,7 +34,7 @@
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="50*"/>
@@ -43,11 +43,13 @@
 
             <Rectangle Grid.Column="1" Fill="Orange"/>
             <TextBlock Grid.Row="0" FontWeight="Bold" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1"></TextBlock>
-            <TextBlock Text="Welcome User" Grid.Row="1" FontWeight="Bold" FontSize="50" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1"></TextBlock>
-            <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="25" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Please enter your studentID</TextBlock>
-            <TextBox x:Name="loginIdBox" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="120" Margin="0,30,0,0"/>
-            <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="2" Content="Submit" HorizontalAlignment="Center" VerticalAlignment="Center" IsCancel="True" Click="GoToMainPage"/>
-
+            <TextBlock Text="Welcome!" Grid.Row="1" FontWeight="Light" FontSize="50" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1"></TextBlock>
+            <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="25" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Please enter your Student ID</TextBlock>
+            <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Stretch">
+                <TextBox x:Name="loginIdBox" HorizontalAlignment="Center"  VerticalContentAlignment="Center" VerticalAlignment="Stretch" MinHeight="25" MinWidth="120" Margin="30" FontSize="16"/>
+                <Button Width="100" Style="{StaticResource RoundButton}" Content="Submit" HorizontalAlignment="Center" VerticalAlignment="Center" IsCancel="True" Click="GoToMainPage"/>
+            </StackPanel>
+           
         </Grid>
 
 

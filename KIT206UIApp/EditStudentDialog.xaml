@@ -74,7 +74,7 @@
         <Label Grid.Column="0" Grid.Row="2">Enter Phone No:</Label>
         <TextBox x:Name="phoneBox" Grid.Column="1" Grid.Row="2" /> 
 
-        <ComboBox x:Name="campusSelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Top" Margin="5" SelectionChanged="campusSelector_SelectionChanged">
+        <ComboBox x:Name="campusSelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Top" Margin="5" >
             <ComboBoxItem IsSelected="True" IsEnabled="False">Select Campus:</ComboBoxItem>
             <ComboBoxItem>Hobart</ComboBoxItem>
             <ComboBoxItem>Launceston</ComboBoxItem>
