@@ -28,7 +28,19 @@ namespace KIT206.DatabaseApp.UI
             window = win;
             student = stu;
             group = gro;
+        }
+        public GroupExistsDialog()
+        {
+            List<Student> students = new List<Student>() {
+                new Student(123, "Tyler", "McDonald", 1),
+                new Student(132, "Callum", "Stehdf", 1),
+                new Student(142, "Jordan", "Voiceless", 1)
+            };
+            InitializeComponent();
+            student = new();
+            group = new();
 
+            DisplayGroups("Networking 2.0");
         }
 
         private void OpenGroupDialog(object sender, RoutedEventArgs e)
@@ -48,9 +60,29 @@ namespace KIT206.DatabaseApp.UI
             window.Overlay.Content = new GroupMainView(window, student, group);
         }
 
+        private void JoinExistingGroup(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void DisplayGroups(string groupName)
+        {
+            List<StudentGroup> ListOfGroups = group.FindStudentGroups(groupName);
+
+            Groups.ItemsSource = ListOfGroups;
+        }
+        private void DisplayStudents(ListBoxItem listBoxItem)
+        {
+            List<Student> students = new List<Student>() {
+                new Student(123, "Tyler", "McDonald", 1),
+                new Student(132, "Callum", "Stehdf", 1),
+                new Student(142, "Jordan", "Voiceless", 1)
+            };
+
+            //Students.ItemsSource = students;
+        }
         private void NewGroupPlease(object sender, RoutedEventArgs e)
         {
-            if (group.Count==0)
+            
         }
         //Change the Xaml for the main window to the no group case
         public void NoGroup()
@@ -60,7 +92,7 @@ namespace KIT206.DatabaseApp.UI
         //Change the Xaml for the main window to the 1 group case
         public void OneGroup()
         {
-            
+
         }
         //Change the Xaml for the main window to the Many group case
         public void MultipleGroup()
@@ -78,4 +110,4 @@ namespace KIT206.DatabaseApp.UI
 
 
     }
-} //public or private?
+}
