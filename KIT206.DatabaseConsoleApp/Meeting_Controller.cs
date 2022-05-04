@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace KIT206.DatabaseApp
 {
-    class Meeting_Controller
+    public class Meeting_Controller
     {
-        private List<Meeting> meetings;
+        protected List<Meeting> meetings;
         public List<Meeting> Meetings { get { return meetings; } set { } }
         public Meeting_Controller(int id)
         {
@@ -18,12 +18,14 @@ namespace KIT206.DatabaseApp
         ///<summary>
         ///Prints list of Meetings to Console
         ///</summary>
-        public void ListMeetings()
+        public List<string> ListMeetings()
         {
+            List<string> toReturn = new List<string>();
             foreach (Meeting meeting in meetings)
             {
-                Console.WriteLine(meeting.ToString());
+                toReturn.Add(meeting.ToString());
             }
+            return toReturn;
         }
         ///<summary>
         ///Finds Meeting given an ID
@@ -113,7 +115,7 @@ namespace KIT206.DatabaseApp
                     highest = meeting.MeetingID;
                 }
             }
-            return highest++;
+            return ++highest;
         }
 
     }

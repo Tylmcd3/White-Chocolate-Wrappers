@@ -9,8 +9,8 @@ namespace KIT206.DatabaseApp
     public class Student_Controller
     {
 
-        private List<Student> students = new List<Student>();
-        private Student currentStudent;
+        protected List<Student> students = new List<Student>();
+        protected Student currentStudent;
 
         public List<Student> Students { get { return students; } set { } }
         public Student CurrentStudent { get { return currentStudent; } set { } }

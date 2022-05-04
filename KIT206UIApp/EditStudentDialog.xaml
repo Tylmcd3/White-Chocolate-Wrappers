@@ -1,0 +1,100 @@
+﻿<Window x:Class="KIT206.DatabaseApp.UI.EditStudentDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KIT206.DatabaseApp.UI"
+        MinHeight="150"
+        MinWidth="300"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        mc:Ignorable="d"
+        Title="Edit Student">
+    <Grid Margin="10">
+        <Grid.Resources>
+            <!-- Default settings for controls -->
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Margin" Value="0,3,5,5" />
+                <Setter Property="Padding" Value="0,0,0,5" />
+            </Style>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0,0,0,5" />
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Style.Resources>
+            </Style>
+            <Style TargetType="{x:Type Button}">
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Style.Resources>
+                <Setter Property="Background" Value="#FFE87511"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="BorderBrush" Value="#00000000"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontWeight" Value="Light"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Width" Value="70" />
+                <Setter Property="Height" Value="25" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+            <Style TargetType="{x:Type ComboBox}">
+                <Setter Property="Background" Value="Black"/>
+            </Style>
+            <Style TargetType="{x:Type ComboBoxItem}">
+                <Setter Property="Background" Value="#FFF5AE69"/>
+            </Style>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0">Enter Title:</Label>
+        <TextBox x:Name="titleBox" Grid.Column="1" Grid.Row="0" />
+
+        <Label Grid.Column="0" Grid.Row="1">Enter Email:</Label>
+        <TextBox x:Name="emailBox" Grid.Column="1" Grid.Row="1" />
+
+        <Label Grid.Column="0" Grid.Row="2">Enter Phone No:</Label>
+        <TextBox x:Name="phoneBox" Grid.Column="1" Grid.Row="2" /> 
+
+        <ComboBox x:Name="campusSelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Top" Margin="5" >
+            <ComboBoxItem IsSelected="True" IsEnabled="False">Select Campus:</ComboBoxItem>
+            <ComboBoxItem>Hobart</ComboBoxItem>
+            <ComboBoxItem>Launceston</ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox x:Name="categorySelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Top" Margin="5">
+            <ComboBoxItem IsSelected="True" IsEnabled="False">Select Catagory:</ComboBoxItem>
+            <ComboBoxItem>Bachelors</ComboBoxItem>
+            <ComboBoxItem>Masters</ComboBoxItem>
+        </ComboBox>
+
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="Picknewimage" Click="ImageClick" Padding="10, 0, 10, 0" Width="Auto">Pick a new Photo</Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="okButton" Click="okClick" IsDefault="True">Ok</Button>
+            <Button x:Name="cancelButton" Click="cancelClick" IsCancel="True">Cancel</Button>
+        </StackPanel>
+        
+        
+    </Grid>
+</Window>

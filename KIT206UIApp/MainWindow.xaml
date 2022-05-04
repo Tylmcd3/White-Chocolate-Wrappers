@@ -1,25 +1,34 @@
 ﻿<Window x:Class="KIT206.DatabaseApp.UI.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KIT206.DatabaseApp.UI"
-        mc:Ignorable="d"
-        Title="GMIS" Height="450" Width="800"
-        Style="{StaticResource GlobalFont}">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KIT206.DatabaseApp.UI"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      MaxWidth="1200"
+      MaxHeight="800"
+      MinWidth="800"
+      MinHeight="450"
+      Title="MainWindow" Background="#f6f7f8">
+
 
     <Window.Resources>
         <Style TargetType="Button" x:Key="RoundButton">
             <Style.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="CornerRadius" Value="3"/>
                 </Style>
             </Style.Resources>
-            <Setter Property="Margin" Value="2" />
-            <Setter Property="Background" Value="#FF2590E4"/>
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Background" Value="#FFE87511"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="BorderBrush" Value="#FFABADB3"/>
+            <Setter Property="BorderBrush" Value="#00000000"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="MaxHeight" Value="48"/>
+            <Setter Property="Padding" Value="0,3,0,5"/>
         </Style>
 
         <Style TargetType="ListBox" x:Key="MeetingsList">
@@ -31,31 +40,104 @@
                 </Style>
             </Style.Resources>
             <Setter Property="Margin" Value="2"/>
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="Black"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
         </Style>
+
+        <Style TargetType="ListBox" x:Key="GeneralList">
+            <Style.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="BorderBrush" Value="{x:Null}"/>
+                    <Setter Property="Background" Value="{x:Null}"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Style>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="0"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="BorderBrush" Value="#FFABADB3"/>
+            <Setter Property="Background" Value="#FFE87511"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="3,0,3,0"/>
+        </Style>
+
     </Window.Resources>
+
+
+
     <Grid>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="73*"/>
         </Grid.ColumnDefinitions>
-        <Grid>
+        <Frame x:Name="Main" Background="White" NavigationUIVisibility="Hidden"/>
+        <Frame Grid.Column="0" Grid.ColumnSpan="3" x:Name="Overlay" Content="" NavigationUIVisibility="Hidden" Navigated="Overlay_Navigated"/>
+        <Grid Background="#FFF5AE69">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*"/>
-                <RowDefinition Height="0.2*"/>
-                <RowDefinition/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.2*" MinHeight="120"/>
             </Grid.RowDefinitions>
-            <ListBox x:Name="Meetings" Style="{StaticResource MeetingsList}" Grid.Row="3" >
-                <ListBoxItem Content="Meetings" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <Separator Background="Black"/>
-            </ListBox>
-            <Button Style="{DynamicResource RoundButton}" Content="View Group" Grid.Row="1" />
-            <Button Style="{DynamicResource RoundButton}" Content="Student Details" Grid.Row="0"/>
-        </Grid>
-        <Viewbox Grid.Column="3" Height="419" Margin="5" Width="444">
-            <Calendar HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="10" Background="{x:Null}" BorderBrush="{x:Null}" />
-        </Viewbox>
-    </Grid>
-</Window>
 
+            <!-- Student Details-->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="StudentImage" Source="{Binding}" Margin="3"></Image>
+                <TextBlock x:Name="StudentName" Text="{Binding}" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                
+            </Grid>
+
+            <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">
+                <Separator Background="Black"/>
+                <TextBlock FontSize="20" TextAlignment="Center" FontWeight="SemiBold">Student Details</TextBlock>
+                <Separator Background="Black"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ItemsControl BorderBrush="#00000000" Margin="3" Grid.Column="1" x:Name="studentDetailsListBox" Background="#00000000" FontSize="16">
+                        <ItemsControl.ItemContainerStyle>
+                            <Style>
+                                <Setter Property="FrameworkElement.Margin" Value="5"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                    </ItemsControl>
+                    <ItemsControl BorderBrush="#00000000" Margin="3" Grid.Column="0" x:Name="studentDetailsLabels" Background="#00000000" FontSize="16" FontWeight="Light">
+                        <ItemsControl.ItemContainerStyle>
+                            <Style>
+                                <Setter Property="FrameworkElement.Margin" Value="5"/>
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                    </ItemsControl>
+                </Grid>
+
+            </StackPanel>
+            <Button Content="Edit Student Details" Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource RoundButton}" Click="ToEditStudent"/>
+
+            <Separator Grid.Row="1" Background="Black" VerticalAlignment="Bottom"/>
+
+
+            <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+                <TextBlock Text="Class Details" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+
+                <Separator Background="Black"/>
+                <TextBlock x:Name ="ClassName" Text="{Binding}" FontSize="18" TextAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
+
+                <Button Visibility="Collapsed" Click="Add_Class" x:Name="classDetailsBtn" Margin="0" Style="{DynamicResource RoundButton}" Padding="8" HorizontalAlignment="Center">Add Class Details</Button>
+
+            </StackPanel>
+
+
+
+        </Grid>
+
+
+    </Grid>
+
+</Window>

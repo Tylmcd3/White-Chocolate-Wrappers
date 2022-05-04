@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Drawing;
+using System.Drawing.Imaging;
 
+using System.Web;
+using System.IO;
 namespace KIT206.DatabaseApp
 {
-    class StorageAdapter
+    public class StorageAdapter
     {
         ///<summary>
         ///Returns a List of all Students in the database
@@ -30,31 +34,81 @@ namespace KIT206.DatabaseApp
                         (int)rdr[0],
                         (string)rdr[1],
                         (string)rdr[2],
-                        (rdr[3].GetType().Equals(1.GetType())) ? (int)rdr[3] : -1,
+                        (rdr[3].GetType().Equals(typeof(int))) ? (int)rdr[3] : -1,
                         (string)rdr[4],
                         (string)rdr[6],
                         Enum.Parse<Campus>((string)rdr[5]),
                         (string)rdr[7],
-                        Enum.Parse<Category>((string)rdr[9])));
-
+                        Enum.Parse<Category>((string)rdr[9]),
+                        (rdr[8].GetType().Equals(typeof(byte[]))) ? getPhoto((byte[])rdr[8]) : ""));
                 }
                 else
                 {
-                    students.Add(new Student((int)rdr[0], (string)rdr[1], (string)rdr[2]));
+                    students.Add(new Student(
+                        (int)rdr[0], 
+                        (string)rdr[1], 
+                        (string)rdr[2], 
+                        (rdr[3].GetType().Equals(typeof(int))) ? (int)rdr[3] : -1));
                 }
             }
 
             MySQLConnector.DBClose(rdr, conn);
             return students;
         }
+        public static void EditStudentImage(Student student)
+        {
+            byte[] photoBytes = Encoding.UTF8.GetBytes(student.Photo);
+            var stream = new MemoryStream(photoBytes);
 
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            string sqlcmd = $"UPDATE student SET " +
+                $"photo = @photo WHERE student_id = " + student.StudentID;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            cmd.Parameters.AddWithValue("@photo", photoBytes);
+            MySQLConnector.DBExecute(cmd, conn);
+        }
+        public static void EditStudentImage(int id, string link)
+        {
+            byte[] photoBytes = Encoding.UTF8.GetBytes(link);
+            var stream = new MemoryStream(photoBytes);
+
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            string sqlcmd = $"UPDATE student SET " +
+                $"photo = @photo WHERE student_id = " + id;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            cmd.Parameters.AddWithValue("@photo", photoBytes);
+            MySQLConnector.DBExecute(cmd, conn);
+        }
+        private static string getPhoto(byte[] photo)
+        {
+            string directory;
+            if (photo.Length < 100)
+                return (Encoding.UTF8.GetString(photo));
+            else
+            {
+                directory =Directory.GetCurrentDirectory() + "pfp.png";
+                File.WriteAllBytes(directory, photo);
+                return directory;
+            }
+   
+        }
         ///<summary>
         ///Updates given Students group Membership
         ///</summary>
         public static void EditStudentGroupMembership(Student student)
         {
+            string sqlcmd;
+            if (student.StudentGroup <= 0)
+            {
+                sqlcmd = "UPDATE student SET group_id = NULL WHERE student_id = " + student.StudentID;
+            }
+            else
+            {
+                sqlcmd = ($"UPDATE student SET group_id = \'{student.StudentGroup}\' WHERE student_id = {student.StudentID}");
+            }
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = ($"UPDATE student SET group_id = {student.StudentGroup} WHERE student_id = {student.StudentID}");
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 
@@ -101,16 +155,17 @@ namespace KIT206.DatabaseApp
                     student = new Student(
                         (int)rdr[0],
                         (string)rdr[1], (string)rdr[2],
-                        (int)rdr[3],
+                        (rdr[3].GetType().Equals(typeof(int))) ? (int)rdr[3] : -1,
                         (string)rdr[4],
                         (string)rdr[6],
                         Enum.Parse<Campus>((string)rdr[5]),
                         (string)rdr[7],
-                        Enum.Parse<Category>((string)rdr[9]));
+                        Enum.Parse<Category>((string)rdr[9]),
+                        (rdr[8].GetType().Equals(typeof(byte[])) ? getPhoto((byte[])rdr[8]) : ""));
                 }
                 else
                 {
-                    student = new Student((int)rdr[0], (string)rdr[1], (string)rdr[2]);
+                    student = new Student((int)rdr[0], (string)rdr[1], (string)rdr[2], (rdr[3].GetType().Equals(typeof(int))) ? (int)rdr[3] : -1);
                 }
             }
             MySQLConnector.DBClose(rdr, conn);
@@ -186,7 +241,8 @@ namespace KIT206.DatabaseApp
         public static void EditGroup(StudentGroup group)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = $"UPDATE studentGroup SET group_name = " + group.GroupName + " WHERE group_id = " + group.GroupID;
+            string sqlcmd = $"UPDATE studentGroup SET group_name = \"{group.GroupName}\" " +
+                $"WHERE group_id = {group.GroupID}";
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 
@@ -333,7 +389,7 @@ namespace KIT206.DatabaseApp
         public static void RemoveMeeting(int id)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = $"DELETE * from `meeting` WHERE meeting_id = " + id;
+            string sqlcmd = $"DELETE from `meeting` WHERE meeting_id = " + id;
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             MySQLConnector.DBExecute(cmd, conn);
@@ -348,7 +404,7 @@ namespace KIT206.DatabaseApp
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             Class returnClass = null;
-            string sqlcmd = "SELECT * FROM `class` WHERE group_id=" + groupID;
+            string sqlcmd = $"SELECT * FROM class WHERE group_id= \'{groupID}\'";
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
@@ -403,7 +459,7 @@ namespace KIT206.DatabaseApp
         public static List<Class> LoadClasses()
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            List<Class> classes = null;
+            List<Class> classes = new List<Class>();
             string sqlcmd = "SELECT * FROM `class`";
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);

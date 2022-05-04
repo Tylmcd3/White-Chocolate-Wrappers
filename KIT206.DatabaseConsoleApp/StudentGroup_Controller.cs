@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KIT206.DatabaseApp
 {
-    class StudentGroup_Controller
+    public class StudentGroup_Controller
     {
         private List<StudentGroup> groups = new List<StudentGroup>();
         public List<StudentGroup> Groups { get { return groups; } set { } }
@@ -56,15 +56,27 @@ namespace KIT206.DatabaseApp
 
         }
         ///<summary>
+        ///Finds Student Groups given an id
+        ///</summary>
+        public List<StudentGroup> FindStudentGroups(int id)
+        {
+            var selected = from StudentGroup g in groups
+                           where id == g.GroupID
+                           select g;
+            return selected.ToList<StudentGroup>();
+
+        }
+        ///<summary>
         ///Creates new StudentGroup and adds to database
         ///</summary>
-        public void AddGroup(string name)
+        public int AddGroup(string name)
         {
             int id = GenerateID();
             StudentGroup group = new StudentGroup(id, name);
             groups.Add(group);
             //Update database
             StorageAdapter.AddGroup(group);
+            return id;
 
         }
         ///<summary>
@@ -91,7 +103,7 @@ namespace KIT206.DatabaseApp
                     highest = group.GroupID;
                 }
             }
-            return highest++;
+            return ++highest;
         }
     }
 }

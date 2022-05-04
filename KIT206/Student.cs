@@ -103,17 +103,20 @@ namespace KIT206
         ///<summary>
 		///Creates a new Student Object given ID and name
 		///</summary>
-        public Student(int id, string firstName, string lastName )
+        public Student(int id, string firstName, string lastName, int groupID )
 		{
 			_studentID = id;
 			_firstName = firstName;
             _lastName = lastName;
+            _campus = Campus.None;
+            _category = Category.None;
+            _groupID = groupID;
 		}
         ///<summary>
 		///Creates a new Student Object given full Student Details. 
         ///If Details are empty, sets field to empty value 
 		///</summary>
-        public Student(int id, string firstName, string lastName, int group_id, string title,string phone, Campus campus, string email, Category category)
+        public Student(int id, string firstName, string lastName, int group_id, string title,string phone, Campus campus, string email, Category category, string photo)
 		{
 			_studentID = id;
             _firstName = firstName;
@@ -124,7 +127,7 @@ namespace KIT206
             _email = email ?? "";
             _category = category;
             _phone = phone ?? "";
-
+            _photo = photo;
         }
         ///<summary>
 		///Returns a string containg a students name and ID

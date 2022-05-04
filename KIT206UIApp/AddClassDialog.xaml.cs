@@ -10,19 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace KIT206.DatabaseApp.UI
 {
     /// <summary>
-    /// Interaction logic for groupView.xaml
+    /// Interaction logic for AddClassDialog.xaml
     /// </summary>
-    public partial class groupView : Page
+    public partial class AddClassDialog : Window
     {
-        public groupView()
+        public AddClassDialog()
         {
             InitializeComponent();
+        }
+
+        private void okButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }

@@ -199,7 +199,7 @@ namespace KIT206.DatabaseApp
                                     classEnd = TimeSpan.Parse(Console.ReadLine());
                                     Console.WriteLine("Enter a room for the meeting");
                                     classRoom = Console.ReadLine();
-                                    group_Controller.Group_Class.AddClass(4, student.StudentGroup, classDay, classStart, classEnd, classRoom);
+                                    group_Controller.Group_Class.AddClass(student.StudentGroup, classDay, classStart, classEnd, classRoom);
                                     break;
                                 default:
                                     Console.WriteLine("Please enter a valid option");
