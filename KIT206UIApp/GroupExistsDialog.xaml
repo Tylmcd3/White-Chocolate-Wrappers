@@ -43,7 +43,7 @@
             <TextBox x:Name="GroupName" Grid.Row="4"  HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="279,45,279,0"></TextBox>
             <Button Name="search" Width="100" Style="{StaticResource RoundButton}" Grid.Row="4" Content="Join Group" Click="SearchGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Height="31" />
 
-            <ListBox Name="Groups" Visibility="Collapsed" Grid.Row="4" HorizontalContentAlignment="Center" Panel.ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="4" Width="4" SelectedIndex="0" >
+            <ListBox Name="Groups" Visibility="Collapsed" Grid.Row="4" HorizontalContentAlignment="Center" Panel.ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Center" SelectedIndex="0" >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -57,7 +57,7 @@
                 </ListBox.ItemsPanel>
             </ListBox>
 
-            <Button Name ="Create" Width="100" Style="{StaticResource RoundButton}" Visibility="Collapsed" Grid.Row="5" Margin="265,0,0,0" Content="Create new" Click="NewGroupPlease" HorizontalAlignment="Left" VerticalAlignment="Center" Height="31" />
+            <Button Name ="Create" Width="100" Style="{StaticResource RoundButton}" Visibility="Collapsed" Grid.Row="5" Margin="265,0,0,0" Content="Create new" Click="JoinExistingGroup" HorizontalAlignment="Left" VerticalAlignment="Center" Height="31" />
             <Button Name="Join" Width="100" Style="{StaticResource RoundButton}" Visibility="Collapsed" Grid.Row="5" Margin="385,0,0,0" Content="Join Existing" Click="JoinSelectedGroup" HorizontalAlignment="Left" VerticalAlignment="Center" Height="31" />
             <StackPanel Grid.Row="3" Margin="0,1,0,0"/>
 

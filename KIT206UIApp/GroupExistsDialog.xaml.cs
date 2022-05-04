@@ -23,6 +23,7 @@ namespace KIT206.DatabaseApp.UI
         StudentViewController student;
         StudentGroupViewController group;
         public int groupID = -1;
+        string name;
         public AddGroup(MainWindow win, StudentViewController stu, StudentGroupViewController gro)
         {
             InitializeComponent();
@@ -41,7 +42,10 @@ namespace KIT206.DatabaseApp.UI
             student = new();
             group = new();
         }
+        private void CreateNewGroup(object sender, RoutedEventArgs e)
+        {
 
+        }
         private void JoinSelectedGroup(object sender, RoutedEventArgs e)
         {
             StackPanel panel = (StackPanel)Groups.SelectedItem;
@@ -58,7 +62,8 @@ namespace KIT206.DatabaseApp.UI
 
         private void JoinExistingGroup(object sender, RoutedEventArgs e)
         {
-
+            groupID = group.AddGroup(name);
+            this.Close();
         }
         private void DisplayGroups(string groupName)
         {
@@ -90,20 +95,16 @@ namespace KIT206.DatabaseApp.UI
                 Groups.Items.Add(panel);
             }
         }
-        private void NewGroupPlease(object sender, RoutedEventArgs e)
-        {
-            
-        }
         private void SearchGroup(object sender, RoutedEventArgs e)
         {
-            string name = GroupName.Text;
+            name = GroupName.Text;
             if (name != null)
             {
                 if (group.FindStudentGroups(name).Count > 1)
                 {
                     ContentText.Text = "There are multiple groups with that name, select which group you would like to join";
                     search.Visibility = Visibility.Collapsed;
-                    ContentText.Visibility = Visibility.Collapsed;
+                    GroupName.Visibility = Visibility.Collapsed;
                     Groups.Visibility = Visibility.Visible;
                     Create.Visibility = Visibility.Visible;
                     Join.Visibility = Visibility.Visible;
@@ -113,7 +114,7 @@ namespace KIT206.DatabaseApp.UI
                 {
                     ContentText.Text = "There is already a group with that name, Would you like to join it?";
                     search.Visibility = Visibility.Collapsed;
-                    ContentText.Visibility = Visibility.Collapsed;
+                    GroupName.Visibility = Visibility.Collapsed;
                     Groups.Visibility = Visibility.Visible;
                     Create.Visibility = Visibility.Visible;
                     Join.Visibility = Visibility.Visible;
@@ -130,33 +131,6 @@ namespace KIT206.DatabaseApp.UI
                 GroupName.Text = "You didnt enter a name\nPlease enter the name of the group you want to join";
             }
         }
-        //Change the Xaml for the main window to the no group case
-        public void NoGroup()
-        {
-
-        }
-        //Change the Xaml for the main window to the 1 group case
-        public void OneGroup()
-        {
-
-        }
-        //Change the Xaml for the main window to the Many group case
-        public void MultipleGroup()
-        {
-
-        }
-        private void JoinGroup()
-        {
-
-        }
-        private void CreateGroup()
-        {
-
-        }
-        /*private void GoToMainPage(object sender, RoutedEventArgs e)
-        {
-
-        }*/
     }
 
 }
