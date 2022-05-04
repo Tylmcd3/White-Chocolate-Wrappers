@@ -26,8 +26,6 @@ namespace KIT206.DatabaseApp.UI
         public EditStudentDialog(Student student)
         {
             InitializeComponent();
-            //Fill Title box doesnt work if the user doesnt have a Title yet. Make Checks for these
-            //titleBox.Text = student.Title.ToString();
 
             if(student.Title != null)
             {

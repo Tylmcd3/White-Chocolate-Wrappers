@@ -32,7 +32,7 @@ namespace KIT206.DatabaseApp.UI
             group = gru;
             if (group.Group_Class.GroupClass != null)
             {
-                window.ClassName.Text = group.Group_Class.GroupClass.ToString();//doesnt work if not in a group
+                window.ClassName.Text = group.Group_Class.GroupClass.ToString();
             }
             else
             {
@@ -57,7 +57,6 @@ namespace KIT206.DatabaseApp.UI
             bool? result = addMeetingDialog.ShowDialog();
             
             //Only process if they pressed OK
-            //will also need to do some form of form validation on the dialog TODO
             if(result == true)
             {
                 Day day;
@@ -146,7 +145,6 @@ namespace KIT206.DatabaseApp.UI
 
             if(result== true)
             {
-                //Also need to update view
                 student.EditStudentGroupMembership(0);
                 window.Overlay.Content = new NoGroupMainView(window, student, group);
             }

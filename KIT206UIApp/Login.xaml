@@ -42,7 +42,7 @@
             </Grid.RowDefinitions>
 
             <Rectangle Grid.Column="1" Fill="Orange"/>
-            <TextBlock Grid.Row="0" FontWeight="Bold" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1">some bullshit i forgor what jordan said</TextBlock>
+            <TextBlock Grid.Row="0" FontWeight="Bold" FontSize="20" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1"></TextBlock>
             <TextBlock Text="Welcome User" Grid.Row="1" FontWeight="Bold" FontSize="50" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1"></TextBlock>
             <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="25" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Please enter your studentID</TextBlock>
             <TextBox x:Name="loginIdBox" Grid.Row="2" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="120" Margin="0,30,0,0"/>

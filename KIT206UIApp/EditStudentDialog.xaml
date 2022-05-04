@@ -20,11 +20,33 @@
             </Style>
             <Style TargetType="{x:Type TextBox}">
                 <Setter Property="Margin" Value="0,0,0,5" />
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Style.Resources>
             </Style>
             <Style TargetType="{x:Type Button}">
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Style.Resources>
+                <Setter Property="Background" Value="#FFE87511"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="BorderBrush" Value="#00000000"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontWeight" Value="Light"/>
+                <Setter Property="FontSize" Value="14"/>
                 <Setter Property="Width" Value="70" />
                 <Setter Property="Height" Value="25" />
                 <Setter Property="Margin" Value="5" />
+            </Style>
+            <Style TargetType="{x:Type ComboBox}">
+                <Setter Property="Background" Value="Black"/>
+            </Style>
+            <Style TargetType="{x:Type ComboBoxItem}">
+                <Setter Property="Background" Value="#FFF5AE69"/>
             </Style>
         </Grid.Resources>
 
@@ -52,7 +74,7 @@
         <Label Grid.Column="0" Grid.Row="2">Enter Phone No:</Label>
         <TextBox x:Name="phoneBox" Grid.Column="1" Grid.Row="2" /> 
 
-        <ComboBox x:Name="campusSelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Top" Margin="5">
+        <ComboBox x:Name="campusSelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Top" Margin="5" SelectionChanged="campusSelector_SelectionChanged">
             <ComboBoxItem IsSelected="True" IsEnabled="False">Select Campus:</ComboBoxItem>
             <ComboBoxItem>Hobart</ComboBoxItem>
             <ComboBoxItem>Launceston</ComboBoxItem>
