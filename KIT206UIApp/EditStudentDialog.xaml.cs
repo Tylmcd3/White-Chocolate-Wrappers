@@ -24,9 +24,6 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             //Fill Title box doesnt work if the user doesnt have a Title yet. Make Checks for these
             //titleBox.Text = student.Title.ToString();
-            firstNameBox.Text = student.FirstName.ToString();
-            lastNameBox.Text = student.LastName.ToString();
-            //studentIdBox.Text = student.StudentID;
             emailBox.Text = student.Email.ToString();
             phoneBox.Text = student.Phone.ToString();
             campusSelector.SelectedIndex = (int)student.Campus + 1;

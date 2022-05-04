@@ -60,6 +60,7 @@
             <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="11" Margin="0,0,120,0" Content="Create new" Click="NewGroupPlease" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="11" Margin="120,0,0,0" Content="Join Existing" Click="OpenGroupDialog" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
+
         </Grid>
 
 

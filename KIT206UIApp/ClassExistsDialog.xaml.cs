@@ -80,5 +80,10 @@ namespace KIT206.DatabaseApp.UI
         {
 
         }
+
+        /*private void GoToMainPage(object sender, RoutedEventArgs e)
+        {
+
+        }*/
     }
 } //public or private?
