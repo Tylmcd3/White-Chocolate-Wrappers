@@ -24,18 +24,44 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             //Fill Title box doesnt work if the user doesnt have a Title yet. Make Checks for these
             //titleBox.Text = student.Title.ToString();
-            firstNameBox.Text = student.FirstName.ToString();
-            lastNameBox.Text = student.LastName.ToString();
-            //studentIdBox.Text = student.StudentID;
-            emailBox.Text = student.Email.ToString();
-            phoneBox.Text = student.Phone.ToString();
-            campusSelector.SelectedIndex = (int)student.Campus + 1;
-            categorySelector.SelectedIndex = (int)student.Category + 1;
+
+            if(student.Title != null)
+            {
+                titleBox.Text = student.Title;
+                titleBox.IsEnabled = false;
+            }
+            if(student.Email != null)
+            {
+                emailBox.Text = student.Email;
+                emailBox.IsEnabled = false;
+            }
+            if(student.Phone != null)
+            {
+                phoneBox.Text = student.Phone;
+                phoneBox.IsEnabled = false;
+            }
+            if(student.Campus != Campus.None)
+            {
+                campusSelector.SelectedIndex = (int)student.Campus + 1;
+                campusSelector.IsEnabled = false;  
+            }
+            if (student.Category != Category.None)
+            {
+                categorySelector.SelectedIndex = (int)student.Campus + 1;
+                categorySelector.IsEnabled = false;
+            }
         }
 
         private void okClick(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            if(titleBox.Text == "" || emailBox.Text == "" || phoneBox.Text == "" || campusSelector.SelectedIndex == 0 || categorySelector.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please enter all your details");
+            }
+            else
+            {
+                DialogResult = true;
+            }
         }
 
         private void cancelClick(object sender, RoutedEventArgs e)
