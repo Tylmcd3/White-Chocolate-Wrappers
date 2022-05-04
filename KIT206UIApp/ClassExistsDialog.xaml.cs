@@ -19,9 +19,40 @@ namespace KIT206.DatabaseApp.UI
     /// </summary>
     public partial class ClassExistsDialog : Window
     {
-        public ClassExistsDialog()
+        MainWindow window;
+        StudentViewController student;
+        StudentGroupViewController group;
+        public ClassExistsDialog(MainWindow win, StudentViewController stu, StudentGroupViewController gro)
         {
             InitializeComponent();
+            window = win;
+            student = stu;
+            group = gro;
+
         }
+
+        private void OpenGroupDialog(object sender, RoutedEventArgs e)
+        {
+            AddGroupDialog addGroupDialog = new AddGroupDialog(group);
+            addGroupDialog.ShowDialog();
+            if (addGroupDialog.groupID != -1)
+            {
+                student.EditStudentGroupMembership(addGroupDialog.groupID);
+                NowToMain(sender, e);
+            }
+
+        }
+        private void NowToMain(object sender, RoutedEventArgs e)
+        {
+            group.SelectGroup(student.CurrentStudent.StudentGroup);
+            window.Overlay.Content = new GroupMainView(window, student, group);
+        }
+
+        private void JoinExistingGroup(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
     }
 }

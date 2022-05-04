@@ -46,15 +46,19 @@
                 <RowDefinition Height="50*"/>
             </Grid.RowDefinitions>
 
+            <Rectangle Grid.Row="0" Fill="Orange"/>
+            <Rectangle Grid.Row="1" Fill="Orange"/>
+            <Rectangle Grid.Row="2" Fill="Orange"/>
             <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">A group with that name already exists. Would you like to join an existing group or create a new one?</TextBlock>
-            <TextBlock Grid.Row="3" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Student1</TextBlock>
+            <TextBlock Grid.Row="3" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Existing Group Members:</TextBlock>
             <TextBlock Grid.Row="4" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Student2</TextBlock>
             <TextBlock Grid.Row="5" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Student3</TextBlock>
             <TextBlock Grid.Row="6" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Student4</TextBlock>
             <TextBlock Grid.Row="7" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Student5</TextBlock>
             <TextBlock Grid.Row="8" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Student6</TextBlock>
             <TextBlock Grid.Row="8" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">Student6</TextBlock>
-            <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="11" Content="Submit" Click="GoToMainPage" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="11" Margin="0,0,120,0" Content="Create new" Click="NewGroupPlease" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="11" Margin="120,0,0,0" Content="Join Existing" Click="OpenGroupDialog" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
         </Grid>
 
