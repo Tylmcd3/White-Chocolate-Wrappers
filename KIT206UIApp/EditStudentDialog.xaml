@@ -74,7 +74,7 @@
         <Label Grid.Column="0" Grid.Row="2">Enter Phone No:</Label>
         <TextBox x:Name="phoneBox" Grid.Column="1" Grid.Row="2" /> 
 
-        <ComboBox x:Name="campusSelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Top" Margin="5" SelectionChanged="campusSelector_SelectionChanged">
+        <ComboBox x:Name="campusSelector" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Top" Margin="5" >
             <ComboBoxItem IsSelected="True" IsEnabled="False">Select Campus:</ComboBoxItem>
             <ComboBoxItem>Hobart</ComboBoxItem>
             <ComboBoxItem>Launceston</ComboBoxItem>
@@ -87,7 +87,7 @@
         </ComboBox>
 
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="Picknewimage" Click="ImageClick" IsDefault="True">Pick a new Image</Button>
+            <Button x:Name="Picknewimage" Click="ImageClick" IsDefault="True" Width="112">Pick a new Image</Button>
         </StackPanel>
         
         <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center">

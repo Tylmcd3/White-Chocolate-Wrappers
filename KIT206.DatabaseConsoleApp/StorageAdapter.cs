@@ -40,7 +40,7 @@ namespace KIT206.DatabaseApp
                         Enum.Parse<Campus>((string)rdr[5]),
                         (string)rdr[7],
                         Enum.Parse<Category>((string)rdr[9]),
-                        (rdr[8].GetType().Equals(typeof(byte[]))) ? getPhoto((byte[])rdr[8], false, (int)rdr[0]) : ""));
+                        (rdr[8].GetType().Equals(typeof(byte[]))) ? getPhoto((byte[])rdr[8]) : ""));
                 }
                 else
                 {
@@ -81,23 +81,18 @@ namespace KIT206.DatabaseApp
             cmd.Parameters.AddWithValue("@photo", photoBytes);
             MySQLConnector.DBExecute(cmd, conn);
         }
-        private static string getPhoto(byte[] photo, bool uploadbool, int id)
+        private static string getPhoto(byte[] photo)
         {
             string directory;
             if (photo.Length < 100)
                 return (Encoding.UTF8.GetString(photo));
-            else if(uploadbool)
-            {
-                directory = "pfp.png";
-                File.WriteAllBytes(directory, photo);
-                PhotoUpload.GetNewAccessTokensAsync();
-                string upload = PhotoUpload.UploadImage(directory, id);
-                return upload;
-            }
             else
             {
-                return "";
+                directory =Directory.GetCurrentDirectory() + "pfp.png";
+                File.WriteAllBytes(directory, photo);
+                return directory;
             }
+   
         }
         ///<summary>
         ///Updates given Students group Membership
@@ -166,7 +161,7 @@ namespace KIT206.DatabaseApp
                         Enum.Parse<Campus>((string)rdr[5]),
                         (string)rdr[7],
                         Enum.Parse<Category>((string)rdr[9]),
-                        (rdr[8].GetType().Equals(typeof(byte[])) ? getPhoto((byte[])rdr[8], true, (int)rdr[0]) : ""));
+                        (rdr[8].GetType().Equals(typeof(byte[])) ? getPhoto((byte[])rdr[8]) : ""));
                 }
                 else
                 {
