@@ -52,7 +52,10 @@ namespace KIT206.DatabaseApp.UI
         {
 
         }
+        
+        private void NewGroupPlease(object sender, RoutedEventArgs e)
+        {
 
-
+        }
     }
 }

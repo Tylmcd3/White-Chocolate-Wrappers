@@ -191,7 +191,8 @@ namespace KIT206.DatabaseApp
         public static void EditGroup(StudentGroup group)
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
-            string sqlcmd = $"UPDATE studentGroup SET group_name = " + group.GroupName + " WHERE group_id = " + group.GroupID;
+            string sqlcmd = $"UPDATE studentGroup SET group_name = \"{group.GroupName}\" " +
+                $"WHERE group_id = {group.GroupID}";
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 

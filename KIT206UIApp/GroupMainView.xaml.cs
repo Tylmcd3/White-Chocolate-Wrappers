@@ -119,41 +119,35 @@ namespace KIT206.DatabaseApp.UI
                 }
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        
+        private void Edit_Group(object sender, RoutedEventArgs e)
         {
+            EditGroupDialog editGroupDialog = new EditGroupDialog(group.FindStudentGroup(student.CurrentStudent.StudentGroup).GroupName);
 
+            bool? result = editGroupDialog.ShowDialog();    
+
+            if(result == true)
+            {
+                string newName = editGroupDialog.nameTextBox.Text;
+                group.EditGroup(student.CurrentStudent.StudentGroup, newName);
+            }
         }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Leave_Group(object sender, RoutedEventArgs e)
         {
+            LeaveGroupDialog leaveGroupDialog = new LeaveGroupDialog(group.FindStudentGroup(student.CurrentStudent.StudentGroup).GroupName);
 
-        }
+            bool? result = leaveGroupDialog.ShowDialog();
 
-        private void ListBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            if(result== true)
+            {
+                //Also need to update view
+                student.EditStudentGroupMembership(-1);                
+            }
         }
 
         private void GoToEditGroup(object sender, RoutedEventArgs e)
         {
 
-        }
-        private void List_Unselected_Event(object sender, RoutedEventArgs e)
-        {
-            //EditMeetingBtn.IsEnabled = false;
-            //CancelMeetingBtn.IsEnabled = false;
-        }
-
-        private void List_GotFocus_Event(object sender, RoutedEventArgs e)
-        {
-            //EditMeetingBtn.IsEnabled = true;
-            //CancelMeetingBtn.IsEnabled = true;  
         }
     }
 }
