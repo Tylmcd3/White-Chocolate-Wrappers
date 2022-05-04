@@ -23,7 +23,7 @@ namespace KIT206.DatabaseApp.UI
         MainWindow window;
         private StudentViewController student;
         private StudentGroupViewController group;
-        private MeetingViewController testList;
+        private MeetingViewController meetings;
         public GroupMainView(MainWindow win, StudentViewController stu, StudentGroupViewController gru)
         {
             InitializeComponent();
@@ -42,9 +42,15 @@ namespace KIT206.DatabaseApp.UI
             GroupMembers.ItemsSource = student.FindStudentsByGroup();
             GroupName.Text = group.FindStudentGroup(student.CurrentStudent.StudentGroup).GroupName;
             //MeetingsList.ItemsSource = group.Group_Meetings.Meetings;
-            testList = new MeetingViewController(5);
-            MeetingsList.ItemsSource = testList.ViewableMeetings;
+            meetings = new MeetingViewController(5);
+            MeetingsList.ItemsSource = meetings.ViewableMeetings;
             
+        }
+
+        private void UpdateMeetings()
+        {
+            meetings.UpdateViewableMeetings();
+            MeetingsList.ItemsSource = meetings.ViewableMeetings;
         }
         private void Add_Meeting(object sender, RoutedEventArgs e)
         {
@@ -66,8 +72,9 @@ namespace KIT206.DatabaseApp.UI
                 start = TimeSpan.Parse(addMeetingDialog.startTextBox.Text);
                 end = TimeSpan.Parse(addMeetingDialog.endTextBox.Text);
 
-                testList.AddMeeting(student.CurrentStudent.StudentGroup,
+                meetings.AddMeeting(student.CurrentStudent.StudentGroup,
                                     day, start, end, room);
+                UpdateMeetings();
                 //group.Group_Meetings.AddMeeting(student.CurrentStudent.StudentGroup,
                 //                                day, start, end, room);
 
@@ -97,8 +104,8 @@ namespace KIT206.DatabaseApp.UI
                     start = TimeSpan.Parse(editMeetingDialog.startTextBox.Text);
                     end = TimeSpan.Parse(editMeetingDialog.endTextBox.Text);
 
-                    group.Group_Meetings.EditMeeting(toEdit.MeetingID, day, start, end);
-                    
+                    meetings.EditMeeting(toEdit.MeetingID, day, start, end);
+                    UpdateMeetings();
                 }
             }
 
@@ -116,7 +123,8 @@ namespace KIT206.DatabaseApp.UI
 
                 if(result == true)
                 {
-                    group.Group_Meetings.CancelMeeting(toCancel.MeetingID);
+                    meetings.CancelMeeting(toCancel.MeetingID);
+                    UpdateMeetings();
                 }
             }
         }

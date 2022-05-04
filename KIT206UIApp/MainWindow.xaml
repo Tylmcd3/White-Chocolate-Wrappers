@@ -118,7 +118,7 @@
                 </Grid>
 
             </StackPanel>
-            <Button Content="Edit" Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource RoundButton}" Click="ToEditStudent"/>
+            <Button Content="Edit Student Details" Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource RoundButton}" Click="ToEditStudent"/>
 
             <Separator Grid.Row="1" Background="Black" VerticalAlignment="Bottom"/>
 

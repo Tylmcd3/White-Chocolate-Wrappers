@@ -47,20 +47,23 @@ namespace KIT206.DatabaseApp.UI
         //Maybe change the Students name from centre to the right when theres an image but leave it when there isint.
         public void BindStudentImage()
         {
-           // var image = new Image();
-           // string path = student.CurrentStudent.Photo.Remove(0, 1);
-           // path = path.Remove(path.Length - 1, 1);
-           // if(path.Length < 100)
-           // {
-           //    var fullFilePath = path;
+            if (student.CurrentStudent.Photo.Length < 100)
+            {
+                var image = new Image();
+                string path = student.CurrentStudent.Photo.Remove(0, 1);
+                path = path.Remove(path.Length - 1, 1);
 
-           //    BitmapImage bitmap = new BitmapImage();
-           //    bitmap.BeginInit();
-           //    bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-           //    bitmap.EndInit();
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(path, UriKind.Absolute);
+                bitmap.EndInit();
 
-           //    StudentImage.Source = bitmap;
-           //}
+                StudentImage.Source = bitmap;
+            }
+            else
+            {
+
+            }
 
         }
         public void selectMainView()
@@ -104,7 +107,7 @@ namespace KIT206.DatabaseApp.UI
             }
 
             if (student.CurrentStudent.Title != null)
-                name = student.CurrentStudent.Title + name;
+                name = $"{student.CurrentStudent.Title} {name}";
 
             studentDetails.Add(name); studentDetails.Add(id); studentDetails.Add(groupName); studentDetails.Add(campus);
             studentDetails.Add(category);  studentDetails.Add(email); studentDetails.Add(phone);

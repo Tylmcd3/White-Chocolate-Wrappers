@@ -17,6 +17,11 @@ namespace KIT206.DatabaseApp.UI
             viewableMeetings = new ObservableCollection<Meeting>(meetings);
         }
 
+        public void UpdateViewableMeetings()
+        {
+            viewableMeetings = new ObservableCollection<Meeting>(meetings);
+        }
+
         public ObservableCollection<Meeting> GetViewableMeetings()
         {
             return viewableMeetings;
