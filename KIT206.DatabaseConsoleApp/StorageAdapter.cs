@@ -409,7 +409,7 @@ namespace KIT206.DatabaseApp
         {
             MySqlConnection conn = MySQLConnector.DatabaseConnect();
             Class returnClass = null;
-            string sqlcmd = "SELECT * FROM class WHERE group_id= " + groupID;
+            string sqlcmd = $"SELECT * FROM class WHERE group_id= \'{groupID}\'";
 
             MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
             MySqlDataReader rdr = MySQLConnector.DBReader(cmd, conn);
