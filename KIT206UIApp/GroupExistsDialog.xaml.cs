@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,19 +17,20 @@ namespace KIT206.DatabaseApp.UI
     /// <summary>
     /// Interaction logic for ClassExistsDialog.xaml
     /// </summary>
-    public partial class GroupExistsDialog : Window
+    public partial class AddGroup : Window
     {
         MainWindow window;
         StudentViewController student;
         StudentGroupViewController group;
-        public GroupExistsDialog(MainWindow win, StudentViewController stu, StudentGroupViewController gro)
+        public int groupID = -1;
+        public AddGroup(MainWindow win, StudentViewController stu, StudentGroupViewController gro)
         {
             InitializeComponent();
             window = win;
             student = stu;
             group = gro;
         }
-        public GroupExistsDialog()
+        public AddGroup()
         {
             List<Student> students = new List<Student>() {
                 new Student(123, "Tyler", "McDonald", 1),
@@ -39,20 +40,15 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new();
             group = new();
-
-            DisplayGroups("Networking 2.0");
         }
 
-        private void OpenGroupDialog(object sender, RoutedEventArgs e)
+        private void JoinSelectedGroup(object sender, RoutedEventArgs e)
         {
-            AddGroupDialog addGroupDialog = new AddGroupDialog(group);
-            addGroupDialog.ShowDialog();
-            if (addGroupDialog.groupID != -1)
-            {
-                student.EditStudentGroupMembership(addGroupDialog.groupID);
-                NowToMain(sender, e);
-            }
+            StackPanel panel = (StackPanel)Groups.SelectedItem;
+            int panelID = int.Parse(panel.Uid);
 
+            groupID = panelID;
+            this.Close();
         }
         private void NowToMain(object sender, RoutedEventArgs e)
         {
@@ -67,22 +63,72 @@ namespace KIT206.DatabaseApp.UI
         private void DisplayGroups(string groupName)
         {
             List<StudentGroup> ListOfGroups = group.FindStudentGroups(groupName);
+            
+            foreach(StudentGroup group in ListOfGroups)
+            {
+                StackPanel panel= new();
+                TextBlock Heading = new();
 
-            Groups.ItemsSource = ListOfGroups;
-        }
-        private void DisplayStudents(ListBoxItem listBoxItem)
-        {
-            List<Student> students = new List<Student>() {
-                new Student(123, "Tyler", "McDonald", 1),
-                new Student(132, "Callum", "Stehdf", 1),
-                new Student(142, "Jordan", "Voiceless", 1)
-            };
+                panel.Uid = group.GroupID.ToString();
+                Heading.FontSize = 20;
+                panel.Orientation = Orientation.Vertical;
+                Heading.Text = "Group Members";
+                Heading.TextAlignment = TextAlignment.Center;
+                panel.Children.Add(Heading);
+                panel.Children.Add(new Separator());
 
-            //Students.ItemsSource = students;
+                foreach(Student stu in student.FindStudentsByGroup(group.GroupID))
+                {
+                    TextBlock students = new();
+
+                    students.FontSize = 20;
+                    students.TextAlignment = TextAlignment.Center;
+                    students.Text += stu.FirstName + " " + stu.LastName;
+                    panel.Children.Add(students);
+
+                }
+                Groups.Items.Add(panel);
+            }
         }
         private void NewGroupPlease(object sender, RoutedEventArgs e)
         {
             
+        }
+        private void SearchGroup(object sender, RoutedEventArgs e)
+        {
+            string name = GroupName.Text;
+            if (name != null)
+            {
+                if (group.FindStudentGroups(name).Count > 1)
+                {
+                    ContentText.Text = "There are multiple groups with that name, select which group you would like to join";
+                    search.Visibility = Visibility.Collapsed;
+                    ContentText.Visibility = Visibility.Collapsed;
+                    Groups.Visibility = Visibility.Visible;
+                    Create.Visibility = Visibility.Visible;
+                    Join.Visibility = Visibility.Visible;
+                    DisplayGroups(name);
+                }
+                else if (group.FindStudentGroups(name).Count == 1)
+                {
+                    ContentText.Text = "There is already a group with that name, Would you like to join it?";
+                    search.Visibility = Visibility.Collapsed;
+                    ContentText.Visibility = Visibility.Collapsed;
+                    Groups.Visibility = Visibility.Visible;
+                    Create.Visibility = Visibility.Visible;
+                    Join.Visibility = Visibility.Visible;
+                    DisplayGroups(name);
+                }
+                else
+                {
+                    groupID = group.AddGroup(name);
+                    this.Close();
+                }
+            }
+            else
+            {
+                GroupName.Text = "You didnt enter a name\nPlease enter the name of the group you want to join";
+            }
         }
         //Change the Xaml for the main window to the no group case
         public void NoGroup()
@@ -107,15 +153,10 @@ namespace KIT206.DatabaseApp.UI
         {
 
         }
-        
-        private void NewGroupPlease(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         /*private void GoToMainPage(object sender, RoutedEventArgs e)
         {
 
         }*/
     }
+
 }

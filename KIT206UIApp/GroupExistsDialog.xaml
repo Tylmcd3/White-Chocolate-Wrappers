@@ -1,4 +1,4 @@
-﻿<Window x:Class="KIT206.DatabaseApp.UI.GroupExistsDialog"
+﻿<Window x:Class="KIT206.DatabaseApp.UI.AddGroup"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -27,18 +27,23 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.3*"/>
-                <RowDefinition Height="0.4*"/>
-                <RowDefinition Height="0.3*"/>
-                <RowDefinition Height="7*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="22*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="97*"/>
+                <RowDefinition Height="211*"/>
+                <RowDefinition Height="35*"/>
             </Grid.RowDefinitions>
 
             <Rectangle Grid.Row="0" Fill="Orange"/>
-            <Rectangle Grid.Row="1" Fill="Orange"/>
-            <Rectangle Grid.Row="2" Fill="Orange"/>
-            <TextBlock Grid.Row="1" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Column="1">A group with that name already exists. Would you like to join an existing group or create a new one?</TextBlock>
-            <ListBox Name="Groups" Grid.Row="3" HorizontalContentAlignment="Center" Panel.ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Rectangle Fill="Orange" Margin="0,10,0,0" Grid.RowSpan="2"/>
+            <Rectangle Grid.Row="1" Fill="Orange" Margin="0,14,0,0" Grid.RowSpan="2"/>
+            <TextBlock FontWeight="Bold" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Grid.RowSpan="2" Width="154"><Run Language="en-gb" Text="Join or create a group"/></TextBlock>
+            <TextBlock Name="ContentText" FontWeight="Bold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="20" Grid.Row="3" ><Run Language="en-gb" Text="Enter your group name"/></TextBlock>
+            <TextBox x:Name="GroupName" Grid.Row="4"  HorizontalContentAlignment="Center" VerticalAlignment="Top" Margin="279,45,279,0"></TextBox>
+            <Button Name="search" Width="100" Style="{StaticResource RoundButton}" Grid.Row="4" Content="Join Group" Click="SearchGroup" HorizontalAlignment="Center" VerticalAlignment="Center" Height="31" />
+
+            <ListBox Name="Groups" Visibility="Collapsed" Grid.Row="4" HorizontalContentAlignment="Center" Panel.ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="4" Width="4" SelectedIndex="0" >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -50,31 +55,11 @@
                         <StackPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate >
-                    <DataTemplate>
-                        <WrapPanel Orientation="Vertical">
-                            <TextBlock Text="Group Members" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <Separator/>
-                            <ItemsControl x:Name="Students" BorderThickness="0,1,0,0" >
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <WrapPanel>
-                                            <TextBlock Text="{Binding FirstName}" IsEnabled="False" />
-                                            <TextBlock Text=" " />
-                                            <TextBlock Text="{Binding LastName}" />
-                                        </WrapPanel>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </WrapPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-
-
             </ListBox>
-            
-            <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="11" Margin="0,0,120,0" Content="Create new" Click="NewGroupPlease" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Button Width="100" Style="{StaticResource RoundButton}" Grid.Row="11" Margin="120,0,0,0" Content="Join Existing" Click="OpenGroupDialog" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+            <Button Name ="Create" Width="100" Style="{StaticResource RoundButton}" Visibility="Collapsed" Grid.Row="5" Margin="265,0,0,0" Content="Create new" Click="NewGroupPlease" HorizontalAlignment="Left" VerticalAlignment="Center" Height="31" />
+            <Button Name="Join" Width="100" Style="{StaticResource RoundButton}" Visibility="Collapsed" Grid.Row="5" Margin="385,0,0,0" Content="Join Existing" Click="JoinSelectedGroup" HorizontalAlignment="Left" VerticalAlignment="Center" Height="31" />
+            <StackPanel Grid.Row="3" Margin="0,1,0,0"/>
 
         </Grid>
 

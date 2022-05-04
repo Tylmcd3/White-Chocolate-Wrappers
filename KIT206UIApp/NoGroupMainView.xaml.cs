@@ -38,7 +38,7 @@ namespace KIT206.DatabaseApp.UI
         }
         private void OpenGroupDialog(object sender, RoutedEventArgs e)
         {
-            AddGroupDialog addGroupDialog = new AddGroupDialog(group);
+            AddGroup addGroupDialog = new AddGroup(window, student, group);
             addGroupDialog.ShowDialog();
             if(addGroupDialog.groupID != -1)
             {
