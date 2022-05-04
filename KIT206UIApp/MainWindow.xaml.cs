@@ -49,6 +49,7 @@ namespace KIT206.DatabaseApp.UI
             if (student.CurrentStudent.Photo != null && student.CurrentStudent.Photo.Length < 100)
             {
                 var image = new Image();
+
                 string path = student.CurrentStudent.Photo.Remove(0, 1);
                 path = path.Remove(path.Length - 1, 1);
 
@@ -61,6 +62,14 @@ namespace KIT206.DatabaseApp.UI
             }
             else
             {
+                Image defaultImage = new Image();
+                defaultImage.Width = 50;
+                defaultImage.Margin = new Thickness(5);
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.UriSource = new Uri(@"C:\Users\buste\source\repos\White-Chocolate-WrappersNEWNEWNEWNNEW\KIT206UIApp\twitter-avi-gender-balanced-figure.png", UriKind.RelativeOrAbsolute);
+                bi.EndInit();
+                defaultImage.Source = bi;
 
             }
 
