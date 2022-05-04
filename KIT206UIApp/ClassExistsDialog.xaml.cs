@@ -17,11 +17,68 @@ namespace KIT206.DatabaseApp.UI
     /// <summary>
     /// Interaction logic for ClassExistsDialog.xaml
     /// </summary>
-    public partial class ClassExistsDialog : Window
+    public partial class GroupExistsDialog : Window
     {
-        public ClassExistsDialog()
+        MainWindow window;
+        StudentViewController student;
+        StudentGroupViewController group;
+        public GroupExistsDialog(MainWindow win, StudentViewController stu, StudentGroupViewController gro)
         {
             InitializeComponent();
+            window = win;
+            student = stu;
+            group = gro;
+
+        }
+
+        private void OpenGroupDialog(object sender, RoutedEventArgs e)
+        {
+            AddGroupDialog addGroupDialog = new AddGroupDialog(group);
+            addGroupDialog.ShowDialog();
+            if (addGroupDialog.groupID != -1)
+            {
+                student.EditStudentGroupMembership(addGroupDialog.groupID);
+                NowToMain(sender, e);
+            }
+
+        }
+        private void NowToMain(object sender, RoutedEventArgs e)
+        {
+            group.SelectGroup(student.CurrentStudent.StudentGroup);
+            window.Overlay.Content = new GroupMainView(window, student, group);
+        }
+
+        private void NewGroupPlease(object sender, RoutedEventArgs e)
+        {
+            if (group.Count==0)
+        }
+        //Change the Xaml for the main window to the no group case
+        public void NoGroup()
+        {
+
+        }
+        //Change the Xaml for the main window to the 1 group case
+        public void OneGroup()
+        {
+            
+        }
+        //Change the Xaml for the main window to the Many group case
+        public void MultipleGroup()
+        {
+
+        }
+        private void JoinGroup()
+        {
+
+        }
+        private void CreateGroup()
+        {
+
+        }
+        
+        private void NewGroupPlease(object sender, RoutedEventArgs e)
+        {
+
         }
 
         /*private void GoToMainPage(object sender, RoutedEventArgs e)
@@ -29,4 +86,4 @@ namespace KIT206.DatabaseApp.UI
 
         }*/
     }
-}
+} //public or private?
