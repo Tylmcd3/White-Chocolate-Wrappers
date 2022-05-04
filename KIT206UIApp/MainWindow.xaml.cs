@@ -28,36 +28,37 @@ namespace KIT206.DatabaseApp.UI
             InitializeComponent();
             student = new StudentViewController();
             group = new StudentGroupViewController();
-            int StudentID = 123474;
+            int StudentID = 123460;
             student.SelectStudent(StudentID);
             StudentName.Text = student.CurrentStudent.FirstName + " " + student.CurrentStudent.LastName;
             BindStudentDetails();
 
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
-            BindStudentImage();
+            //BindStudentImage();
 
             selectMainView();
         }
+        //Bind Student Image needs to check if theres an image before trying to user the students Photo
+        //Maybe change the Students name from centre to the right when theres an image but leave it when there isint.
+        //public void BindStudentImage()
+        //{
+        //    var image = new Image();
+        //    string path = student.CurrentStudent.Photo.Remove(0, 1);
+        //    path = path.Remove(path.Length - 1, 1);
+        //    if(path.Length < 100)
+        //    {
+        //        var fullFilePath = path;
 
-        public void BindStudentImage()
-        {
-            var image = new Image();
-            string path = student.CurrentStudent.Photo.Remove(0, 1);
-            path = path.Remove(path.Length - 1, 1);
-            if(path.Length < 100)
-            {
-                var fullFilePath = path;
+        //        BitmapImage bitmap = new BitmapImage();
+        //        bitmap.BeginInit();
+        //        bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+        //        bitmap.EndInit();
 
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-                bitmap.EndInit();
+        //        StudentImage.Source = bitmap;
+        //    }
 
-                StudentImage.Source = bitmap;
-            }
-
-        }
+        //}
         public void selectMainView()
         {
             if (student.CurrentStudent.StudentGroup <= 0) //Change this to == for add group view to pop up
@@ -82,13 +83,11 @@ namespace KIT206.DatabaseApp.UI
             string Name, Id, GroupName, Campus, Email, Category, Phone;
 
 
-            StudentDetails.Text = "Name: " + Name + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group Name: "
-                + student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " +
-                student.CurrentStudent.Email + "\n" + "Category: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
-                student.CurrentStudent.Phone;
+            //StudentDetails.Text = "Name: " + Name + "\n" + "StudentID: " + student.CurrentStudent.StudentID + "\n" + "Group Name: "
+                //+ student.CurrentStudent.StudentGroup + "\n" + "Campus: " + student.CurrentStudent.Campus + "\n" + "Email: " +
+                //student.CurrentStudent.Email + "\n" + "Category: " + student.CurrentStudent.Category + "\n" + "Phone No: " +
+                //student.CurrentStudent.Phone;
         }
-
-        private void ToEditStudent(object sender, RoutedEventArgs e)
         
 
         private void ToEditStudent(object sender, RoutedEventArgs e)
