@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Drawing;
 
 namespace KIT206.DatabaseApp.UI
 {
@@ -19,6 +22,7 @@ namespace KIT206.DatabaseApp.UI
     /// </summary>
     public partial class EditStudentDialog : Window
     {
+        System.Drawing.Image studentImage;
         public EditStudentDialog(Student student)
         {
             InitializeComponent();
@@ -67,6 +71,17 @@ namespace KIT206.DatabaseApp.UI
         private void cancelClick(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+        private void ImageClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                MemoryStream ms = new MemoryStream(File.ReadAllBytes(openFileDialog.FileName));
+                studentImage = System.Drawing.Image.FromStream(ms);
+            }
+                
         }
     }
 }

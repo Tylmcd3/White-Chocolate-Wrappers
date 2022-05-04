@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace KIT206.DatabaseApp.UI
 {
@@ -46,10 +48,8 @@ namespace KIT206.DatabaseApp.UI
         //Maybe change the Students name from centre to the right when theres an image but leave it when there isint.
         public void BindStudentImage()
         {
-            if (student.CurrentStudent.Photo != null && student.CurrentStudent.Photo.Length < 100)
+            if (student.CurrentStudent.Photo != "" && student.CurrentStudent.Photo.Length < 100)
             {
-                var image = new Image();
-
                 string path = student.CurrentStudent.Photo.Remove(0, 1);
                 path = path.Remove(path.Length - 1, 1);
 
@@ -60,18 +60,15 @@ namespace KIT206.DatabaseApp.UI
 
                 StudentImage.Source = bitmap;
             }
-            else
+            else if(student.CurrentStudent.Photo.Length < 200)
             {
-                Image defaultImage = new Image();
-                defaultImage.Width = 50;
-                defaultImage.Margin = new Thickness(5);
-                string path = "https://i.imgur.com/DJcv9pB.png";
+                string path = student.CurrentStudent.Photo;
+
                 BitmapImage bi = new BitmapImage();
                 bi.BeginInit();
-                bi.UriSource = new Uri(path, UriKind.RelativeOrAbsolute);
+                bi.UriSource = new Uri("https://i.imgur.com/DJcv9pB.png", UriKind.Absolute);
                 bi.EndInit();
-                defaultImage.Source = bi;
-
+                StudentImage.Source = bi;
             }
 
         }

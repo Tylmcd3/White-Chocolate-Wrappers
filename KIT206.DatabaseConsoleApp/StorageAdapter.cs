@@ -4,7 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Drawing;
+using System.Drawing.Imaging;
 
+using System.Web;
+using System.IO;
 namespace KIT206.DatabaseApp
 {
     public class StorageAdapter
@@ -36,7 +40,7 @@ namespace KIT206.DatabaseApp
                         Enum.Parse<Campus>((string)rdr[5]),
                         (string)rdr[7],
                         Enum.Parse<Category>((string)rdr[9]),
-                        (rdr[8].GetType().Equals(typeof(byte[]))) ? (Encoding.UTF8.GetString((byte[])rdr[8])) : "")); 
+                        (rdr[8].GetType().Equals(typeof(byte[]))) ? getPhoto((byte[])rdr[8], false, (int)rdr[0]) : ""));
                 }
                 else
                 {
@@ -51,7 +55,50 @@ namespace KIT206.DatabaseApp
             MySQLConnector.DBClose(rdr, conn);
             return students;
         }
+        public static void EditStudentImage(Student student)
+        {
+            byte[] photoBytes = Encoding.UTF8.GetBytes(student.Photo);
+            var stream = new MemoryStream(photoBytes);
 
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            string sqlcmd = $"UPDATE student SET " +
+                $"photo = @photo WHERE student_id = " + student.StudentID;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            cmd.Parameters.AddWithValue("@photo", photoBytes);
+            MySQLConnector.DBExecute(cmd, conn);
+        }
+        public static void EditStudentImage(int id, string link)
+        {
+            byte[] photoBytes = Encoding.UTF8.GetBytes(link);
+            var stream = new MemoryStream(photoBytes);
+
+            MySqlConnection conn = MySQLConnector.DatabaseConnect();
+            string sqlcmd = $"UPDATE student SET " +
+                $"photo = @photo WHERE student_id = " + id;
+
+            MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
+            cmd.Parameters.AddWithValue("@photo", photoBytes);
+            MySQLConnector.DBExecute(cmd, conn);
+        }
+        private static string getPhoto(byte[] photo, bool uploadbool, int id)
+        {
+            string directory;
+            if (photo.Length < 100)
+                return (Encoding.UTF8.GetString(photo));
+            else if(uploadbool)
+            {
+                directory = "pfp.png";
+                File.WriteAllBytes(directory, photo);
+                PhotoUpload.GetNewAccessTokensAsync();
+                string upload = PhotoUpload.UploadImage(directory, id);
+                return upload;
+            }
+            else
+            {
+                return "";
+            }
+        }
         ///<summary>
         ///Updates given Students group Membership
         ///</summary>
@@ -119,7 +166,7 @@ namespace KIT206.DatabaseApp
                         Enum.Parse<Campus>((string)rdr[5]),
                         (string)rdr[7],
                         Enum.Parse<Category>((string)rdr[9]),
-                        (rdr[8].GetType().Equals(typeof(byte[]))) ? (Encoding.UTF8.GetString((byte[])rdr[8])) : "");
+                        (rdr[8].GetType().Equals(typeof(byte[])) ? getPhoto((byte[])rdr[8], true, (int)rdr[0]) : ""));
                 }
                 else
                 {
