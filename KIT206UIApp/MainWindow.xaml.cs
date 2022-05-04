@@ -65,9 +65,10 @@ namespace KIT206.DatabaseApp.UI
                 Image defaultImage = new Image();
                 defaultImage.Width = 50;
                 defaultImage.Margin = new Thickness(5);
+                string path = "https://i.imgur.com/DJcv9pB.png";
                 BitmapImage bi = new BitmapImage();
                 bi.BeginInit();
-                bi.UriSource = new Uri(@"C:\Users\buste\source\repos\White-Chocolate-WrappersNEWNEWNEWNNEW\KIT206UIApp\twitter-avi-gender-balanced-figure.png", UriKind.RelativeOrAbsolute);
+                bi.UriSource = new Uri(path, UriKind.RelativeOrAbsolute);
                 bi.EndInit();
                 defaultImage.Source = bi;
 
