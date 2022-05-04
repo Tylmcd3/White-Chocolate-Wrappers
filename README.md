@@ -4,9 +4,10 @@ This is our group project for KIT206 - the GMIS.
 ## File Structure
 There are four projects:
 ### <ins>KIT206</ins>
-This project contains all the entity files (Student, StudentGroup, Class, Meeting) as well as common enumerations. It <ins>does not</ins> have any form of driver class.
+This project contains all the entity files (Student, StudentGroup, Class, Meeting) as well as common enumerations. It <ins>does not</ins> have any form of driver class. 
 ### <ins>KIT206.ConsoleApp</ins>
-This project contains a basic command line application with some dummy storage classes in place of the database.
+This project contains a basic command line application with some dummy storage classes in place of the database. Currently this project doesn't work as we 
+didn't have time to change the storage files.
 ### <ins>KIT206.DatabaseConsoleApp</ins>
 This project contains classes and logic for connecting to the GMIS database and retrieving data from them. 
 It also contains our class controllers, which manage collections of the entity classes.
