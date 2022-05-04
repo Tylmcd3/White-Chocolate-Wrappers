@@ -33,19 +33,26 @@ namespace KIT206.DatabaseApp.UI
         private void GoToMainPage(object sender, RoutedEventArgs e)
         {
             int id;
-            id = int.Parse(loginIdBox.Text);
-
-            Student student1 = (student.FindStudent(id));
-            if(student1 != null)
+            if(int.TryParse(loginIdBox.Text, out id))
             {
-                MainWindow mainWindow = new MainWindow(id);
-                mainWindow.Show();
-                this.Visibility = Visibility.Collapsed;
+                Student student1 = (student.FindStudent(id));
+                if (student1 != null)
+                {
+                    MainWindow mainWindow = new MainWindow(id);
+                    mainWindow.Show();
+                    this.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect ID, Enter valid StudentID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Incorrect ID, Enter valid StudentID", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please enter a valid 6 digit number", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+
         
         }
       

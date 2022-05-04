@@ -37,7 +37,7 @@ namespace KIT206.DatabaseApp.UI
 
             StudentName.Text = $"{student.CurrentStudent.FirstName} {student.CurrentStudent.LastName}";   
             
-            group.SelectGroup(StudentID);
+            group.SelectGroup(student.CurrentStudent.StudentGroup);
             BindStudentDetails();
 
             BindStudentImage();
