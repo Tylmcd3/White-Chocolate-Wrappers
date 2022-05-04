@@ -35,30 +35,30 @@ namespace KIT206.DatabaseApp.UI
 
             group.SelectGroup(student.CurrentStudent.StudentGroup);
 
-            //BindStudentImage();
+            BindStudentImage();
 
             selectMainView();
         }
         //Bind Student Image needs to check if theres an image before trying to user the students Photo
         //Maybe change the Students name from centre to the right when theres an image but leave it when there isint.
-        //public void BindStudentImage()
-        //{
-        //    var image = new Image();
-        //    string path = student.CurrentStudent.Photo.Remove(0, 1);
-        //    path = path.Remove(path.Length - 1, 1);
-        //    if(path.Length < 100)
-        //    {
-        //        var fullFilePath = path;
+        public void BindStudentImage()
+        {
+            var image = new Image();
+            string path = student.CurrentStudent.Photo.Remove(0, 1);
+            path = path.Remove(path.Length - 1, 1);
+            if(path.Length < 100)
+            {
+               var fullFilePath = path;
 
-        //        BitmapImage bitmap = new BitmapImage();
-        //        bitmap.BeginInit();
-        //        bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-        //        bitmap.EndInit();
+               BitmapImage bitmap = new BitmapImage();
+               bitmap.BeginInit();
+               bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+               bitmap.EndInit();
 
-        //        StudentImage.Source = bitmap;
-        //    }
+               StudentImage.Source = bitmap;
+           }
 
-        //}
+        }
         public void selectMainView()
         {
             if (student.CurrentStudent.StudentGroup <= 0) //Change this to == for add group view to pop up

@@ -43,6 +43,7 @@ namespace KIT206.DatabaseApp.UI
                 List<StudentGroup> groups = group.FindStudentGroups(this.GroupNameTextBox.Text);
                 if(groups.Count == 0)
                 {
+                    //Class Exists no group page
                     if (MessageBox.Show("This group doesnt exist, would you like to create this group?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         
@@ -50,8 +51,9 @@ namespace KIT206.DatabaseApp.UI
                         this.Close();
                     }
                 }
-                else
+                else if(groups.Count == 1)
                 {
+                    //Class Exists 1 group page
                     if (MessageBox.Show("A group exists with that name, would you like to join it?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
 
@@ -59,8 +61,15 @@ namespace KIT206.DatabaseApp.UI
                         this.Close();
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Multiple group exists with that name")
+
+ 
+
+                }
             }
             
         }
     }
-}
+} //meow
