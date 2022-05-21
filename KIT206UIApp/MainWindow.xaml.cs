@@ -48,7 +48,7 @@ namespace KIT206.DatabaseApp.UI
         //Maybe change the Students name from centre to the right when theres an image but leave it when there isint.
         public void BindStudentImage()
         {
-            if (student.CurrentStudent.Photo != "" && student.CurrentStudent.Photo.Length < 100)
+            if (student.CurrentStudent.Photo != null && student.CurrentStudent.Photo.Length < 100)
             {
                 string path = student.CurrentStudent.Photo.Remove(0, 1);
                 path = path.Remove(path.Length - 1, 1);
@@ -60,7 +60,7 @@ namespace KIT206.DatabaseApp.UI
 
                 StudentImage.Source = bitmap;
             }
-            else if(student.CurrentStudent.Photo.Length < 200)
+            else
             {
                 string path = student.CurrentStudent.Photo;
 
